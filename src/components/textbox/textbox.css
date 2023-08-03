@@ -1,5 +1,8 @@
-OuterBox {
+.OuterBox {
   height: 400px;
   width: 400px;
   background-color: bisque;
+  border-radius: 1000px;
+  align-items: center;
+  justify-content: center;
 }
