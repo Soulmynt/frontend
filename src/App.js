@@ -1,8 +1,15 @@
 import "./App.css";
-import { Textbox } from "./components/textbox";
+import {SignIn} from "./pages/signIn"
+
 
 function App() {
-  return <Textbox text={"I think this is cool"} />;
+  return (
+    <div>
+      <SignIn/>
+    </div>
+    
+  );
+  
 }
 
 export default App;

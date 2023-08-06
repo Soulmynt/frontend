@@ -1,0 +1,13 @@
+.ColorfulText-container {
+    text-align: center;
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

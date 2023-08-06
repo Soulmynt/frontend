@@ -1,0 +1,21 @@
+.button-container {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
+}
+
+.button-text {
+    flex: 1 0 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}

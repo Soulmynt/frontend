@@ -1,0 +1,94 @@
+.overall-signin {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #FFF;
+}
+
+
+
+.left-frame {
+    width: 600px;
+    height: 100vh;
+    flex-shrink: 0;
+    display: flex; /* Add this line */
+    flex-direction: column; /* Add this line */
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    position: relative;
+}
+.right-frame {
+    height: 100vh;
+    flex-grow: 1;
+    overflow: hidden;
+    background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
+    justify-content: center; /* Center the .signin-text-container horizontally */
+    align-items: center;
+}
+
+.soulmynt-logo{
+    width: 300px;
+    height: 170px;
+    flex-shrink: 0;
+    position:absolute;
+    top: 8%;
+
+}
+
+
+.curvy {
+    width: 782.208px;
+    height: 323.111px;
+    transform: rotate(6.148deg);
+    flex-shrink: 0;
+    border-radius: 37px;
+    filter: blur(2px);
+}
+
+
+.bold-text-container{
+    position: absolute; /* Add this line */
+    top: 20%; /* Adjust this value to move the text up or down */
+}
+
+.create-account-container{
+    position: absolute; /* Add this line */
+    top: 30%; /* Adjust this value to move the text up or down */
+}
+
+.email-pass{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.continue-button{
+    position: absolute; /* Add this line */
+    bottom: 100px;
+    left: 100px;
+    right: 100px;
+}
+
+.signin-text-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 10px;
+
+}
+.main-signin-text{
+    width: 325px;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3;
+    text-transform: capitalize;
+    /* text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+    white-space: pre-line;
+}
