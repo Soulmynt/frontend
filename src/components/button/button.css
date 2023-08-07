@@ -19,3 +19,8 @@
     line-height: normal;
     text-transform: capitalize;
 }
+
+.disabled-button {
+    background: gray; /* or any other color to indicate it's disabled */
+    cursor: not-allowed;
+}

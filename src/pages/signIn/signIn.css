@@ -5,71 +5,61 @@
     background: #FFF;
 }
 
-
-
 .left-frame {
     width: 600px;
-    height: 100vh;
+    /* height: 100vh; */
     flex-shrink: 0;
-    display: flex; /* Add this line */
-    flex-direction: column; /* Add this line */
-    justify-content: center; /* Center the content vertically */
-    align-items: center; /* Center the content horizontally */
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    padding-top: 50px;
 }
+
 .right-frame {
     height: 100vh;
     flex-grow: 1;
     overflow: hidden;
     background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
-    justify-content: center; /* Center the .signin-text-container horizontally */
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.soulmynt-logo{
+.soulmynt-logo {
     width: 300px;
-    height: 170px;
-    flex-shrink: 0;
-    position:absolute;
-    top: 8%;
-
+    height: 10%;
+    margin-bottom: -10%;
 }
 
-
-.curvy {
-    width: 782.208px;
-    height: 323.111px;
-    transform: rotate(6.148deg);
-    flex-shrink: 0;
-    border-radius: 37px;
-    filter: blur(2px);
+.bold-text-container {
+    margin-bottom: 25px;
 }
 
-
-.bold-text-container{
-    position: absolute; /* Add this line */
-    top: 20%; /* Adjust this value to move the text up or down */
+.create-account-container {
+    margin-top: 25px;
 }
 
-.create-account-container{
-    position: absolute; /* Add this line */
-    top: 30%; /* Adjust this value to move the text up or down */
-}
-
-.email-pass{
+.email-pass {
     display: flex;
     flex-direction: column;
+    flex-grow:1;
     gap: 10px;
+    align-items: center;
+    margin-top: 50px;
 }
 
-.continue-button{
-    position: absolute; /* Add this line */
-    bottom: 100px;
-    left: 100px;
-    right: 100px;
+.continue-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto;
+
+    align-items: flex-end;
+    padding-bottom: 10%; /* Add some space at the bottom */
 }
 
-.signin-text-container{
+.signin-text-container {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -77,9 +67,9 @@
     align-items: center;
     height: 100vh;
     gap: 10px;
-
 }
-.main-signin-text{
+
+.main-signin-text {
     width: 325px;
     color: #FFF;
     text-align: center;
@@ -89,6 +79,36 @@
     font-weight: 700;
     line-height: 3;
     text-transform: capitalize;
-    /* text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
     white-space: pre-line;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+
+.password-rules {
+    list-style-type: none; /* Removes the default bullet points */
+    padding: 0; /* Removes the default padding */
+    margin: 0; /* Removes the default margin */
+    text-align: left; /* Aligns the text to the left */
+}
+
+.rules-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5%;
+}
+
+.rule-text{
+    color: #D9D9D9;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
 }

@@ -1,3 +1,13 @@
+/* .textbox-container {
+  display: flex;
+  padding: 10px;
+  align-items: left;
+  gap: 10px;
+  border-radius: 12px;
+  background: #F2F2F2;
+} */
+
+
 .textbox-container {
   display: flex;
   padding: 10px;
@@ -5,14 +15,25 @@
   gap: 10px;
   border-radius: 12px;
   background: #F2F2F2;
+  width: 100%;
 }
 
-.textbox-text {
-  color: #D9D9D9;
+.textbox-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #8F8F8F;
   font-family: Poppins;
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+  outline: none;
+  text-transform: none !important;
+
+}
+
+.invalid-password {
+  border: 2px solid red;
 }
