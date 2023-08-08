@@ -5,13 +5,13 @@ import { BoldText } from '../../components/boldText'
 import { PasswordRules } from '../../components/passwordRules'
 import logo from '../../img/plain_logo_black.png'
 // import curvy from '../../img/curvy.png'
-import './signIn.css'
+import './signInStep2.css'
 import '../../components/textbox/textbox.css'
 import { useState } from 'react'
 
 
 
-function SignIn({goToNextStep}) {
+function SignInStep2({goToNextStep}) {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
@@ -81,11 +81,11 @@ function SignIn({goToNextStep}) {
                             <BoldText text={"Soulmynt"} containerWidth={"130px"}/>
                         </div>
                     </div>
-                    <div className = "create-account-container">
+                    {/* <div className = "create-account-container">
                         <div>
                             <ColorfulText text={"Create an Account"} containerWidth={"340px"}/>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
 
@@ -133,7 +133,6 @@ function SignIn({goToNextStep}) {
                 <div className='continue-button'>
                     <Button 
                     text={"Continue >"} 
-                    variant="colorful-button"
                     containerWidth={"378px"}
                     disabled={!allRulesMet || !isEmailValid}
                     onClick = {goToNextStep}
@@ -163,4 +162,4 @@ function SignIn({goToNextStep}) {
 
     }
 
-    export default SignIn;
+    export default SignInStep2;

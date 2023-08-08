@@ -5,7 +5,7 @@
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
+    cursor: pointer;
 }
 
 .button-text {
@@ -20,7 +20,19 @@
     text-transform: capitalize;
 }
 
+.colorful-button {
+    background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
+}
+
+.gray-button {
+    background: gray;
+}
+
+.green-button {
+    background: green;
+}
+
 .disabled-button {
-    background: gray; /* or any other color to indicate it's disabled */
+    background: lightgray;
     cursor: not-allowed;
 }
