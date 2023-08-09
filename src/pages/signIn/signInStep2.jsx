@@ -3,6 +3,7 @@ import { Button } from '../../components/button'
 import { ColorfulText } from '../../components/colorfulText'
 import { BoldText } from '../../components/boldText'
 import { PasswordRules } from '../../components/passwordRules'
+import {Circle} from '../../icons/Circle'
 import logo from '../../img/plain_logo_black.png'
 // import curvy from '../../img/curvy.png'
 import './signInStep2.css'
@@ -76,25 +77,31 @@ function SignInStep2({goToNextStep}) {
                 
                     <img src={logo} alt="Description" className="soulmynt-logo"/> {/* Add this line */}
                     
-                    <div className='bold-text-container'>
+                    {/* <div className='bold-text-container'>
                         <div>
-                            <BoldText text={"Soulmynt"} containerWidth={"130px"}/>
-                        </div>
-                    </div>
-                    {/* <div className = "create-account-container">
-                        <div>
-                            <ColorfulText text={"Create an Account"} containerWidth={"340px"}/>
+                            <BoldText text={"Soulmynt"} size={"15px"}/>
                         </div>
                     </div> */}
+                </div>
+                <div className = "create-account-container">
+                    <div>
+                        <ColorfulText text={"Tell us about yourself"} containerWidth={"400px"}/>
+                    </div>
+                </div>
+
+                <div>
+                    <Circle />
 
                 </div>
+
+               
 
                 <div className="email-pass">
 
                 
                     <div>
                         <Textbox 
-                        text={"Email"} 
+                        text={"Username"} 
                         type="email"
                         onChange={handleEmailChange} 
                         containerWidth={"378px"}
@@ -104,7 +111,7 @@ function SignInStep2({goToNextStep}) {
 
                     <div>
                         <Textbox 
-                        text="Password" 
+                        text="Display Name" 
                         containerWidth="378px" 
                         type="password" 
                         value={password} 
@@ -117,7 +124,7 @@ function SignInStep2({goToNextStep}) {
                     </div>
 
 
-                    <div className='rules-container'>
+                    {/* <div className='rules-container'>
                         <ul className='password-rules'>
                             {rules.map(rule => (
                             <li key={rule.id} >
@@ -126,7 +133,7 @@ function SignInStep2({goToNextStep}) {
                             </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                
 

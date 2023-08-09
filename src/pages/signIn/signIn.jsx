@@ -78,7 +78,7 @@ function SignIn({goToNextStep}) {
                     
                     <div className='bold-text-container'>
                         <div>
-                            <BoldText text={"Soulmynt"} containerWidth={"130px"}/>
+                            <BoldText text={"Soulmynt"} containerWidth={"130px"} size={"26px"}/>
                         </div>
                     </div>
                     <div className = "create-account-container">

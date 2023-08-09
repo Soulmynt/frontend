@@ -1,7 +1,7 @@
 .BoldText-container {
     color: #000;
     font-family: Poppins;
-    font-size: 26px;
+    display: inline;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
