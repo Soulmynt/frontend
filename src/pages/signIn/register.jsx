@@ -3,7 +3,7 @@ import SignIn from './signIn';
 import SignInStep2 from './signInStep2'
 
 function Register() {
-    const [currentStep, setCurrentStep] = useState(1);
+    const [currentStep, setCurrentStep] = useState(2);
 
     return (
         <div>

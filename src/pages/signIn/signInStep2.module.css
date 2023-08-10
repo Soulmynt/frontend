@@ -1,11 +1,11 @@
-.overall-signin {
+.overallSignIn {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     background: #FFF;
 }
 
-.left-frame {
+.leftFrame {
     width: 600px;
     /* height: 100vh; */
     flex-shrink: 0;
@@ -13,10 +13,10 @@
     flex-direction: column;
     
     align-items: center;
-    padding-top: 50px;
+    padding-top: 5%;
 }
 
-.right-frame {
+.rightFrame {
     height: 100vh;
     flex-grow: 1;
     overflow: hidden;
@@ -26,30 +26,33 @@
     align-items: center;
 }
 
-.soulmynt-logo {
-    width: 300px;
-    height: 10%;
-    margin-bottom: -10%;
+.soulmyntLogo {
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+    /* margin-top: 10%;
+    margin-left: 10%; */
 }
 
-.bold-text-container {
+.boldTextContainer {
     margin-bottom: 25px;
 }
 
-.create-account-container {
+.createAccountContainer {
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 
-.email-pass {
+.emailPass {
     display: flex;
     flex-direction: column;
     flex-grow:1;
     gap: 10px;
     align-items: center;
-    margin-top: 50px;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
-.continue-button {
+.continueButton {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -59,7 +62,7 @@
     padding-bottom: 10%; /* Add some space at the bottom */
 }
 
-.signin-text-container {
+.signinTextContainer {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -69,7 +72,7 @@
     gap: 10px;
 }
 
-.main-signin-text {
+.mainSigninText {
     width: 325px;
     color: #FFF;
     text-align: center;
@@ -82,33 +85,44 @@
     white-space: pre-line;
 }
 
-.header-container {
+.headerContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     margin-bottom: 20px; 
 }
 
-.password-rules {
-    list-style-type: none; /* Removes the default bullet points */
-    padding: 0; /* Removes the default padding */
-    margin: 0; /* Removes the default margin */
-    text-align: left; /* Aligns the text to the left */
+
+.fileInput {
+    display: none; 
 }
 
-.rules-container {
-    width: 100%;
+.buttonInsideCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Add any other styling you want for the button here */
+}
+
+.profilePicContainer {
     display: flex;
-    justify-content: flex-start;
-    margin-bottom: 5%;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    overflow: hidden;
+    width: 200px; /* Define the size of the circle */
+    height: 200px;
+    border-radius: 50%;
 }
 
-.rule-text{
-    color: #D9D9D9;
-    font-family: Poppins;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-transform: capitalize;
+.profileImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; 
+    position: absolute; 
+    top: 0;
+    left: 0;
 }

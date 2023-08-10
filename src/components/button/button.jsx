@@ -7,6 +7,7 @@ const Button = ({
   variant,
   onClick,
   disabled = false,
+  className = "",
 }) => {
   const getButtonClass = () => {
     if (disabled) return "disabled-button";
@@ -23,7 +24,8 @@ const Button = ({
 
   return (
     <div
-      className={`button-container ${getButtonClass()}`}
+      // className={`button-container ${getButtonClass()}`}
+      className={`button-container ${getButtonClass()} ${className}`}
       style={{ width: containerWidth }}
       onClick={disabled ? null : onClick}
     >

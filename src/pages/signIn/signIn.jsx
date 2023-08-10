@@ -5,7 +5,7 @@ import { BoldText } from '../../components/boldText'
 import { PasswordRules } from '../../components/passwordRules'
 import logo from '../../img/plain_logo_black.png'
 // import curvy from '../../img/curvy.png'
-import './signIn.css'
+import styles from './signIn.module.css'
 import '../../components/textbox/textbox.css'
 import { useState } from 'react'
 
@@ -69,19 +69,19 @@ function SignIn({goToNextStep}) {
 
     return (
     <div>
-        <div className = "overall-signin">
+        <div className = {styles.overallSignIn}>
             
-            <div className="left-frame">
-                <div className='header-container'>
+            <div className={styles.leftFrame}>
+                <div className={styles.headerContainer}>
                 
-                    <img src={logo} alt="Description" className="soulmynt-logo"/> {/* Add this line */}
+                    <img src={logo} alt="Description" className={styles.soulmyntLogo}/> {/* Add this line */}
                     
-                    <div className='bold-text-container'>
+                    <div className={styles.boldTextContainer}>
                         <div>
                             <BoldText text={"Soulmynt"} containerWidth={"130px"} size={"26px"}/>
                         </div>
                     </div>
-                    <div className = "create-account-container">
+                    <div className = {styles.createAccountContainer}>
                         <div>
                             <ColorfulText text={"Create an Account"} containerWidth={"340px"}/>
                         </div>
@@ -89,7 +89,7 @@ function SignIn({goToNextStep}) {
 
                 </div>
 
-                <div className="email-pass">
+                <div className={styles.emailPass}>
 
                 
                     <div>
@@ -117,12 +117,12 @@ function SignIn({goToNextStep}) {
                     </div>
 
 
-                    <div className='rules-container'>
-                        <ul className='password-rules'>
+                    <div className= {styles.rulesContainer}>
+                        <ul className={styles.passwordRules}>
                             {rules.map(rule => (
                             <li key={rule.id} >
                                 <PasswordRules isMet = {rule.isValid} />
-                                <span className="rule-text">{rule.rule}</span>
+                                <span className= {styles.ruleText}>{rule.rule}</span>
                             </li>
                             ))}
                         </ul>
@@ -130,7 +130,7 @@ function SignIn({goToNextStep}) {
                 </div>
                
 
-                <div className='continue-button'>
+                <div className={styles.continueButton}>
                     <Button 
                     text={"Continue >"} 
                     variant="colorful-button"
@@ -143,10 +143,10 @@ function SignIn({goToNextStep}) {
                 
             </div>
             
-            <div className="right-frame">
+            <div className={styles.rightFrame}>
                 {/* <img src={curvy} alt="Description" className="curvy"/> */}
-                <div className="signin-text-container">
-                    <div className = "main-signin-text">
+                <div className= {styles.signinTextContainer}>
+                    <div className = {styles.mainSigninText}>
                         Grow your community. keep people engaged. Receive Rewards. Expand your Network.
                     </div>
                 </div>
