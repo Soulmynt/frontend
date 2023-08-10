@@ -5,7 +5,8 @@ import { BoldText } from '../../components/boldText'
 import { PasswordRules } from '../../components/passwordRules'
 import {Circle} from '../../icons/Circle'
 import logo from '../../img/plain_logo_black.png'
-// import curvy from '../../img/curvy.png'
+import top from '../../img/top.png'
+import bottom from '../../img/bottom.png'
 import styles from './signInStep2.module.css'
 import '../../components/textbox/textbox.css'
 import { useState } from 'react'
@@ -175,11 +176,21 @@ function SignInStep2({goToNextStep}) {
             </div>
             
             <div className={styles.rightFrame}>
-                {/* <img src={curvy} alt="Description" className="curvy"/> */}
-                <div className={styles.signinTextContainer}>
+                <div className = {styles.topCurve}>
+                    <img src={top} alt="Description"/>
+
+                </div>
+
+                
+                <div className= {styles.signinTextContainer}>
                     <div className = {styles.mainSigninText}>
                         Grow your community. keep people engaged. Receive Rewards. Expand your Network.
                     </div>
+                </div>
+
+                <div className = {styles.bottomCurve}>
+                    <img src={bottom} alt="Description"/>
+
                 </div>
             </div>
 

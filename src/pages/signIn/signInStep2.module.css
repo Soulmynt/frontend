@@ -24,6 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .soulmyntLogo {
@@ -83,6 +84,7 @@
     line-height: 3;
     text-transform: capitalize;
     white-space: pre-line;
+    margin-top: -200%;
 }
 
 .headerContainer {
@@ -125,4 +127,26 @@
     position: absolute; 
     top: 0;
     left: 0;
+}
+
+
+.topCurve {
+    width: 100%;
+    display: flex; 
+}
+
+.topCurve img {
+    width: 100%;
+    height: auto;
+}
+
+.bottomCurve {
+    width: 100%;
+    display: flex;
+    margin-top: -100%;
+}
+
+.bottomCurve img {
+    width: 100%;
+    height: auto;
 }
