@@ -1,9 +1,9 @@
 .BoldText-container {
-    color: #000;
+    
     font-family: Poppins;
     display: inline;
     font-style: normal;
-    font-weight: 700;
+
     line-height: normal;
     text-transform: capitalize;
 }

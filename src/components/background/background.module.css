@@ -20,11 +20,11 @@
     background: linear-gradient(to right, #EC7BCF, #FFD57A);
     width: 98%;  
     height: 96%; 
-    flex-shrink: 0;
     position: relative; 
     display: flex; /* To lay out children horizontally */
     align-items: center; 
     justify-content: center; 
+    
 }
 
 .cover {

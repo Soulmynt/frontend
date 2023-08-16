@@ -1,0 +1,1 @@
+export {default as MyGroupsIcon} from './myGroupsIcon';

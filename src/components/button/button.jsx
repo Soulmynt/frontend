@@ -2,12 +2,13 @@ import React from "react";
 import "./button.css";
 
 const Button = ({
-  text,
   containerWidth,
+  containerHeight,
   variant,
   onClick,
   disabled = false,
   className = "",
+  children,
 }) => {
   const getButtonClass = () => {
     if (disabled) return "disabled-button";
@@ -17,6 +18,8 @@ const Button = ({
         return "gray-button";
       case "green":
         return "green-button";
+      case "transparent":
+        return "transparent-button";
       default:
         return "colorful-button";
     }
@@ -26,10 +29,10 @@ const Button = ({
     <div
       // className={`button-container ${getButtonClass()}`}
       className={`button-container ${getButtonClass()} ${className}`}
-      style={{ width: containerWidth }}
+      style={{ width: containerWidth, height: containerHeight}}
       onClick={disabled ? null : onClick}
     >
-      <div className="button-text">{text}</div>
+      <div className="button-text">{children}</div>
     </div>
   );
 };

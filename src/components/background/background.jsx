@@ -9,6 +9,7 @@ const Background = () => {
             <div className = {styles.gradientBorder}>
                 
                 <div className = {styles.cover}>
+                    
                     <Sidebar />
                 </div>
             </div>
