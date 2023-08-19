@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "../../components/button";
 import { CreateWallet, getMnemonic, encryptWallet } from "../../utils/Wallet";
-import { Modal } from "../../components/modal";
-import styled from "styled-components";
-import VerifyPhrase from "../signIn/VerifyPhrase";
 
-const PhraseWordContainer = styled.div`
-  color: white;
-  font-size: 20px;
-  text-align: center;
-`;
+import VerifyPhrase from "../signIn/VerifyPhrase";
 
 function Staging() {
   const [walletthing, setWallet] = useState("");
@@ -25,8 +18,10 @@ function Staging() {
     return number;
   };
 
-  const randomWord1 = getRandomPhraseword();
-  const randomWord2 = getRandomPhraseword(randomWord1);
+  const [randomWord1, setRandomWord1] = useState(getRandomPhraseword());
+  const [randomWord2, setRandomWord2] = useState(
+    getRandomPhraseword(randomWord1)
+  );
 
   // Creates a random HD wallet for user, generates a seed phrase for user and finally encrypts wallet.
   const makeWallet = async () => {
@@ -56,15 +51,19 @@ function Staging() {
           createAccountFunc={closeModal}
         />
       </>
-      <Button onClick={makeWallet} />
+      <Button onClick={makeWallet}> Make Wallet </Button>
       <div>{walletthing.address}</div>
 
       <Button
-        onClick={async () => {
+        onClick={() => {
           console.log(demoModal);
-          await setDemoModal(!demoModal);
+          setRandomWord1(getRandomPhraseword());
+          setRandomWord2(getRandomPhraseword(randomWord1));
+          setDemoModal(!demoModal);
         }}
-      />
+      >
+        Launch Modal
+      </Button>
     </div>
   );
 }

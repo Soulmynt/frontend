@@ -106,6 +106,8 @@ const VerifyPhrase = ({
       onClose={() => {
         onClose();
         setConfirm(false);
+        setFirstCheck("");
+        setSecondCheck("");
       }}
       width={width}
       height={height}
