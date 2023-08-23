@@ -1,3 +1,39 @@
 .dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns children to the start (left) of the container */
     overflow: hidden;
+    padding-left: 5vw; /* Space from the left edge, adjust as needed */
+}
+
+/* .allCardsContainer {
+    position: absolute;
+    top:  175px;
+    left: 250px;
+    width: calc(100% - 21%);
+} */
+.activeChallengesCard {
+    position: absolute;
+    top:  175px;
+    left: 250px;
+    /* padding-top: 10vw;
+    padding-left: 10vw; */
+}
+
+.progressCard {
+    position: absolute;
+    top:  420px;
+    left: 250px;
+}
+
+.leaderboardsCard {
+    position: absolute;
+    top: 175px;
+    left: 985px;
+}
+
+.credentialsCard {
+    position: absolute;
+    top: 175px;
+    left: 1360px;
 }

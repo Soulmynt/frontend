@@ -3,6 +3,7 @@ import styles from "./sidebar.module.css"
 import { BoldText } from "../boldText";
 import logo from "../../img/plain_logo_black.png"
 import { DashboardIcon } from "../../icons/DashboardIcon";
+import { CreateIcon } from "../../icons/CreateIcon";
 import { MyGroupsIcon } from "../../icons/MyGroupsIcon";
 import { ExploreIcon } from "../../icons/ExploreIcon";
 import { ProfileIcon } from "../../icons/ProfileIcon";
@@ -78,6 +79,26 @@ const Sidebar = () => {
                             </div>
                             <div className={styles.sidebarTextContainer}>
                                 <BoldText text={"My Groups"} containerWidth={"150px"} size={"18px"} weight={"400"} textColor={getIconColor('/mygroups')}/>
+                            </div>
+                        </div>
+                    </Button>
+                    </div>
+                </Link>
+                {/* CREATE */}
+                <Link to="/create" className = {styles.linkStyle}>
+                    <div className={styles.buttonContainer}>
+                    <Button 
+                    variant={getButtonVariant('/create')}
+                    containerWidth={"150px"}
+                    containerHeight={"50px"}
+                    onClick={() => {}}
+                    >
+                        <div className = {styles.sidebarSectionsContainer}>
+                            <div className={styles.sidebarIconsContainer}>
+                                <CreateIcon color={getIconColor('/create')} />
+                            </div>
+                            <div className={styles.sidebarTextContainer}>
+                                <BoldText text={"Create"} containerWidth={"150px"} size={"18px"} weight={"400"} textColor={getIconColor('/create')}/>
                             </div>
                         </div>
                     </Button>

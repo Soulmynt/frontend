@@ -133,7 +133,7 @@ function SignIn({goToNextStep}) {
 
                 <div className={styles.continueButton}>
                     <Button 
-                    text={"Continue >"} 
+                    children={"Continue >"} 
                     variant="colorful-button"
                     containerWidth={"378px"}
                     disabled={!allRulesMet || !isEmailValid}
