@@ -6,7 +6,7 @@ const CreateWallet = async () => {
 };
 
 const getMnemonic = async (Wallet) => {
-  return Wallet.mnemonic.phrase;
+  return Wallet.mnemonic.phrase.split(" ");
 };
 
 const encryptWallet = async (wallet, password) => {
