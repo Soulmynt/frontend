@@ -48,9 +48,10 @@ function Register() {
     setKeyGen(keygen);
   };
 
-  const closeModal = () => {
-    console.log(keyGen);
+  const closeModalAndSubmitUserInfo = async () => {
+    data = await axiosSignIn(email, "handle", password, keyGen);
     setDemoModal(!demoModal);
+    console.log(data);
   };
 
   // Render
@@ -64,9 +65,15 @@ function Register() {
         height={460}
         random1={randomWord1}
         random2={randomWord2}
-        createAccountFunc={closeModal}
+        createAccountFunc={closeModalAndSubmitUserInfo}
       />
-      {currentStep === 1 && <SignIn goToNextStep={() => setCurrentStep(2)} />}
+      {currentStep === 1 && (
+        <SignIn
+          goToNextStep={setCurrentStep}
+          setEmailFunc={setEmail}
+          setPasswordFunc={setPassword}
+        />
+      )}
       {currentStep === 2 && (
         <SignInStep2 goToNextStep={() => setCurrentStep(3)} />
       )}

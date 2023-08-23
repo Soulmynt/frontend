@@ -68,6 +68,12 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
     setisPassFocused(false);
   }
 
+  const goToNextStepFunc = () => {
+    setEmailFunc(email);
+    setPasswordFunc(password);
+    goToNextStep(2);
+  };
+
   return (
     <div>
       <div className={styles.overallSignIn}>
@@ -136,7 +142,7 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
               variant="colorful-button"
               containerWidth={"378px"}
               disabled={!allRulesMet || !isEmailValid}
-              onClick={goToNextStep}
+              onClick={goToNextStepFunc}
             />
           </div>
         </div>
