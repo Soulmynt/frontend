@@ -8,7 +8,7 @@ const Button = ({
   onClick,
   disabled = false,
   className = "",
-  children,
+  children
 }) => {
   const getButtonClass = () => {
     if (disabled) return "disabled-button";

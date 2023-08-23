@@ -17,7 +17,7 @@ const getRandomPhraseword = (ignore = 0) => {
 function Register() {
   // Function Variables
   // Page Selector State
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(1);
   // User Credential State
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -80,6 +80,7 @@ function Register() {
       {currentStep === 3 && <SignInStep3 />}
     </div>
   );
+
 }
 
 export default Register;

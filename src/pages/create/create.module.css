@@ -1,0 +1,11 @@
+.createContainer {
+    overflow: hidden;
+}
+
+.createCredentialButton {
+    position: absolute;
+    top:  175px;
+    left: 250px;
+    /* padding-top: 10vw;
+    padding-left: 10vw; */
+}

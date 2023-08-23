@@ -166,7 +166,7 @@ function SignInStep2({goToNextStep}) {
 
                 <div className={styles.continueButton}>
                     <Button 
-                    text={"Continue >"} 
+                    children={"Continue >"} 
                     containerWidth={"378px"}
                     onClick = {goToNextStep}
                      />
