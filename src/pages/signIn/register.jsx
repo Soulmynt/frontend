@@ -72,7 +72,10 @@ function Register() {
       <VerifyPhrase
         Phrase={Phrase}
         isOpened={demoModal}
-        onClose={() => setDemoModal(!demoModal)}
+        onClose={() => {
+          setCurrentStep(2);
+          setDemoModal(!demoModal);
+        }}
         width={460}
         height={460}
         random1={randomWord1}
