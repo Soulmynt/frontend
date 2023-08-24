@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal } from "../../components/modal";
 import { Button } from "../../components/button";
