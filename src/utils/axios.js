@@ -16,3 +16,5 @@ async function axiosSignIn(email, handle, password, keyGen) {
     return errorlog;
   }
 }
+
+export {axiosSignIn};

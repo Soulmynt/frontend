@@ -86,46 +86,57 @@ const Sidebar = () => {
                   <BoldText
                     text={"My Groups"}
                     containerWidth={"150px"}
-
-                    containerHeight={"50px"}
-                    onClick={() => {}}
-                    >
-                        <div className = {styles.sidebarSectionsContainer}>
-                            <div className={styles.sidebarIconsContainer}>
-                                <MyGroupsIcon color={getIconColor('/mygroups')} />
-                            </div>
-                            <div className={styles.sidebarTextContainer}>
-                                <BoldText text={"My Groups"} containerWidth={"150px"} size={"18px"} weight={"400"} textColor={getIconColor('/mygroups')}/>
-                            </div>
-                        </div>
-                    </Button>
-                    </div>
-                </Link>
-                {/* CREATE */}
-                <Link to="/create" className = {styles.linkStyle}>
-                    <div className={styles.buttonContainer}>
-                    <Button 
-                    variant={getButtonVariant('/create')}
+                    size={"18px"}
+                    weight={"400"}
+                    textColor={getIconColor("/mygroups")}
+                  />
+                </div>
+              </div>
+            </Button>
+          </div>
+        </Link>
+        {/* CREATE */}
+        <Link to="/create" className={styles.linkStyle}>
+          <div className={styles.buttonContainer}>
+            <Button
+              variant={getButtonVariant("/create")}
+              containerWidth={"150px"}
+              containerHeight={"50px"}
+              onClick={() => {}}
+            >
+              <div className={styles.sidebarSectionsContainer}>
+                <div className={styles.sidebarIconsContainer}>
+                  <CreateIcon color={getIconColor("/create")} />
+                </div>
+                <div className={styles.sidebarTextContainer}>
+                  <BoldText
+                    text={"Create"}
                     containerWidth={"150px"}
-                    containerHeight={"50px"}
-                    onClick={() => {}}
-                    >
-                        <div className = {styles.sidebarSectionsContainer}>
-                            <div className={styles.sidebarIconsContainer}>
-                                <CreateIcon color={getIconColor('/create')} />
-                            </div>
-                            <div className={styles.sidebarTextContainer}>
-                                <BoldText text={"Create"} containerWidth={"150px"} size={"18px"} weight={"400"} textColor={getIconColor('/create')}/>
-                            </div>
-                        </div>
-                    </Button>
-                    </div>
-                </Link>
-                {/* EXPLORE */}
-                <Link to="/explore" className = {styles.linkStyle}>
-                    <div className={styles.buttonContainer}>
-                    <Button 
-                    variant={getButtonVariant('/explore')}
+                    size={"18px"}
+                    weight={"400"}
+                    textColor={getIconColor("/create")}
+                  />
+                </div>
+              </div>
+            </Button>
+          </div>
+        </Link>
+        {/* Explore */}
+        <Link to="/explore" className={styles.linkStyle}>
+          <div className={styles.buttonContainer}>
+            <Button
+              variant={getButtonVariant("/explore")}
+              containerWidth={"150px"}
+              containerHeight={"50px"}
+              onClick={() => {}}
+            >
+              <div className={styles.sidebarSectionsContainer}>
+                <div className={styles.sidebarIconsContainer}>
+                  <ExploreIcon color={getIconColor("/explore")} />
+                </div>
+                <div className={styles.sidebarTextContainer}>
+                  <BoldText
+                    text={"Explore"}
                     containerWidth={"150px"}
                     size={"18px"}
                     weight={"400"}
@@ -135,7 +146,8 @@ const Sidebar = () => {
               </div>
             </Button>
           </div>
-        </Link>
+        </Link>    
+                
         {/* PROFILE */}
         <Link to="/profile" className={styles.linkStyle}>
           <div className={styles.buttonContainer}>

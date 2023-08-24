@@ -98,16 +98,14 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
                 </div>
 
                 <div className={styles.emailPass}>
-
-                
                     <div>
-                        <Textbox 
-                        text={"Email"} 
-                        type="email"
-                        onChange={handleEmailChange} 
-                        containerWidth={"378px"}
-                       
-                        />
+                    <Textbox 
+                    text={"Email"} 
+                    type="email"
+                    onChange={handleEmailChange} 
+                    containerWidth={"378px"}
+                    
+                    />
                     </div>
 
                     <div>
@@ -147,46 +145,7 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
                     onClick = {goToNextStep}
                      />
                 </div>
-                
-                
-
-            </div>
-
-            <div>
-              <Textbox
-                text="Password"
-                containerWidth="378px"
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-                additionalClass={!allRulesMet ? "invalid-password" : ""}
-                isFocused={isPassFocused}
-                handleInputFocus={handleInputFocus}
-                handleInputBlur={handleInputBlur}
-              />
-            </div>
-
-            <div className={styles.rulesContainer}>
-              <ul className={styles.passwordRules}>
-                {rules.map((rule) => (
-                  <li key={rule.id}>
-                    <PasswordRules isMet={rule.isValid} />
-                    <span className={styles.ruleText}>{rule.rule}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className={styles.continueButton}>
-            <Button
-              text={"Continue >"}
-              variant="colorful-button"
-              containerWidth={"378px"}
-              disabled={!allRulesMet || !isEmailValid}
-              onClick={goToNextStepFunc}
-            />
-          </div>
+    
         </div>
 
         <div className={styles.rightFrame}>
@@ -200,7 +159,7 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
               your Network.
             </div>
           </div>
-
+          
           <div className={styles.bottomCurve}>
             <img src={bottom} alt="Description" />
           </div>
