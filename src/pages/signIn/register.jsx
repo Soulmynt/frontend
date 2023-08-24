@@ -59,11 +59,11 @@ function Register() {
     setKeyGen(keygen);
   };
 
-  //   const closeModalAndSubmitUserInfo = async () => {
-  //     data = await axiosSignIn(email, "handle", password, keyGen);
-  //     setDemoModal(!demoModal);
-  //     console.log(data);
-  //   };
+  const closeModalAndSubmitUserInfo = async () => {
+    //     data = await axiosSignIn(email, "handle", password, keyGen);
+    setDemoModal(!demoModal);
+    console.log("this hit!");
+  };
 
   // Render
   console.log(email, password, userName, displayHandle);
@@ -80,7 +80,7 @@ function Register() {
         height={460}
         random1={randomWord1}
         random2={randomWord2}
-        // createAccountFunc={closeModalAndSubmitUserInfo}
+        createAccountFunc={closeModalAndSubmitUserInfo}
       />
       {currentStep === 1 && (
         <SignIn
