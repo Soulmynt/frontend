@@ -1,13 +1,14 @@
 # FrontEnd Documentation
 ## Table of Contents
 
-- [Create React App](##Getting)
-- [Ethers](##Ethers.js)
+- [Create React App](#Create-React-App)
+- [Ethers](#Ethers.js)
+- [Axios](#Axios)
 
 
 
 
-## Getting Started with Create React App
+## Create-React-App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -145,6 +146,94 @@ The complete API reference for ethers.js version 6 is available in the official 
 
 Examples
 You can find a variety of usage examples in the examples directory of this repository. These examples cover common use cases and can help you get started with ethers.js.
+
+
+## Axios
+
+Axios is a popular JavaScript library for making HTTP requests from the browser or Node.js. It is widely used for performing AJAX requests and interacting with APIs. This README provides an overview of how to use Axios in your projects.
+
+### Table of Contents
+
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Making GET Requests](#making-get-requests)
+- [Making POST Requests](#making-post-requests)
+- [Interceptors](#interceptors)
+- [Error Handling](#error-handling)
+- [More Features](#more-features)
+- [Contributing](#contributing)
+- [License](#license)
+
+### Installation
+
+You can install Axios using npm or yarn:
+
+```bash
+npm install axios
+# or
+yarn add axios
+```
+### Getting Started
+To use Axios in your project, you need to import it:
+
+```
+const axios = require('axios');
+// or
+import axios from 'axios';
+```
+Axios provides a simple and consistent API for making HTTP requests. Here's a basic example of making a GET request:
+```
+axios.get('https://api.example.com/data')
+  .then(function (response) {
+    // Handle success
+    console.log('Data:', response.data);
+  })
+  .catch(function (error) {
+    // Handle error
+    console.error('Error:', error);
+  });
+```
+### Making GET Requests
+Axios supports various HTTP methods. To make a GET request:
+
+```
+axios.get(url[, config])
+  .then(function (response) {
+    // Handle success
+  })
+  .catch(function (error) {
+    // Handle error
+  });
+```
+For more details and options for GET requests, refer to the Axios documentation.
+
+### Making POST Requests
+To make a POST request:
+
+```
+axios.post(url[, data[, config]])
+  .then(function (response) {
+    // Handle success
+  })
+  .catch(function (error) {
+    // Handle error
+  });
+```
+You can also send data with POST requests. For more details and options, refer to the Axios documentation.
+
+### Interceptors
+Axios allows you to intercept requests and responses. This is useful for global error handling or adding headers to requests. To set up interceptors, refer to the Axios documentation.
+
+### Error Handling
+Axios provides comprehensive error handling. You can catch errors for failed requests and handle them appropriately. For more information, refer to the Axios documentation.
+
+### More Features
+Axios offers additional features like request and response configuration, canceling requests, and more. Explore the full documentation for detailed information on all available features.
+
+
+
+
+
 
 
 
