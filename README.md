@@ -1,12 +1,21 @@
-# Getting Started with Create React App
+# FrontEnd Documentation
+## Table of Contents
+
+- [Create React App](#Getting Started with Create React App)
+- [Ethers](#Ethers.js 6 Documentation)
+
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,12 +23,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+#### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,7 +38,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+#### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
@@ -39,32 +48,104 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+#### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+#### Analyzing the Bundle Size
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+#### Making a Progressive Web App
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+#### Advanced Configuration
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+#### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+#### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Ethers.js 6 Documentation
+
+Ethers.js is a powerful and flexible JavaScript library for interacting with Ethereum. This README provides an overview of how to use ethers.js version 6 in your projects.
+
+### Table of Contents
+
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Examples](#examples)
+
+
+### Installation
+
+You can install ethers.js using npm or yarn:
+
+`bash
+npm install ethers
+ or
+yarn add ethers`
+
+### Getting Started
+
+To get started with ethers.js, you'll need to have Node.js installed on your system. If you haven't already, you can download it from nodejs.org.
+
+Once you have Node.js installed, you can create a new JavaScript or TypeScript project and import ethers.js as follows:
+`
+const { ethers } = require('ethers');
+// or
+import { ethers } from 'ethers';`
+
+### Usage
+Ethers.js provides a wide range of functionality for Ethereum development, including:
+
+Creating wallets and managing accounts.
+Sending transactions to the Ethereum network.
+Interacting with smart contracts.
+Querying blockchain data.
+Here's a simple example of how to create a wallet and send a transaction:
+
+`const { ethers } = require('ethers');
+
+// Create a wallet
+const wallet = ethers.Wallet.createRandom();
+
+// Connect to an Ethereum network
+const provider = ethers.getDefaultProvider('mainnet');
+
+// Send a transaction
+const transactionResponse = await wallet.sendTransaction({
+  to: '0xRecipientAddress',
+  value: ethers.utils.parseEther('0.1'),
+});
+
+console.log('Transaction Hash:', transactionResponse.hash);`
+
+For more detailed information on using ethers.js, please refer to the official documentation.
+
+### API Reference
+The complete API reference for ethers.js version 6 is available in the official documentation.
+
+Examples
+You can find a variety of usage examples in the examples directory of this repository. These examples cover common use cases and can help you get started with ethers.js.
+
+
+
+
+
+
