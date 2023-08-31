@@ -106,8 +106,8 @@ yarn add ethers`
 To get started with ethers.js, you'll need to have Node.js installed on your system. If you haven't already, you can download it from nodejs.org.
 
 Once you have Node.js installed, you can create a new JavaScript or TypeScript project and import ethers.js as follows:
-`
-const { ethers } = require('ethers');
+
+`const { ethers } = require('ethers');
 // or
 import { ethers } from 'ethers';`
 
@@ -120,7 +120,8 @@ Interacting with smart contracts.
 Querying blockchain data.
 Here's a simple example of how to create a wallet and send a transaction:
 
-`const { ethers } = require('ethers');
+```
+const { ethers } = require('ethers');
 
 // Create a wallet
 const wallet = ethers.Wallet.createRandom();
@@ -134,7 +135,8 @@ const transactionResponse = await wallet.sendTransaction({
   value: ethers.utils.parseEther('0.1'),
 });
 
-console.log('Transaction Hash:', transactionResponse.hash);`
+console.log('Transaction Hash:', transactionResponse.hash);
+```
 
 For more detailed information on using ethers.js, please refer to the official documentation.
 
