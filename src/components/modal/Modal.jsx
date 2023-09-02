@@ -42,9 +42,6 @@ const Modal = ({
   children,
   ...props
 }) => {
-  const [addState, setAddState] = useState("fishsticks");
-  console.log("in this model is when it hits.");
-
   return isOpened ? (
     <>
       <ModalOverlay>

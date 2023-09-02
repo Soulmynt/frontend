@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SignIn from "./signIn";
 import SignInStep2 from "./signInStep2";
 import SignInStep3 from "./signInStep3";
@@ -19,8 +19,10 @@ function Register() {
   // Page Selector State
   const [currentStep, setCurrentStep] = useState(2);
   // User Credential State
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("embloop");
+  const [password, setPassword] = useState("pasbloop");
+  const [userName, setUserName] = useState("ubloop");
+  const [displayHandle, setDisplayHandle] = useState("disbloop");
 
   // User Wallet States
   const [walletthing, setWallet] = useState("");
@@ -36,6 +38,15 @@ function Register() {
     getRandomPhraseword(randomWord1)
   );
 
+  useEffect(() => {
+    if (currentStep === 3) {
+      setTimeout(async () => {
+        await makeWallet();
+        setDemoModal(!demoModal);
+      }, 1000);
+    }
+  }, [currentStep]);
+
   // Special Functions
 
   // Creates a random HD wallet for user, generates a seed phrase for user and finally encrypts wallet.
@@ -48,24 +59,28 @@ function Register() {
     setKeyGen(keygen);
   };
 
-//   const closeModalAndSubmitUserInfo = async () => {
-//     data = await axiosSignIn(email, "handle", password, keyGen);
-//     setDemoModal(!demoModal);
-//     console.log(data);
-//   };
+  const closeModalAndSubmitUserInfo = async () => {
+    //     data = await axiosSignIn(email, "handle", password, keyGen);
+    setDemoModal(!demoModal);
+    console.log("this hit!");
+  };
 
   // Render
+  console.log(email, password, userName, displayHandle);
   return (
     <div>
       <VerifyPhrase
         Phrase={Phrase}
         isOpened={demoModal}
-        onClose={() => setDemoModal(!demoModal)}
+        onClose={() => {
+          setCurrentStep(2);
+          setDemoModal(!demoModal);
+        }}
         width={460}
         height={460}
         random1={randomWord1}
         random2={randomWord2}
-        // createAccountFunc={closeModalAndSubmitUserInfo}
+        createAccountFunc={closeModalAndSubmitUserInfo}
       />
       {currentStep === 1 && (
         <SignIn
@@ -75,12 +90,15 @@ function Register() {
         />
       )}
       {currentStep === 2 && (
-        <SignInStep2 goToNextStep={() => setCurrentStep(3)} />
+        <SignInStep2
+          goToNextStep={setCurrentStep}
+          setUserNameFunc={setUserName}
+          setDisplayNameFunc={setDisplayHandle}
+        />
       )}
       {currentStep === 3 && <SignInStep3 />}
     </div>
   );
-
 }
 
 export default Register;

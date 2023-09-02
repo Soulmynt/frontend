@@ -76,76 +76,75 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
 
   return (
     <div>
+      <div className={styles.overallSignIn}>
+        <div className={styles.leftFrame}>
+          <div className={styles.headerContainer}>
+            <img src={logo} alt="Description" className={styles.soulmyntLogo} />{" "}
+            {/* Add this line */}
+            <div className={styles.boldTextContainer}>
+              <div>
+                <BoldText
+                  text={"Soulmynt"}
+                  containerWidth={"130px"}
+                  size={"26px"}
+                />
+              </div>
+            </div>
+            <div className={styles.createAccountContainer}>
+              <div>
+                <ColorfulText
+                  text={"Create an Account"}
+                  containerWidth={"340px"}
+                />
+              </div>
+            </div>
+          </div>
 
-        <div className = {styles.overallSignIn}>
-            
-            <div className={styles.leftFrame}>
-                <div className={styles.headerContainer}>
-                
-                    <img src={logo} alt="Description" className={styles.soulmyntLogo}/> {/* Add this line */}
-                    
-                    <div className={styles.boldTextContainer}>
-                        <div>
-                            <BoldText text={"Soulmynt"} containerWidth={"130px"} size={"26px"}/>
-                        </div>
-                    </div>
-                    <div className = {styles.createAccountContainer}>
-                        <div>
-                            <ColorfulText text={"Create an Account"} containerWidth={"340px"}/>
-                        </div>
-                    </div>
+          <div className={styles.emailPass}>
+            <div>
+              <Textbox
+                text={"Email"}
+                type="email"
+                onChange={handleEmailChange}
+                containerWidth={"378px"}
+              />
+            </div>
 
-                </div>
+            <div>
+              <Textbox
+                text="Password"
+                containerWidth="378px"
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                additionalClass={!allRulesMet ? "invalid-password" : ""}
+                isFocused={isPassFocused}
+                handleInputFocus={handleInputFocus}
+                handleInputBlur={handleInputBlur}
+              />
+            </div>
 
-                <div className={styles.emailPass}>
-                    <div>
-                    <Textbox 
-                    text={"Email"} 
-                    type="email"
-                    onChange={handleEmailChange} 
-                    containerWidth={"378px"}
-                    
-                    />
-                    </div>
+            <div className={styles.rulesContainer}>
+              <ul className={styles.passwordRules}>
+                {rules.map((rule) => (
+                  <li key={rule.id}>
+                    <PasswordRules isMet={rule.isValid} />
+                    <span className={styles.ruleText}>{rule.rule}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
-                    <div>
-                        <Textbox 
-                        text="Password" 
-                        containerWidth="378px" 
-                        type="password" 
-                        value={password} 
-                        onChange={handlePasswordChange} 
-                        additionalClass={!allRulesMet ? 'invalid-password' : ''}
-                        isFocused = {isPassFocused}
-                        handleInputFocus = {handleInputFocus}
-                        handleInputBlur = {handleInputBlur}
-                        />
-                    </div>
-
-
-                    <div className= {styles.rulesContainer}>
-                        <ul className={styles.passwordRules}>
-                            {rules.map(rule => (
-                            <li key={rule.id} >
-                                <PasswordRules isMet = {rule.isValid} />
-                                <span className= {styles.ruleText}>{rule.rule}</span>
-                            </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-               
-
-                <div className={styles.continueButton}>
-                    <Button 
-                    children={"Continue >"} 
-                    variant="colorful-button"
-                    containerWidth={"378px"}
-                    disabled={!allRulesMet || !isEmailValid}
-                    onClick = {goToNextStep}
-                     />
-                </div>
-    
+          <div className={styles.continueButton}>
+            <Button
+              children={"Continue >"}
+              variant="colorful-button"
+              containerWidth={"378px"}
+              disabled={!allRulesMet || !isEmailValid}
+              onClick={goToNextStepFunc}
+            />
+          </div>
         </div>
 
         <div className={styles.rightFrame}>
@@ -159,7 +158,7 @@ function SignIn({ goToNextStep, setEmailFunc, setPasswordFunc }) {
               your Network.
             </div>
           </div>
-          
+
           <div className={styles.bottomCurve}>
             <img src={bottom} alt="Description" />
           </div>
