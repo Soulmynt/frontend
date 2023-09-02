@@ -7,7 +7,6 @@
     position: fixed; /* This ensures the background stays in place even if other content overflows */
     top: 0;
     left: 0;
-    z-index: -1; /* This ensures the background stays behind other content */
     display: flex;
     justify-content: center; /* Center children horizontally */
     align-items: center;     /* Center children vertically */

@@ -123,7 +123,7 @@ function SignInStep2({goToNextStep}) {
                         <Circle />
                     )}
                    {isHovered && 
-                   <Button text="Edit" onClick={handleEditClick} containerWidth="100px" variant="gray" className={styles.buttonInsideCircle} />
+                   <Button children="Edit" onClick={handleEditClick} containerWidth="100px" variant="gray" className={styles.buttonInsideCircle} />
 }
                     <input type="file" className={styles.fileInput} onChange={handleFileChange} />
                 </div>

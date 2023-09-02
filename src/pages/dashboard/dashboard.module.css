@@ -1,39 +1,54 @@
 .dashboardContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Aligns children to the start (left) of the container */
     overflow: hidden;
-    padding-left: 5vw; /* Space from the left edge, adjust as needed */
 }
 
-/* .allCardsContainer {
-    position: absolute;
-    top:  175px;
-    left: 250px;
-    width: calc(100% - 21%);
-} */
+.dashboardTextContainer {
+    margin-left: 17%;
+    margin-top: 5.5%;
+    position: relative;
+    z-index: 2;
+}
+.dashboardGrid {
+    margin-left: 17%;
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 50% 20% 20%; /* L to R */
+    grid-template-rows: 30% 22.5% 22.5%; /* Top to Bottom */
+    gap: 1rem; /* Optional: Adjust as needed for spacing between cards */
+    height: 90vh; 
+    position: relative;
+    z-index: 1;
+}
+
 .activeChallengesCard {
-    position: absolute;
-    top:  175px;
-    left: 250px;
-    /* padding-top: 10vw;
-    padding-left: 10vw; */
-}
-
-.progressCard {
-    position: absolute;
-    top:  420px;
-    left: 250px;
-}
-
-.leaderboardsCard {
-    position: absolute;
-    top: 175px;
-    left: 985px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
 }
 
 .credentialsCard {
-    position: absolute;
-    top: 175px;
-    left: 1360px;
+    
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+
+.leaderboardsCard {
+    
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.rewardsLadderCard {
+    grid-column: 1 / 2;
+    grid-row: 2 / 4;
+}
+
+
+.pollsCard {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+}
+
+.announcementsCard {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
 }

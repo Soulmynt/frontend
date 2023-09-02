@@ -2,32 +2,89 @@
     overflow: hidden;
 }
 
-.createCredentialButton {
-    position: absolute;
-    top:  175px;
-    left: 250px;
-    /* padding-top: 10vw;
-    padding-left: 10vw; */
+.createTextContainer {
+    margin-left: 17%;
+    margin-top: 5.5%;
+    position: relative;
+    z-index: 2;
 }
 
-.overlayBackground{
+.createGrid {
+    margin-left: 17%;
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 30% 30% 30%; /* L to R */
+    grid-template-rows: 7% 50% 22.5%; /* Top to Bottom */
+    gap: 1rem; /* Optional: Adjust as needed for spacing between cards */
+    height: 90vh; 
+    position: relative;
+    z-index: 1;
+}
+
+.recentCredentialsCard {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.recentCommunitiesCard {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.sendCredentialsCard {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.createCredentialButton {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.createCommunitiesButton {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+/* .overlayBackground{
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.9); 
-    z-index: 10; 
+    background-color: rgba(0,0,0,0.4); 
 }
 
 .overlayWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vh;
-    height: 10vh;
-    z-index: 10; /* Ensure it's above other content */
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.overlayWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above everything else */
 }
+
+.overlayBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: -1; /* Ensure it's below the modal but above everything else */
+}
+
