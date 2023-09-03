@@ -47,3 +47,18 @@
     left: 0;
 }
 
+.generalSpacing {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.addedMargin {
+    margin-top: 2%;
+}
+
+.continueButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%;  /* Adjust as needed */
+    margin-top: 2%;    /* Adjust as needed */
+}

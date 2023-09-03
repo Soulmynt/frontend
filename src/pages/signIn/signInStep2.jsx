@@ -118,48 +118,6 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
                             <BoldText text={"Soulmynt"} size={"15px"}/>
                         </div>
                     </div> */}
-<<<<<<< HEAD
-                {/* </div> */}
-                <div className = {styles.createAccountContainer}>
-                    <div>
-                        <ColorfulText text={"Tell us about yourself"} containerWidth={"400px"}/>
-                    </div>
-                </div>
-
-                <div className={styles.profilePicContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    {selectedImage ? (
-                        <img src={selectedImage} alt="Profile" className={styles.profileImage} />
-                    ) : (
-                        <Circle />
-                    )}
-                   {isHovered && 
-                   <Button children="Edit" onClick={handleEditClick} containerWidth="100px" variant="gray" className={styles.buttonInsideCircle} />
-}
-                    <input type="file" className={styles.fileInput} onChange={handleFileChange} />
-                </div>
-
-               
-
-                <div className={styles.emailPass}>
-
-                
-                    <div>
-                        <Textbox 
-                        text={"Username"} 
-                        containerWidth={"378px"}
-                       
-                        />
-                    </div>
-
-                    <div>
-                        <Textbox 
-                        text="Display Name" 
-                        containerWidth="378px" 
-                        // handleInputFocus = {handleInputFocus}
-                        // handleInputBlur = {handleInputBlur}
-                        />
-                    </div>
-=======
           {/* </div> */}
           <div className={styles.createAccountContainer}>
             <div>
@@ -207,7 +165,6 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
                 onChange={handleUserNameChange}
               />
             </div>
->>>>>>> cb7a2b4c8c9b4f9dad06b5177994b96702383404
 
             <div>
               <Textbox

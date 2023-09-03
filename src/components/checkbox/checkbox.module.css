@@ -1,0 +1,45 @@
+/* CustomCheckbox.module.css */
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+}
+
+.hiddenCheckbox {
+    display: none;
+}
+
+.customCheckbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.unchecked {
+    width: 18px;
+    height: 18px;
+    border: 2px solid gray;
+    display: inline-block;
+    border-radius: 6px;
+}
+
+.checked {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(123deg, rgba(198, 62, 199, 0.68) 0%, rgba(255, 191, 83, 0.69) 100%);
+    display: inline-block;
+    position: relative;
+    border-radius: 6px;
+}
+
+.checked::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    transform: rotate(45deg);
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    height: 10px;
+    width: 5px;
+}
