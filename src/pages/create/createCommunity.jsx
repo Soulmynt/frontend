@@ -18,6 +18,7 @@ const CreateCommunity = () => {
     const [resumeRequired, setResumeRequired] = useState(false);
     const [paidCommunity, setPaidCommunity] = useState(false);
     const [openCommunity, setOpenCommunity] = useState(false);
+    const [challenges, setChallenges] = useState([]);
 
 
     const handleMouseEnter = () => {
@@ -80,6 +81,29 @@ const CreateCommunity = () => {
         newQuestions.splice(index, 1);
         setQuestions(newQuestions);
     };
+
+    const handleAddChallenge = () => {
+        setChallenges([...challenges, { description: '', points: 0 }]);
+    };
+
+    const handleChallengeDescriptionChange = (index, value) => {
+        const updatedChallenges = [...challenges];
+        updatedChallenges[index].description = value;
+        setChallenges(updatedChallenges);
+    };
+
+    const handleChallengePointsChange = (index, value) => {
+        const updatedChallenges = [...challenges];
+        updatedChallenges[index].points = value;
+        setChallenges(updatedChallenges);
+    };
+
+    const handleRemoveChallenge = (index) => {
+        const updatedChallenges = [...challenges];
+        updatedChallenges.splice(index, 1);
+        setChallenges(updatedChallenges);
+    };
+
         
     return (
         <div className={styles.createCredentialContainer}>
@@ -241,6 +265,79 @@ const CreateCommunity = () => {
                     <div className={styles.generalSpacing}>
                         <BoldText text={"click the checkbox if your community is open for anyone to join"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
                     </div>
+
+                    <div className={styles.generalSpacing}>
+                        <BoldText text={"Active Challenges"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
+                    </div>
+
+                    <div className={styles.generalSpacing}>
+                        <BoldText text={"Add challenges/Bounties + Associated Points (Note: Points are not necessary)"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
+                    </div>
+
+                    {/* <div className={styles.generalSpacing}>
+                        <div className = {styles.activeChallengesContainer}>
+                        <Textbox 
+                            text="Number" 
+                            containerWidth="250px"
+                            type="number"
+                            value={slots === 0 ? "" : slots} 
+                            onChange={handleSlotsChange}  
+                        
+                            
+                        />
+                        <Textbox 
+                            text={`Challenge`} 
+                            containerWidth="720px"
+                            containerHeight= "100px" 
+                            value={question} 
+                            onChange={(e) => handleQuestionChange(index, e.target.value)} 
+                            multiline={true}
+                        />
+
+
+                        </div>
+                    </div> */}
+                    {challenges.map((challenge, index) => (
+                    <div key={index} className={styles.generalSpacing}>
+                        <div className={styles.activeChallengesContainer}>
+                            <Textbox 
+                                text="Points" 
+                                containerWidth="100px"
+                                type="number"
+                                value={challenge.points.toString()} 
+                                onChange={(e) => handleChallengePointsChange(index, e.target.value)}  
+                            />
+                            <Textbox 
+                                text="Challenge" 
+                                containerWidth="500px"
+                                containerHeight="50px" 
+                                value={challenge.description} 
+                                onChange={(e) => handleChallengeDescriptionChange(index, e.target.value)} 
+                                multiline={true}
+                            />
+                        </div>
+                        <div className = {styles.addedMargin}>
+                            <Button 
+                                children="Remove" 
+                                onClick={() => handleRemoveChallenge(index)}
+                                containerWidth="100px"
+                                variant="gray"
+                            />
+                        </div>
+                       
+                    </div>
+                ))}
+
+                <div className={styles.generalSpacing}>
+                    <Button 
+                        children="Add Challenge" 
+                        onClick={handleAddChallenge}
+                        containerWidth="150px"
+                        variant="colorful"
+                    />
+                </div>
+
+                    
 
                 </div>
 
