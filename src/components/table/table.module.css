@@ -1,0 +1,60 @@
+/* .gradientTable {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.gradientTable th, .gradientTable td {
+    background: rgba(253, 253, 253, 0.30);
+    position: relative;
+    padding: 10px;
+    border-radius: 3.277px;
+}
+
+.gradientTable th::before, .gradientTable td::before {
+    content: "";
+    position: absolute;
+    top: -0.655px;
+    right: -0.655px;
+    bottom: -0.655px;
+    left: -0.655px;
+    z-index: -1;
+    background: linear-gradient(rgba(198, 62, 199, 0.68), rgba(198, 62, 199, 0.68)),
+                linear-gradient(rgba(198, 62, 199, 0.68), rgba(198, 62, 199, 0.68)),
+                linear-gradient(rgba(198, 62, 199, 0.68), rgba(255, 213, 122, 0.68)),
+                linear-gradient(rgba(198, 62, 199, 0.68), rgba(255, 213, 122, 0.68));
+    background-repeat: no-repeat;
+    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    border-radius: 3.277px;
+} */
+
+.tableWrapper {
+    background: linear-gradient(45deg, #EC7BCF, #FFD57A);
+    padding: 2px; /* This controls the width of the gradient border */
+    border-radius: 3.277px;
+    display: inline-block; /* To make the wrapper fit the table's width */
+  }
+  
+  .gradientTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  .gradientTable th, .gradientTable td {
+    padding: 10px 15px; /* Adjust the right and left padding as needed */
+    border-bottom: 1px solid #8F8F8F;
+    border-left: none;
+    text-align: left; /* Ensures text alignment is consistent */
+  }
+  
+  .gradientTable th:last-child, .gradientTable td:last-child {
+    border-right: none;
+  }
+  
+  .gradientTable tr:last-child td {
+    border-bottom: none;
+  }
+  
+  

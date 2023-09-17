@@ -5,6 +5,7 @@ import { BoldText } from '../../components/boldText';
 import { Button } from '../../components/button';
 import { Textbox } from '../../components/textbox';
 import { Checkbox } from '../../components/checkbox';
+import { Table } from '../../components/table';
 
 
 
@@ -13,13 +14,22 @@ const CreateCommunity = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    // const [challengeDescription, setChallengeDescription] = useState('');
+    // const [challengeName, setChallengeName] = useState('');
     const [slots, setSlots] = useState("");
     const [questions, setQuestions] = useState([]);
     const [resumeRequired, setResumeRequired] = useState(false);
     const [paidCommunity, setPaidCommunity] = useState(false);
     const [openCommunity, setOpenCommunity] = useState(false);
     const [challenges, setChallenges] = useState([]);
-
+    const [rewards, setRewards] = useState([]);
+    const table1Data = [
+        { This: "2023-08-15", is: "Active", placeholder: "John Doe" },
+        { This: "2023-08-14", is: "Inactive", placeholder: "Jane Smith" },
+        // ... more data
+      ];
+    
+      
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -83,12 +93,18 @@ const CreateCommunity = () => {
     };
 
     const handleAddChallenge = () => {
-        setChallenges([...challenges, { description: '', points: 0 }]);
+        setChallenges([...challenges, { challengeDescription: '', points: 0, challengeName: ''}]);
     };
 
     const handleChallengeDescriptionChange = (index, value) => {
         const updatedChallenges = [...challenges];
-        updatedChallenges[index].description = value;
+        updatedChallenges[index].challengeDescription = value;
+        setChallenges(updatedChallenges);
+    };
+
+    const handleChallengeNameChange = (index, value) => {
+        const updatedChallenges = [...challenges];
+        updatedChallenges[index].challengeName = value;
         setChallenges(updatedChallenges);
     };
 
@@ -104,11 +120,34 @@ const CreateCommunity = () => {
         setChallenges(updatedChallenges);
     };
 
+    const handleAddReward = () => {
+        setRewards([...rewards, { points: 0, description: '' }]);
+    };
+
+    const handleRewardPointsChange = (index, value) => {
+        const updatedRewards = [...rewards];
+        updatedRewards[index].points = value;
+        setRewards(updatedRewards);
+    };
+
+    const handleRewardDescriptionChange = (index, value) => {
+        const updatedRewards = [...rewards];
+        updatedRewards[index].description = value;
+        setRewards(updatedRewards);
+    };
+
+    const handleRemoveReward = (index) => {
+        const updatedRewards = [...rewards];
+        updatedRewards.splice(index, 1);
+        setRewards(updatedRewards);
+    };
+
+
         
     return (
         <div className={styles.createCredentialContainer}>
 
-            <Card positionType='relative' containerWidth='800px' containerHeight='1350px'>
+            <Card positionType='relative' containerWidth='800px' containerHeight='2000px'>
                 <div className = {styles.createCommunityText}>
                     <BoldText text={"Create Community (Basic Information) "} containerWidth={"250px"} size={"25px"} weight={"bold"} textColor="#000"/>
                 </div>
@@ -274,29 +313,7 @@ const CreateCommunity = () => {
                         <BoldText text={"Add challenges/Bounties + Associated Points (Note: Points are not necessary)"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
                     </div>
 
-                    {/* <div className={styles.generalSpacing}>
-                        <div className = {styles.activeChallengesContainer}>
-                        <Textbox 
-                            text="Number" 
-                            containerWidth="250px"
-                            type="number"
-                            value={slots === 0 ? "" : slots} 
-                            onChange={handleSlotsChange}  
-                        
-                            
-                        />
-                        <Textbox 
-                            text={`Challenge`} 
-                            containerWidth="720px"
-                            containerHeight= "100px" 
-                            value={question} 
-                            onChange={(e) => handleQuestionChange(index, e.target.value)} 
-                            multiline={true}
-                        />
-
-
-                        </div>
-                    </div> */}
+                    
                     {challenges.map((challenge, index) => (
                     <div key={index} className={styles.generalSpacing}>
                         <div className={styles.activeChallengesContainer}>
@@ -307,14 +324,26 @@ const CreateCommunity = () => {
                                 value={challenge.points.toString()} 
                                 onChange={(e) => handleChallengePointsChange(index, e.target.value)}  
                             />
-                            <Textbox 
-                                text="Challenge" 
-                                containerWidth="500px"
-                                containerHeight="50px" 
-                                value={challenge.description} 
-                                onChange={(e) => handleChallengeDescriptionChange(index, e.target.value)} 
-                                multiline={true}
-                            />
+                            <div className = {styles.nameAndDesc}>
+
+                                <Textbox 
+                                    text="Name" 
+                                    containerWidth="500px"
+                                    containerHeight="40px" 
+                                    value={challenge.challengeName} 
+                                    onChange={(e) => handleChallengeNameChange(index, e.target.value)} 
+                                    multiline={false}
+                                />
+                                <Textbox 
+                                    text="Challenge" 
+                                    containerWidth="500px"
+                                    containerHeight="40px" 
+                                    value={challenge.description} 
+                                    onChange={(e) => handleChallengeDescriptionChange(index, e.target.value)} 
+                                    multiline={true}
+                                />
+                                
+                            </div>
                         </div>
                         <div className = {styles.addedMargin}>
                             <Button 
@@ -332,7 +361,7 @@ const CreateCommunity = () => {
                     <Button 
                         children="Add Challenge" 
                         onClick={handleAddChallenge}
-                        containerWidth="150px"
+                        containerWidth="200px"
                         variant="colorful"
                     />
                 </div>
@@ -340,6 +369,70 @@ const CreateCommunity = () => {
                     
 
                 </div>
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"Rewards Ladder"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
+                </div>
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"Add a points total + Associated reward (Note: points are not necessary)"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
+                </div>
+
+                {rewards.map((reward, index) => (
+                    <div key={index} className={styles.generalSpacing}>
+                        <div className={styles.activeChallengesContainer}>
+                            <Textbox 
+                                text="Points" 
+                                containerWidth="100px"
+                                type="number"
+                                value={reward.points.toString()} 
+                                onChange={(e) => handleRewardPointsChange(index, e.target.value)}  
+                            />
+                            <Textbox 
+                                text="Reward Description" 
+                                containerWidth="500px"
+                                containerHeight="40px" 
+                                value={reward.description} 
+                                onChange={(e) => handleRewardDescriptionChange(index, e.target.value)} 
+                                multiline={true}
+                            />
+                        </div>
+                        <div className = {styles.addedMargin}>
+                            <Button 
+                                children="Remove" 
+                                onClick={() => handleRemoveReward(index)}
+                                containerWidth="100px"
+                                variant="gray"
+                            />
+                        </div>
+                    </div>
+                ))}
+
+                <div className={styles.generalSpacing}>
+                    <Button 
+                        children="Add Reward" 
+                        onClick={handleAddReward}
+                        containerWidth="150px"
+                        variant="colorful"
+                    />
+                </div>
+
+                <div className={styles.generalSpacing}>
+                    <Table columns={["This", "is", "placeholder"]} data={table1Data} width="80%" height="200px"/>
+                    {/* <Table columns={["Status", "Name"]} data={table2Data} /> */}
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <div className={styles.continueButtonContainer}>
                     <Button 
@@ -350,6 +443,8 @@ const CreateCommunity = () => {
                         variant="colorful"
                     />
                 </div>
+
+                
 
 
 
