@@ -27,7 +27,7 @@ const CreateCommunity = () => {
         { This: "2023-08-15", is: "Active", placeholder: "John Doe" },
         { This: "2023-08-14", is: "Inactive", placeholder: "Jane Smith" },
         // ... more data
-      ];
+    ];
     
       
 

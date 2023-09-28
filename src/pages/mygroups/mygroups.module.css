@@ -1,3 +1,15 @@
 .dashboardContainer {
     overflow: hidden;
 }
+
+.myGroupsGrid {
+    margin-left: 17%;
+    margin-top: 8%;
+    display: grid;
+    grid-template-columns: 50% 40%; /* L to R */
+    grid-template-rows: 40% 40%; /* Top to Bottom */
+    gap: 1rem; /* Optional: Adjust as needed for spacing between cards */
+    height: 90vh; 
+    position: relative;
+    z-index: 1;
+}

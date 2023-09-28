@@ -1,3 +1,31 @@
 .profileContainer {
     overflow: hidden;
 }
+
+.profileGrid{
+    margin-left: 17%;
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 40% 20% 20%; /* L to R */
+    grid-template-rows: 30% 30% 10%; /* Top to Bottom */
+    gap: 1rem; /* Optional: Adjust as needed for spacing between cards */
+    height: 90vh; 
+    position: relative;
+    z-index: 1;
+}
+
+.myCredentialsCard {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+}
+
+.pendingCredentialsCard {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+
+.generalSpacing {
+    margin-top: 2%;
+    margin-left: 2%;
+}

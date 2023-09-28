@@ -7,6 +7,7 @@ import { Card } from '../../components/card';
 import CreateCredential from './createCredential.jsx';
 import CreateCommunity from './createCommunity.jsx';
 import { BoldText } from '../../components/boldText';
+import { Table } from '../../components/table';
 
 
 // function Create() {
@@ -72,6 +73,11 @@ import { BoldText } from '../../components/boldText';
 function Create() {
     const [showCard, setShowCard] = useState(false);
     const [activeComponent, setActiveComponent] = useState(null);
+    const table1Data = [
+        { Date: "2023-08-15", Status: "Active", Name: "John Doe" },
+        { Date: "2023-08-14", Status: "Inactive", Name: "Jane Smith" },
+        // ... more data
+    ];
 
     const handleButtonClick = (componentName) => {
         setActiveComponent(componentName);
@@ -104,7 +110,16 @@ function Create() {
                 </div>
 
                 <div className={styles.recentCredentialsCard}>
-                    <Card  />
+                    <Card>
+                        <div className={styles.generalSpacing}>
+                        <BoldText text={"Recent Credentials "} containerWidth={"250px"} size={"24px"} weight={"bold"} textColor="#000"/>
+                        </div>
+                       
+                        <div className={styles.generalSpacing}>
+                        <Table columns={["","Date", "Status", "Name"]} data={table1Data} width="97%" height="auto"/>
+                        </div>
+                    
+                    </Card>
                 </div>
 
                 <div className={styles.recentCommunitiesCard}>
