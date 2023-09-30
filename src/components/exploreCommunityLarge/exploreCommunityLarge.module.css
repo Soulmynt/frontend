@@ -6,13 +6,13 @@
 }
 
 .topSpacing {
-    margin-top: 2px;
+    margin-top: 5px;
 }
 
 .contentInsideCard {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: flex-start;
     width: 100%; 
     height: 100%;
@@ -30,4 +30,18 @@
   .image {
     max-width: 100%; /* ensure image doesn't overflow */
     max-height: 100%; /* ensure image doesn't overflow */
+  }
+
+
+  .rightFrame {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    padding-left: 3%;
+  }
+
+  .applyButton {
+    margin-top: 110%;
+    padding-left: 160%;
   }

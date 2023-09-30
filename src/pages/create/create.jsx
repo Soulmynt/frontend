@@ -74,8 +74,10 @@ function Create() {
     const [showCard, setShowCard] = useState(false);
     const [activeComponent, setActiveComponent] = useState(null);
     const table1Data = [
-        { Date: "2023-08-15", Status: "Active", Name: "John Doe" },
-        { Date: "2023-08-14", Status: "Inactive", Name: "Jane Smith" },
+        { Temp: "", Date: "2023-08-15", Status: "Active", Name: "John Doe" },
+        { Temp: "", Date: "2023-08-14", Status: "Inactive", Name: "Jane Smith" },
+        { Temp: "", Date: "2023-08-15", Status: "Active", Name: "John Doe" },
+        { Temp: "", Date: "2023-08-14", Status: "Inactive", Name: "Jane Smith" },
         // ... more data
     ];
 
@@ -116,7 +118,7 @@ function Create() {
                         </div>
                        
                         <div className={styles.generalSpacing}>
-                        <Table columns={["","Date", "Status", "Name"]} data={table1Data} width="97%" height="auto"/>
+                        <Table columns={[" ","Date", "Status", "Name"]} data={table1Data} width="97%" height="auto"/>
                         </div>
                     
                     </Card>

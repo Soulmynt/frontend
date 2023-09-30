@@ -56,5 +56,43 @@
   .gradientTable tr:last-child td {
     border-bottom: none;
   }
+  .dotsContainer {
+    position: relative;
+    width: 10px; /* or whatever width you want for the Dots container */
+}
+
+.dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.nextPrevDesign {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageNumber {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* .footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+} */
+tfoot tr {
+  border-top: 1px solid gray; /* Adjust the border style as needed */
   
-  
+}
+
+tfoot td {
+  padding: 10px; /* Adjust padding as needed */
+  text-align: center; /* Adjust text alignment as needed */
+}
