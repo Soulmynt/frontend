@@ -1,94 +1,26 @@
-// import React, {useState} from "react";
-// import { BoldText } from "../boldText";
-// import styles from "./table.module.css";
-// import { Dots } from "../../icons/Dots";
-
-// const Table = ({ columns, data, width, height }) => {
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const itemsPerPage = 3; // Set the number of items you want to display per page
-//   const totalPages = Math.ceil(data.length / itemsPerPage);
-
-//   const goToNextPage = () => {
-//     if (currentPage < totalPages) {
-//       setCurrentPage(currentPage + 1);
-//     }
-//   };
-  
-//   const goToPreviousPage = () => {
-//     if (currentPage > 1) {
-//       setCurrentPage(currentPage - 1);
-//     }
-//   };
-  
-//   const getDisplayRange = () => {
-//     const start = (currentPage - 1) * itemsPerPage + 1;
-//     const end = Math.min(currentPage * itemsPerPage, data.length);
-//     return { start, end };
-//   };
-
-//   return (
-//     <div className={styles.tableWrapper} style={{ width: width, height: height }}>
-//       <table className={styles.gradientTable}>
-//         <thead>
-//           <tr>
-//             {columns.map((column, index) => (
-//               <th key={index}>
-//                 <BoldText text={column} />
-//               </th>
-//             ))}
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {data.map((row, rowIndex) => (
-            
-//             <tr key={rowIndex}>
-             
-              
-              
-//               {columns.map((column, colIndex) => (
-//                 <td key={colIndex}>
-//                   {colIndex === 0 && <Dots className={styles.dots}/>}
-//                   <BoldText text={row[column]} />
-                  
-                  
-//                 </td>
-                
-//               ))}
-
-              
-                
-//             </tr>
-//           ))}
-//         </tbody>
-//         <tfoot>
-//         <tr>
-//           <td colSpan={columns.length}>
-//             Showing {getDisplayRange().start} to {getDisplayRange().end} of {data.length} results
-//             <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-//               Previous
-//             </button>
-//             <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-//               Next
-//             </button>
-//           </td>
-//         </tr>
-//       </tfoot>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default Table;
 import React, { useState } from "react";
 import { BoldText } from "../boldText";
 import styles from "./table.module.css";
 import { Dots } from "../../icons/Dots";
 import { Arrow } from "../../icons/Arrow";
+import { Dropdown } from "../dropdown";
 
 const Table = ({ columns, data, width, height }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Set the number of items you want to display per page
+  const itemsPerPage = 3; 
   const totalPages = Math.ceil(data.length / itemsPerPage);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+
+  const handleDotsClick = (rowIndex) => {
+    setOpenDropdown(openDropdown === rowIndex ? null : rowIndex);
+  };
+
+  const handleDropdownOptionClick = (option, rowIndex) => {
+    console.log(`Selected ${option} for row ${rowIndex}`);
+    // Implement the functionality for each option here
+    setOpenDropdown(null); // Close the dropdown
+  };
 
   const goToNextPage = () => {
     if (currentPage < totalPages) {
@@ -120,12 +52,50 @@ const Table = ({ columns, data, width, height }) => {
             ))}
           </tr>
         </thead>
+        {/* <tbody>
+          {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {columns.map((column, colIndex) => (
+                <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
+                  {colIndex === 0 && (
+                    <div onClick={() => handleDotsClick(rowIndex)}>
+                      <Dots className={styles.dots}/>
+                      {openDropdown === rowIndex && (
+                        <Dropdown onOptionClick={(option) => handleDropdownOptionClick(option, rowIndex)} />
+                      )}
+
+
+                    </div>
+
+
+
+                  )
+                  
+                  
+                  }
+                  <BoldText text={row[column]} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody> */}
         <tbody>
           {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((row, rowIndex) => (
             <tr key={rowIndex}>
               {columns.map((column, colIndex) => (
                 <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
-                  {colIndex === 0 && <Dots className={styles.dots}/>}
+                  {colIndex === 0 && (
+                    <div onClick={() => handleDotsClick(rowIndex)}>
+                      <Dots className={styles.dots}/>
+                      {openDropdown === rowIndex && (
+                        <Dropdown 
+                        options={['View', 'Edit', 'Duplicate']} 
+                        
+                        
+                        onOptionClick={(option) => handleDropdownOptionClick(option, rowIndex)} />
+                      )}
+                    </div>
+                  )}
                   <BoldText text={row[column]} />
                 </td>
               ))}

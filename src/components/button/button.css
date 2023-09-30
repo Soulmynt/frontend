@@ -40,6 +40,12 @@
     cursor: not-allowed;
 }
 
+.transparent-button .button-text {
+    color: #000; /* Set text color to black for transparent button */
+    font-size: 10px;
+}
+
 .transparent-button {
     background-color: transparent; /* Making the button transparent */
+    
 }
