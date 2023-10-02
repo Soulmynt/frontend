@@ -1,0 +1,21 @@
+.searchbarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .iconAndText {
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchText {
+    margin-left: 5px;
+    font-weight: bold;
+  }

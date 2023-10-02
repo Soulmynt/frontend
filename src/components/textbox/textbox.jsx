@@ -36,7 +36,7 @@ const Textbox = ({
     handleInputFocus, 
     handleInputBlur, 
     isRequired=false,
-    multiline = false  // <-- New prop
+    multiline = false,
 }) => {
   return (
     <div className={`textbox-container ${isFocused ? additionalClass : ''}`} style={{ width: containerWidth, height: containerHeight }}>
@@ -62,6 +62,7 @@ const Textbox = ({
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           required={isRequired}
+          
          
         />
       )}
