@@ -4,6 +4,7 @@ import SignInStep2 from "./signInStep2";
 import SignInStep3 from "./signInStep3";
 import { CreateWallet, getMnemonic, encryptWallet } from "../../utils/Wallet";
 import VerifyPhrase from "../signIn/VerifyPhrase";
+import { useAuth } from "../../hooks";
 import { axiosSignIn } from "../../utils/axios";
 
 const getRandomPhraseword = (ignore = 0) => {
@@ -16,6 +17,8 @@ const getRandomPhraseword = (ignore = 0) => {
 
 function Register() {
   // Function Variables
+  // Auth Context
+  const { setAuth } = useAuth();
   // Page Selector State
   const [currentStep, setCurrentStep] = useState(2);
   // User Credential State
