@@ -1,18 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { AuthProvider } from "./context/Auth";
 
-const link = document.createElement('link');
-link.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap';
-link.rel = 'stylesheet';
+const link = document.createElement("link");
+link.href =
+  "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap";
+link.rel = "stylesheet";
 document.head.appendChild(link);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
 
