@@ -6,6 +6,7 @@ import { CreateWallet, getMnemonic, encryptWallet } from "../../utils/Wallet";
 import VerifyPhrase from "../signIn/VerifyPhrase";
 import { useAuth } from "../../hooks";
 import { axiosSignIn } from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 const getRandomPhraseword = (ignore = 0) => {
   let number = Math.round(Math.random() * 11);
@@ -19,8 +20,10 @@ function Register() {
   // Function Variables
   // Auth Context
   const { setAuth } = useAuth();
+  // Navigation
+  const navigate = useNavigate();
   // Page Selector State
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(1);
   // User Credential State
   const [email, setEmail] = useState("embloop");
   const [password, setPassword] = useState("pasbloop");
@@ -65,6 +68,7 @@ function Register() {
   const closeModalAndSubmitUserInfo = async () => {
     //     data = await axiosSignIn(email, "handle", password, keyGen);
     setDemoModal(!demoModal);
+    navigate("/dashboard");
     console.log("this hit!");
   };
 
