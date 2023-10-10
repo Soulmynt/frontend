@@ -17,6 +17,7 @@ const CreateCommunity = () => {
     // const [challengeDescription, setChallengeDescription] = useState('');
     // const [challengeName, setChallengeName] = useState('');
     const [slots, setSlots] = useState("");
+    const [pointsTotal, setPointsTotal] = useState("");
     const [questions, setQuestions] = useState([]);
     const [resumeRequired, setResumeRequired] = useState(false);
     const [paidCommunity, setPaidCommunity] = useState(false);
@@ -24,8 +25,8 @@ const CreateCommunity = () => {
     const [challenges, setChallenges] = useState([]);
     const [rewards, setRewards] = useState([]);
     const table1Data = [
-        { This: "2023-08-15", is: "Active", placeholder: "John Doe" },
-        { This: "2023-08-14", is: "Inactive", placeholder: "Jane Smith" },
+        { Temp: "", This: "2023-08-15", is: "Active", placeholder: "John Doe" },
+        { Temp: "", This: "2023-08-14", is: "Inactive", placeholder: "Jane Smith" },
         // ... more data
     ];
     
@@ -57,6 +58,15 @@ const CreateCommunity = () => {
             setSlots(Infinity);
         } else {
             setSlots(value);
+        }
+    };
+
+    const handlePointsTotalChange = (e) => {
+        const value = e.target.value;
+        if (value === "") {
+            setPointsTotal(0);
+        } else {
+            setPointsTotal(value);
         }
     };
     
@@ -147,7 +157,7 @@ const CreateCommunity = () => {
     return (
         <div className={styles.createCredentialContainer}>
 
-            <Card positionType='relative' containerWidth='800px' containerHeight='2000px'>
+            <Card positionType='relative' containerWidth='800px' containerHeight='2100px'>
                 <div className = {styles.createCommunityText}>
                     <BoldText text={"Create Community (Basic Information) "} containerWidth={"250px"} size={"25px"} weight={"bold"} textColor="#000"/>
                 </div>
@@ -418,8 +428,40 @@ const CreateCommunity = () => {
                 </div>
 
                 <div className={styles.generalSpacing}>
-                    <Table columns={["This", "is", "placeholder"]} data={table1Data} width="80%" height="200px"/>
+                    <BoldText text={"Send Credentials"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
+                </div>
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"soulmynt will automatically Send this membership token to people that join your community. Alternatively, choose to send this credential only when the user has reached a threshold of points"} 
+                    containerWidth={"250px"} 
+                    size={"15px"} 
+                    textColor="#8F8F8F"/>
+                </div>
+
+                <div className={styles.generalSpacing}>
+                    <Table 
+                        columns={["", "This", "is", "placeholder"]} 
+                        data={table1Data} 
+                        width="80%"/>
                     {/* <Table columns={["Status", "Name"]} data={table2Data} /> */}
+                </div>
+
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"Points total needed to receive above credential automatically by soulmynt (leave blank if you want to send the credentials manually)"} 
+                    containerWidth={"250px"} 
+                    size={"15px"} 
+                    textColor="#8F8F8F"/>
+                </div>
+
+                <div className={styles.generalSpacing}>
+                <Textbox 
+                    text="Points" 
+                    containerWidth="150px"
+                    type="number"
+                    value={pointsTotal === 0 ? "" : pointsTotal} 
+                    onChange={handlePointsTotalChange}  
+                />
                 </div>
 
 
@@ -436,7 +478,7 @@ const CreateCommunity = () => {
 
                 <div className={styles.continueButtonContainer}>
                     <Button 
-                        children="Continue" 
+                        children="Create!" 
                         disabled={!name || !description} 
                         onClick={handleContinueClick}
                         containerWidth="150px"

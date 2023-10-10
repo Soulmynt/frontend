@@ -4,8 +4,9 @@ import styles from "./table.module.css";
 import { Dots } from "../../icons/Dots";
 import { Arrow } from "../../icons/Arrow";
 import { Dropdown } from "../dropdown";
+import { ImageIcon } from "../../icons/ImageIcon";
 
-const Table = ({ columns, data, width, height }) => {
+const Table = ({ columns, data, width, height, onImageClick, onReviewClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; 
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -52,37 +53,11 @@ const Table = ({ columns, data, width, height }) => {
             ))}
           </tr>
         </thead>
-        {/* <tbody>
-          {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {columns.map((column, colIndex) => (
-                <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
-                  {colIndex === 0 && (
-                    <div onClick={() => handleDotsClick(rowIndex)}>
-                      <Dots className={styles.dots}/>
-                      {openDropdown === rowIndex && (
-                        <Dropdown onOptionClick={(option) => handleDropdownOptionClick(option, rowIndex)} />
-                      )}
-
-
-                    </div>
-
-
-
-                  )
-                  
-                  
-                  }
-                  <BoldText text={row[column]} />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody> */}
+       
         <tbody>
           {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {columns.map((column, colIndex) => (
+              {/* {columns.map((column, colIndex) => (
                 <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
                   {colIndex === 0 && (
                     <div onClick={() => handleDotsClick(rowIndex)}>
@@ -98,7 +73,55 @@ const Table = ({ columns, data, width, height }) => {
                   )}
                   <BoldText text={row[column]} />
                 </td>
-              ))}
+              ))} */}
+            {columns.map((column, colIndex) => (
+              // <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
+                
+              //   {colIndex === 0 ? (
+              //     <div onClick={() => handleDotsClick(rowIndex)}>
+              //       <Dots className={styles.dots}/>
+              //       {openDropdown === rowIndex && (
+              //         <Dropdown 
+              //           options={['View', 'Edit', 'Delete']} 
+              //           onOptionClick={(option) => handleDropdownOptionClick(option, rowIndex)} />
+              //       )}
+              //     </div>
+              //   ) : (
+              //     React.isValidElement(row[column]) ? row[column] : <BoldText text={row[column]} />
+              //   )}
+
+                
+              // </td>
+
+              <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
+                  {colIndex === 0 ? (
+                    <div onClick={() => handleDotsClick(rowIndex)}>
+                      <Dots className={styles.dots}/>
+                      {openDropdown === rowIndex && (
+                        <Dropdown 
+                          options={['View', 'Edit', 'Delete']} 
+                          onOptionClick={(option) => handleDropdownOptionClick(option, rowIndex)} />
+                      )}
+                    </div>
+                  ) : (
+                    column === 'Submission' ? (
+                      // <svg onClick={() => onImageClick(row.imageSrc)} xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                      //   {/* ... SVG paths ... */}
+                      // </svg>
+                      <ImageIcon/>
+                    ) : (
+                      column === 'Review' ? (
+                      <div>
+                        <button onClick={() => onReviewClick('approve', rowIndex)}>✔️</button>
+                        <button onClick={() => onReviewClick('reject', rowIndex)}>❌</button>
+                      </div>
+                      ) : (
+                        React.isValidElement(row[column]) ? row[column] : <BoldText text={row[column]} />
+                      )
+                    )
+                  )}
+                </td>
+            ))}
             </tr>
           ))}
         </tbody>

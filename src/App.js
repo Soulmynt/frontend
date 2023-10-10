@@ -7,6 +7,7 @@ import { MyGroups } from "./pages/mygroups";
 import { Explore } from "./pages/explore";
 import { Profile } from "./pages/profile";
 import { Settings } from "./pages/settings";
+import { Login } from "./pages/login";
 import { RequireAuth } from "./components/AuthRoute";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/login" element={<Login />} />
         {/* </Route>}*/}
         {/* ... other routes */}
         <Route path="/staging" element={<Staging />} />
