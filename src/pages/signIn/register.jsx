@@ -65,11 +65,20 @@ function Register() {
     setKeyGen(keygen);
   };
 
+  // ! Here is the function we create to call our axios function
+  //* It will
   const closeModalAndSubmitUserInfo = async () => {
-    //     data = await axiosSignIn(email, "handle", password, keyGen);
-    setDemoModal(!demoModal);
-    navigate("/dashboard");
-    console.log("this hit!");
+    let data = await axiosSignIn(email, "handle", password, keyGen);
+    if (data.status == 200) {
+      setAuth(data.data);
+      setDemoModal(!demoModal);
+      navigate("/dashboard");
+      console.log("this hit!");
+    } else {
+      console.log("An error occurred and signup failed ", data?.data.error);
+      // * A modal for the error here would be a good idea
+      setCurrentStep(1);
+    }
   };
 
   // Render
@@ -87,6 +96,7 @@ function Register() {
         height={460}
         random1={randomWord1}
         random2={randomWord2}
+        // ! Here is where we submit the info to the backend
         createAccountFunc={closeModalAndSubmitUserInfo}
       />
       {currentStep === 1 && (
