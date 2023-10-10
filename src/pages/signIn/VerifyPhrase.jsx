@@ -94,10 +94,12 @@ const VerifyPhrase = ({
   const [secondCheck, setSecondCheck] = useState("");
 
   const closeModal = () => {
-    setConfirm(false);
-    createAccountFunc();
     setFirstCheck("");
     setSecondCheck("");
+    console.log("this hit");
+    createAccountFunc();
+    setConfirm(false);
+    onClose();
   };
 
   return (

@@ -75,9 +75,9 @@ function Register() {
       navigate("/dashboard");
       console.log("this hit!");
     } else {
+      setCurrentStep(1);
       console.log("An error occurred and signup failed ", data?.data.error);
       // * A modal for the error here would be a good idea
-      setCurrentStep(1);
     }
   };
 

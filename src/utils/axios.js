@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const baseURL = "localhost:4000";
+const baseURL = "http://localhost:4000";
 
 export async function axiosSignIn(email, handle, password, keyGen) {
   try {
-    let data = await axios.post(`${baseURL}/signin`, {
+    let data = await axios.post(`http://localhost:4000/usersignup`, {
       email: email,
       handle: handle,
       password: password,
