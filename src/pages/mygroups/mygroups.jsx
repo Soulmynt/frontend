@@ -24,7 +24,7 @@ function MyGroups() {
         // Open a modal or overlay to display the image
         // You might need to implement this part based on your design
     };
-    const handleReviewClick = (action, rowIndex) => {
+    const approveDenyClick = (action, rowIndex) => {
         if (action === 'approve') {
           console.log(`Approved submission at row ${rowIndex}`);
           // Handle approval logic here
@@ -35,9 +35,6 @@ function MyGroups() {
       };
 
 
-    const createRewardButton = (name) => (
-    <Button children="Reward" onClick={() => console.log(`Reward ${name}`)} />
-    );
     const originalData = [
         { Date: "2023-08-15", Name: "John Doe" },
         { Date: "2023-08-14", Name: "Jane Smith" },
@@ -46,10 +43,10 @@ function MyGroups() {
 
     const table1Data = originalData.map(entry => ({
         ...entry,
-        Reward: <Button children="Reward" onClick={() => handleRewardClick(entry.Name)} />
+        Submissions: <Button children="Review" onClick={() => handleReviewClick(entry.Name)} />
       }));
 
-      const handleRewardClick = (name) => {
+      const handleReviewClick = (name) => {
         setSelectedName(name);
         setIsPopupVisible(true);
       };
@@ -57,7 +54,7 @@ function MyGroups() {
       const closePopup = () => {
         setIsPopupVisible(false);
       };
-
+     
     const submissionData = [
         { Participant: "@xyz", Submission: "John Doe", Review:"g"},
         { Participant: "@abc", Submission: "Img", Review:"g"},
@@ -65,17 +62,6 @@ function MyGroups() {
 
 
 
-
-    // const table1Data = [
-    //     { Date: "2023-08-15", Name: "John Doe", Reward: <Button children="Reward" onClick={() => console.log('Reward Jane Smith')} />},
-    //     { Date: "2023-08-14", Name: "Jane Smith", Reward: <Button children="Reward" onClick={() => console.log('Reward Jane Smith')} /> },
-    //     // ... more data
-    // ];
-
-    // const table1DataWithButtons = table1Data.map(row => ({
-    //     ...row,
-    //     Action: createRewardButton(row.Name)
-    //   }));
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -89,19 +75,6 @@ function MyGroups() {
         );
       }, [searchTerm]);
 
-    //   const tableDataWithButton = useMemo(() => {
-    //     return filteredData.map(item => ({
-    //       ...item,
-    //       Reward: (
-    //         <Button
-    //           children="Reward"
-    //           variant="colorful-button"
-    //           onClick={() => console.log("Reward button clicked for", item)}
-    //           // Add other props and styling as needed
-    //         />
-    //       )
-    //     }));
-    //   }, [filteredData]);
       
     
 
@@ -131,21 +104,36 @@ function MyGroups() {
                 containerHeight = '70%'
                 
                 >
-                <BoldText text={selectedName} />
+                <div className={styles.generalSpacing}>
+                <BoldText text={`Viewing submissions for" ${selectedName}`} weight={'bold'} />
+                </div>
+                <div className={styles.generalSpacing}>
                 <Table
                 columns={[" ", "Participant", "Submission", "Review"]}
                 data={submissionData}
                 width="97%"
                 height="auto"
                 onImageClick={handleImageClick}
-                onReviewClick={handleReviewClick}
+                onReviewClick={approveDenyClick}
 
                 />
+
+              
+
+
+                </div>
+                <div className={styles.generalSpacing}>
+                    <Button
+                    containerWidth="20%"
+                    children={"Close"}
+                    
+                    />
+                </div>
 
 
 
                 
-                <button onClick={closePopup}>Close</button>
+
                 </Card>
             </div>
             )}
@@ -184,29 +172,15 @@ function MyGroups() {
                         <div className={styles.generalSpacing}>
                             {filteredData.length > 0 ? (
                             <Table
-                            columns={[" ", "Date", "Name", "Reward"]}
+                            columns={[" ", "Date", "Name", "Submissions"]}
                             data={filteredData}
                             width="97%"
                             height="auto"
                             />
                             ) : (
-                            <p>No results found</p> // You can style this message as needed
+                            <p>No results found</p> 
                             )}
-                            {/* <Table
-                            columns={["", "Name", "Reward"]} 
-                            width = "97%"
-                            height = "auto"
-                            data={filteredData.map((item, index) => (
-                            {
-                            ...item,
-                            Reward: (
-                            <Button children="Reward" onClick={() => console.log(item)} /> 
-                            )
-                            }
-                            ))} 
-                            /> */}
-
-                        {/* <Table columns={[" ","Date", "Status", "Name"]} data={filteredData} width="97%" height="auto"/> */}
+                          
                         </div>                        
                 
 
@@ -214,10 +188,35 @@ function MyGroups() {
                     </Card>
                 </div>
                 <div className={styles.completedChallengesCard}>
-                    <Card/>
+                    <Card>
+                        <div className={styles.generalSpacing}>
+                            <BoldText
+                            text={"Completed Challenges "}
+                            containerWidth={"250px"}
+                            size={"24px"}
+                            weight={"bold"}
+                            textColor="#000"
+                            />
+                        </div>
+
+
+                    </Card>
                 </div>
                 <div className={styles.scheduleChallengesCard}>
-                    <Card  />
+                    <Card>
+                        <div className={styles.generalSpacing}>
+                            <BoldText
+                            text={"Scheduled Challenges "}
+                            containerWidth={"250px"}
+                            size={"24px"}
+                            weight={"bold"}
+                            textColor="#000"
+                            />
+                        </div>
+
+
+
+                    </Card>
                 </div>
                 <div className={styles.draftsCard}>
                     <Card />

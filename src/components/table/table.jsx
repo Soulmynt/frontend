@@ -115,7 +115,13 @@ const Table = ({ columns, data, width, height, onImageClick, onReviewClick }) =>
                         <button onClick={() => onReviewClick('approve', rowIndex)}>✔️</button>
                         <button onClick={() => onReviewClick('reject', rowIndex)}>❌</button>
                       </div>
-                      ) : (
+                      ) :
+
+                      column === 'Submission' ? (
+                        row[column]
+                      ):
+
+                      (
                         React.isValidElement(row[column]) ? row[column] : <BoldText text={row[column]} />
                       )
                     )
