@@ -6,6 +6,9 @@ import { Button } from '../../components/button';
 import { Textbox } from '../../components/textbox';
 import { Checkbox } from '../../components/checkbox';
 import { Table } from '../../components/table';
+import { Calendar } from '../../icons/Calendar';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 const CreateChallenge = () => {
@@ -28,6 +31,42 @@ const CreateChallenge = () => {
         { Name: "Community B", Eligible: "Inactive", isChecked: false },
         // ... more data
     ]);
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date());
+
+    const handleStartChange = (date) => {
+        setStartDate(date);
+    };
+    const handleEndChange = (date) => {
+        setEndDate(date);
+    };
+
+    const handleStartTimeChange = (date) => {
+        setStartTime(date);
+    };
+    
+    const handleEndTimeChange = (date) => {
+        setEndTime(date);
+    };
+
+
+
+    const CalendarCustomInput = ({ value, onClick }) => (
+        <button onClick={onClick} className={styles.calendarIcon}>
+          <Calendar />
+        </button>
+    );
+
+    const CalendarCustomInputEnd = ({ value, onClick }) => (
+        <button onClick={onClick} className={styles.calendarIcon}>
+          <Calendar />
+        </button>
+    );
+
+
 
     const handleCheckboxChange = (index, isChecked) => {
         const updatedTable1Data = [...table1Data];
@@ -79,16 +118,16 @@ const CreateChallenge = () => {
         fileInput.click();
     };
 
-    const handleContinueClick = () => {
-        // Example logic: Check if both name and description are filled
-        if (name && description) {
-            // Navigate to another page or save the data
-            console.log("Both name and description are filled. Continuing...");
-            // ... other logic
-        } else {
-            console.log("Please fill out all required fields.");
-        }
-    };
+    // const handleContinueClick = () => {
+    //     // Example logic: Check if both name and description are filled
+    //     if (name && description) {
+    //         // Navigate to another page or save the data
+    //         console.log("Both name and description are filled. Continuing...");
+    //         // ... other logic
+    //     } else {
+    //         console.log("Please fill out all required fields.");
+    //     }
+    // };
 
     const handleAddQuestion = () => {
         setQuestions([...questions, ""]); // Add a new empty question
@@ -155,6 +194,10 @@ const CreateChallenge = () => {
         updatedRewards.splice(index, 1);
         setRewards(updatedRewards);
     };
+
+    
+
+
 
 
         
@@ -297,15 +340,149 @@ const CreateChallenge = () => {
                     textColor="#8F8F8F"/>
                 </div>
 
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"Schedule"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
+                </div>
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"Schedule the challenge for now or in the future (leave end empty for no end time)"} 
+                    containerWidth={"250px"} 
+                    size={"15px"} 
+                    textColor="#8F8F8F"/>
+                </div>
+                
+                <div className={styles.generalSpacing}>
+                    <div className={styles.gradientBorderBox}>
+                            <div className={styles.gradientBorderBoxInner}>
+                                <div className={styles.generalSpacingPad}>
+                                    <BoldText text={"Starts"} 
+                                    containerWidth={"250px"} 
+                                    size={"15px"} 
+                                    textColor="#8F8F8F"/>
+
+                                    <div className = {styles.dateTimeContainer}>
+                                    <div className={styles.grayBorderBox}>
+                                        
+                                        <div className={styles.generalSpacing}>
+                                            
+                                            <BoldText
+                                                text={startDate ? startDate.toLocaleDateString("en-US", {
+                                                year: 'numeric',
+                                                month: '2-digit',
+                                                day: '2-digit'
+                                                }) : "Starts"}
+                                                
+                                                size={"15px"}
+                                                textColor="#000"
+                                            />
+                                        </div>
+                                        <div  className = {styles.datePickerContainer}>
+                                            <DatePicker
+                                                selected={startDate}
+                                                onChange={handleStartChange}
+                                                dateFormat="MM/dd/yyyy"
+                                                customInput={<CalendarCustomInput />}
+                                            />
+                                        </div>
+
+
+                                    </div>
+
+                                    <div className={styles.grayTimeBorderBox}>
+                                        <DatePicker
+                                            className={styles.timeContainer}
+                                            selected={startTime}
+                                            onChange={handleStartTimeChange}
+                                            showTimeSelect
+                                            showTimeSelectOnly
+                                            timeIntervals={15} // The interval of time options. In this case, every 15 minutes.
+                                            timeCaption="Time"
+                                            dateFormat="h:mm aa" // Format for 12-hour clock notation with AM/PM.
+                                        />
+                                    </div>
+
+                                    </div>
+
+                                    <div>
+                                        <BoldText text={"Ends"} 
+                                        containerWidth={"250px"} 
+                                        size={"15px"} 
+                                        textColor="#8F8F8F"/>
+
+
+
+                                    </div>
+
+                                    
+                                    <div className={styles.dateTimeContainer}>
+
+                                        <div className={styles.grayBorderBox}>
+                                            <div className={styles.generalSpacing}>
+                                                <BoldText
+                                                    text={endDate ? endDate.toLocaleDateString("en-US", {
+                                                    year: 'numeric',
+                                                    month: '2-digit',
+                                                    day: '2-digit'
+                                                    }) : "Ends"}
+                                                    
+                                                    size={"15px"}
+                                                    textColor="#000"
+                                                />
+                                            </div>
+                                            <div  className = {styles.datePickerContainer}>
+                                                <DatePicker
+                                                    selected={endDate}
+                                                    onChange={handleEndChange}
+                                                    dateFormat="MM/dd/yyyy"
+                                                    customInput={<CalendarCustomInput />}
+                                                />
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div className={styles.grayTimeBorderBox}>
+                                            <DatePicker
+                                                className={styles.timeContainer}
+                                                selected={endTime}
+                                                onChange={handleEndTimeChange}
+                                                showTimeSelect
+                                                showTimeSelectOnly
+                                                timeIntervals={15} // The interval of time options. In this case, every 15 minutes.
+                                                timeCaption="Time"
+                                                dateFormat="h:mm aa" // Format for 12-hour clock notation with AM/PM.
+                                            />
+                                        </div>
+
+                                    </div>
+
+                                    
+
+
+
+                                </div>
+    
+                            </div>
+
+                    </div>
+                </div>
+
 
                 
 
 
                 <div className={styles.continueButtonContainer}>
+
                     <Button 
-                        children="Create!" 
-                        disabled={!name || !description} 
-                        onClick={handleContinueClick}
+                        children="Draft" 
+                        // disabled={!name || !description} 
+                        // onClick={handleContinueClick}
+                        containerWidth="150px"
+                        variant="colorful"
+                    />
+                    <Button 
+                        children="Publish" 
+                        // disabled={!name || !description} 
+                        // onClick={handleContinueClick}
                         containerWidth="150px"
                         variant="colorful"
                     />

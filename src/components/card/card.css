@@ -1,11 +1,11 @@
-.card-container {
+/* .card-container {
     border-radius: 12px;
     z-index: 1;
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* Make the content inside the card scrollable */
+    overflow-y: auto; 
 
-    /* Styling the scrollbar for WebKit browsers */
+   
     &::-webkit-scrollbar {
         width: 10px;
     }
@@ -19,8 +19,81 @@
         background-color: #555;
     }
 
-    /* Styling the scrollbar for other browsers */
+ 
     scrollbar-width: thin;
     scrollbar-color: #888 #f5f5f5;
+} */
+
+
+/* .card-container.gradient-border {
+    padding: 4px; 
+    background: linear-gradient(45deg, #EC7BCF, #FFD57A);
+    border-radius: 16px;
+
+    &::before {
+        content: "";
+        display: block;
+        border-radius: 12px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        margin: 2px;
+        background: rgba(255, 255, 255, 1); 
+        overflow-y: auto;
+        
+      
+    }
+} */
+.card-container {
+    position: relative;
+    border-radius: 12px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Keep the overflow here */
+
+    /* ... other scrollbar styles ... */
+    /* &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
+
+ 
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f5f5f5; */
 }
+
+.card-container.gradient-border {
+    background: linear-gradient(45deg, #EC7BCF, #FFD57A);
+    padding: 4px; /* This will be the "border" width */
+    border-radius: 14px; /* 12px + half of padding to maintain consistent radius */
+
+
+    &::before {
+        content: "";
+        display: block;
+        border-radius: 5px;
+        position: absolute;
+        top: 2px; /* same as padding */
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        z-index: -1;
+        background: rgba(255, 255, 255, 1); /* Assuming you want the inside to be white or the same as the card background */
+    }
+    
+}
+
+
 

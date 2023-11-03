@@ -52,6 +52,14 @@
     margin-left: 2%;
 }
 
+.generalSpacingPad {
+    padding-top: 2%;
+    padding-left: 2%;
+    display: flex; 
+    flex-direction: column;
+
+}
+
 .addedMargin {
     margin-top: 2%;
 }
@@ -61,6 +69,7 @@
     justify-content: flex-end;
     margin-right: 2%;  /* Adjust as needed */
     margin-top: 2%;    /* Adjust as needed */
+    gap: 2%; 
 }
 
 
@@ -75,3 +84,88 @@
     flex-direction: column;
     gap: 5px;
 }
+
+.gradientBorderBox {
+    position: relative;
+    border-radius: 6px;
+    display: inline-block; /* Adjust as needed, or remove if you want a block-level element */
+    width: 400px; /* Your desired width */
+    height: 150px; /* Your desired height */
+    padding: 2px; /* This will be the size of your gradient border */
+    box-sizing: border-box; /* Ensures padding is included in width/height */
+  }
+  
+  .gradientBorderBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(45deg, #EC7BCF, #FFD57A);
+    border-radius: inherit; /* Inherits the border-radius from the parent */
+    padding: inherit; /* Inherits the padding from the parent */
+  }
+  
+  .gradientBorderBoxInner {
+    background: white;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; /* Inherits the border-radius from the parent */
+    position: relative;
+    z-index: 1;
+  }
+
+.grayBorderBox {
+  border: 2px solid #D9D9D9; /* Adjust the color and width as needed */
+  border-radius: 3.277px;
+  display: inline-block; /* Adjust as needed, or remove if you want a block-level element */
+  width: 200px; /* Your desired width */
+  height: 40px; /* Your desired height */
+  box-sizing: border-box; /* Ensures the border is included in the width/height */
+  display: flex; 
+  align-items: center;
+}
+
+.grayTimeBorderBox {
+    border: 2px solid #D9D9D9; /* Adjust the color and width as needed */
+    border-radius: 3.277px;
+    display: inline-block; /* Adjust as needed, or remove if you want a block-level element */
+    width: 160px; /* Your desired width */
+    height: 40px; /* Your desired height */
+    box-sizing: border-box; /* Ensures the border is included in the width/height */
+    display: flex; 
+    align-items: center;
+  }
+
+.timeContainer {
+    border: none; /* Removes the border */
+}
+
+
+  .dateTimeContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+  }
+
+.datePickerContainer {
+    margin-top: 2%;
+    margin-left: 70px;
+}
+
+
+
+  .dateTextContainer {
+    flex-grow: 1; /* Allows the text container to grow and fill available space */
+  }
+
+.calendarIcon {
+    background: none; /* Make the background transparent */
+    border: none; /* Remove the border */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    cursor: pointer; /* Change the mouse cursor to a pointer to indicate it's clickable */
+    outline: none; /* Remove the outline to prevent the default focus style */
+  }
