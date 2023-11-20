@@ -61,7 +61,7 @@ function Register() {
     setWallet(wallet);
     const phraseGen = await getMnemonic(wallet);
     setPhrase(phraseGen);
-    const keygen = await encryptWallet(wallet, "password");
+    const keygen = await encryptWallet(wallet, password);
     setKeyGen(keygen);
   };
 
