@@ -30,3 +30,36 @@ export async function axiosLogIn(email, password) {
     return errorlog;
   }
 }
+
+
+export async function setupAxiosInterceptor(setAuth) {
+  axios.interceptors.response.use(
+    response => response,
+    async error => {
+      if (error.response && error.response.status === 401 && !error.config._retry) {
+        error.config._retry = true;
+        try {
+          // Assuming '/auth/refresh' is the endpoint that refreshes the access token
+          const response = await axios.post('/auth/refresh');
+          
+          // Update the auth state with the new access token
+          setAuth(prevAuth => ({
+            ...prevAuth,
+            accessToken: response.data.accessToken,
+          }));
+
+          // Set the new access token on the original request and retry it
+          error.config.headers['Authorization'] = `Bearer ${response.data.accessToken}`;
+          return axios(error.config);
+        } catch (refreshError) {
+          // Handle the case where the refresh token is no longer valid
+          setAuth({}); // Clear the auth state
+          window.location.href = '/login'; // Redirect to the login page
+          return Promise.reject(refreshError);
+        }
+      }
+
+      return Promise.reject(error);
+    }
+  );
+}
