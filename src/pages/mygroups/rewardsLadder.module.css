@@ -1,4 +1,4 @@
-.createCredentialContainer {
+.manageCommunityContainer {
     display: flex;
     width: 800px;
     height: 900px;
@@ -6,7 +6,7 @@
 }
 
 
-.createCommunityText {
+.manageCommunityText {
     margin-top: 2%;
     margin-left: 2%;
 }
@@ -169,11 +169,3 @@
     cursor: pointer; /* Change the mouse cursor to a pointer to indicate it's clickable */
     outline: none; /* Remove the outline to prevent the default focus style */
   }
-
-
-.tokenReward {
-  display: flex;
-  flex-direction: row;
-  
-  /* gap: 2px; */
-}

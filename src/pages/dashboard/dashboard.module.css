@@ -6,7 +6,7 @@
     margin-left: 17%;
     margin-top: 5.5%;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 .dashboardGrid {
     margin-left: 17%;
@@ -124,4 +124,15 @@
 .generalSpacing {
     margin-top: 2%;
     margin-left: 2%;
+}
+
+
+.dashboardsHotButtonsContainer {
+    display: flex; 
+    flex-direction: flex-start;
+    position: relative;
+    margin-top: 1%; 
+    z-index: 1;
+    margin-left: 17%;
+    
 }

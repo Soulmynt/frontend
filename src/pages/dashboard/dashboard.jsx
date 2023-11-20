@@ -6,6 +6,8 @@ import { Card } from '../../components/card'
 import { BoldText } from '../../components/boldText';
 import { Button } from '../../components/button';
 import { ActiveChallengeBox } from '../../components/activeChallengeBox';
+import CommunityCode from './communityCode.jsx'
+
 
 function Dashboard() {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -13,6 +15,15 @@ function Dashboard() {
 
     const [selectedImage, setSelectedImage] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
+
+    const [showCard, setShowCard] = useState(false);
+    const [activeComponent, setActiveComponent] = useState(null);
+
+
+    const handleButtonClick = (componentName) => {
+        setActiveComponent(componentName);
+        setShowCard(true);
+      };
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -50,11 +61,45 @@ function Dashboard() {
       
     return (
         <div className={styles.dashboardContainer}>
+
+           
+
+            
             <div className = {styles.dashboardTextContainer}>
                 <BoldText text={"Dashboard"} containerWidth={"250px"} size={"25px"} weight={"bold"} textColor="#000"/>
+
+
             </div>
+
+            <div className={styles.dashboardsHotButtonsContainer}>
+
+                <Button
+                    children={"Join New Community"}
+                    variant="colorful-button"
+                    containerWidth={"250px"}
+                    onClick={() => handleButtonClick("CommunityCode")}
+
+                    
+                />
+                
+
+
+
+                </div>
+
+            
+
+            
+
+        
+            
+            
             <Background />
+            
+                
             <div className={styles.dashboardGrid}>
+
+                
                 {isPopupVisible && (
                 <div className={styles.overlayWrapper}>
                 <div className={styles.overlayBackground} onClick={() => setIsPopupVisible(false)}></div>
@@ -97,17 +142,6 @@ function Dashboard() {
                     />
                 </div>
 
-                
-                    
-
-
-
-                
-
-
-
-                
-
                 </Card>
                 
                 
@@ -118,7 +152,22 @@ function Dashboard() {
         
                 <div className={styles.activeChallengesCard}>
                     <Card>
+                        <div className={styles.generalSpacing}>
+                            <BoldText
+                                    text={"Active Challenges "}
+                                    containerWidth={"250px"}
+                                    size={"24px"}
+                                    weight={"bold"}
+                                    textColor="#000"
+                            />
+                        </div>
+
+                        
+                        
+
                         <div className = {styles.activeChallengesContainer}>
+
+                            
                             <ActiveChallengeBox
                             text = "This is a temporary challenge "   
                             onSubmitClick={handleSubmitClick}
@@ -147,6 +196,18 @@ function Dashboard() {
                 <div className={styles.announcementsCard}>
                     <Card />
                 </div>
+
+
+                {showCard && (
+                    <div className={styles.overlayWrapper}>
+                    <div
+                    className={styles.overlayBackground}
+                    onClick={() => setShowCard(false)}
+                    ></div>
+                    {activeComponent === "CommunityCode" && <CommunityCode />}
+                    
+                    </div>
+                )}
                 
                 
             </div>

@@ -21,11 +21,33 @@
     z-index: 2;
 }
 
-.createChallengeButton {
+
+.myGroupsHotButtonsContainer {
+    display: flex; 
+    flex-direction: flex-start;
+    margin-top: 1%; 
+    margin-left: 17%;
+}
+
+/* .createChallengeButton {
     margin-left: 17%;
     margin-top: 1%;
     position: relative;
 }
+
+.manageCommunityButton {
+    margin-left: 17%;
+    position: relative; 
+} */
+
+.createChallengeButton,
+.manageCommunityButton,
+.rewardsLadderButton {
+    margin-right: 10px; /* Adjust the space between the buttons */
+    position: relative;
+}
+
+
 .overlayWrapper {
     position: fixed;
     top: 0;
