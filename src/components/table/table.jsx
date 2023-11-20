@@ -6,9 +6,9 @@ import { Arrow } from "../../icons/Arrow";
 import { Dropdown } from "../dropdown";
 import { ImageIcon } from "../../icons/ImageIcon";
 
-const Table = ({ columns, data, width, height, onImageClick, onReviewClick }) => {
+const Table = ({ columns, data, width, height, onImageClick, onReviewClick, itemsPerPage=3}) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; 
+  // const itemsPerPage = 3; 
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const [openDropdown, setOpenDropdown] = useState(null);
 

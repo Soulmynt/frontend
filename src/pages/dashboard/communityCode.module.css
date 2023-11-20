@@ -1,14 +1,18 @@
-.createCredentialContainer {
+.communityCodeContainer {
     display: flex;
-    width: 800px;
-    height: 900px;
+    width: 1200px;
+    height: 800px;
     overflow-y: auto;
 }
 
 
-.createCommunityText {
+.communityCode {
     margin-top: 2%;
-    margin-left: 2%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 250px;
 }
 
 
@@ -94,7 +98,7 @@
     padding: 2px; /* This will be the size of your gradient border */
     box-sizing: border-box; /* Ensures padding is included in width/height */
   }
-  
+/*   
   .gradientBorderBox::before {
     content: '';
     position: absolute;
@@ -104,10 +108,30 @@
     bottom: 0;
     z-index: -1;
     background: linear-gradient(45deg, #EC7BCF, #FFD57A);
-    border-radius: inherit; /* Inherits the border-radius from the parent */
-    padding: inherit; /* Inherits the padding from the parent */
+    border-radius: inherit; 
+    padding: inherit;
+  } */
+
+  .gradientBorderBox {
+    /* Example gradient for box borders */
+    border: 2px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(45deg, #EC7BCF, #FFD57A);
+    width: 65px;
+    height: 100px; 
+    margin: 10px;
+    text-align: center;
+    font-size: 1.5em;
+
   }
   
+  .allBoxes {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+  }
   .gradientBorderBoxInner {
     background: white;
     width: 100%;
@@ -169,11 +193,3 @@
     cursor: pointer; /* Change the mouse cursor to a pointer to indicate it's clickable */
     outline: none; /* Remove the outline to prevent the default focus style */
   }
-
-
-.tokenReward {
-  display: flex;
-  flex-direction: row;
-  
-  /* gap: 2px; */
-}

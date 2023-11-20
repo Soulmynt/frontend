@@ -6,6 +6,8 @@ import { Card } from '../../components/card';
 import { BoldText } from '../../components/boldText';
 import { Button } from '../../components/button';
 import CreateChallenge from "./createChallenge.jsx";
+import ManageCommunity from './manageCommunity';
+import RewardsLadder from './rewardsLadder';
 import { Searchbar } from '../../components/searchbar';
 import { Table } from '../../components/table';
 
@@ -36,8 +38,8 @@ function MyGroups() {
 
 
     const originalData = [
-        { Date: "2023-08-15", Name: "John Doe" },
-        { Date: "2023-08-14", Name: "Jane Smith" },
+        { Date: "2023-08-15", Name: "Challenge 1" },
+        { Date: "2023-08-14", Name: "Challenge 2" },
         // ... more data ...
     ];
 
@@ -105,7 +107,7 @@ function MyGroups() {
                 
                 >
                 <div className={styles.generalSpacing}>
-                <BoldText text={`Viewing submissions for" ${selectedName}`} weight={'bold'} />
+                <BoldText text={`Viewing submissions for "${selectedName}"`} weight={'bold'} />
                 </div>
                 <div className={styles.generalSpacing}>
                 <Table
@@ -139,6 +141,7 @@ function MyGroups() {
             )}
             
 
+            <div className={styles.myGroupsHotButtonsContainer}>
             <div className={styles.createChallengeButton}>
                     <Button
                     children={"Create Challenge"}
@@ -146,7 +149,25 @@ function MyGroups() {
                     containerWidth={"250px"}
                     onClick={() => handleButtonClick("CreateChallenge")}
                     />
-                </div>
+            </div>
+            <div className={styles.manageCommunityButton}>
+                    <Button
+                    children={"Manage Community"}
+                    variant="colorful-button"
+                    containerWidth={"250px"}
+                    onClick={() => handleButtonClick("ManageCommunity")}
+                    />
+            </div>
+            <div className={styles.rewardsLadderButton}>
+                    <Button
+                    children={"Rewards Ladder"}
+                    variant="colorful-button"
+                    containerWidth={"250px"}
+                    onClick={() => handleButtonClick("RewardsLadder")}
+                    />
+            </div>
+            </div>
+            
             <div className={styles.myGroupsGrid}>
                 
                 <div className={styles.currentChallengesCard}>
@@ -163,7 +184,7 @@ function MyGroups() {
                         </div>
                         <div className={styles.generalSpacing}>
                             <Searchbar
-                            text="Search Credentials"
+                            text="Search Challenges"
                             containerWidth="93.5%"
                             onSearchChange={handleSearchChange}
                             />
@@ -219,7 +240,20 @@ function MyGroups() {
                     </Card>
                 </div>
                 <div className={styles.draftsCard}>
-                    <Card />
+                <Card>
+                        <div className={styles.generalSpacing}>
+                            <BoldText
+                            text={"Manage Community "}
+                            containerWidth={"250px"}
+                            size={"24px"}
+                            weight={"bold"}
+                            textColor="#000"
+                            />
+                        </div>
+
+
+
+                    </Card>
                 </div> 
                 {showCard && (
                     <div className={styles.overlayWrapper}>
@@ -228,6 +262,8 @@ function MyGroups() {
                     onClick={() => setShowCard(false)}
                     ></div>
                     {activeComponent === "CreateChallenge" && <CreateChallenge />}
+                    {activeComponent === "ManageCommunity" && <ManageCommunity />}
+                    {activeComponent === "RewardsLadder" && <RewardsLadder />}
                     </div>
                 )}        
             </div>

@@ -24,12 +24,13 @@ const CreateCommunity = () => {
     const [openCommunity, setOpenCommunity] = useState(false);
     const [challenges, setChallenges] = useState([]);
     const [rewards, setRewards] = useState([]);
-    const table1Data = [
-        { Temp: "", This: "2023-08-15", is: "Active", placeholder: "John Doe" },
-        { Temp: "", This: "2023-08-14", is: "Inactive", placeholder: "Jane Smith" },
-        // ... more data
-    ];
+
     
+    const [table1Data, setTable1Data] = useState([
+        { Temp: "", This: "2023-08-15", is: "Active", placeholder: "John Doe", isChecked: false},
+        { Temp: "", This: "2023-08-14", is: "Inactive", placeholder: "Jane Smith", isChecked: false},
+        // ... more data
+    ]);
       
 
     const handleMouseEnter = () => {
@@ -152,6 +153,12 @@ const CreateCommunity = () => {
         setRewards(updatedRewards);
     };
 
+    const handleCheckboxChange = (index, isChecked) => {
+        const updatedTable1Data = [...table1Data];
+        updatedTable1Data[index].isChecked = isChecked;
+        setTable1Data(updatedTable1Data);
+    };
+      
 
         
     return (
@@ -439,11 +446,27 @@ const CreateCommunity = () => {
                 </div>
 
                 <div className={styles.generalSpacing}>
-                    <Table 
-                        columns={["", "This", "is", "placeholder"]} 
+                    {/* <Table 
+                        columns={["", "This", "is", "placeholder", "Seleect"]} 
                         data={table1Data} 
-                        width="80%"/>
-                    {/* <Table columns={["Status", "Name"]} data={table2Data} /> */}
+                        width="80%"
+                    /> */}
+                    <Table 
+                         columns={["", "This", "is", "placeholder", "Select"]} 
+                        data={table1Data.map((item, index) => (
+                        {
+                        ...item,
+                        Select: (
+                        <Checkbox 
+                            isChecked={item.isChecked} 
+                            onCheckChange={(isChecked) => handleCheckboxChange(index, isChecked)} 
+                        />
+                        )
+                        }
+                        ))} 
+                        width="80%"
+                    />
+                    
                 </div>
 
 

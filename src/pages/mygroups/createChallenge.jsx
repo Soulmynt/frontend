@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from "./createChallenge.module.css"
 import { Card } from '../../components/card';
 import { BoldText } from '../../components/boldText';
@@ -7,6 +7,7 @@ import { Textbox } from '../../components/textbox';
 import { Checkbox } from '../../components/checkbox';
 import { Table } from '../../components/table';
 import { Calendar } from '../../icons/Calendar';
+import { Searchbar } from '../../components/searchbar';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -18,12 +19,13 @@ const CreateChallenge = () => {
     const [description, setDescription] = useState('');
     // const [challengeDescription, setChallengeDescription] = useState('');
     // const [challengeName, setChallengeName] = useState('');
-    const [slots, setSlots] = useState("");
+    const [tokenAmount, setTokenAmount] = useState("");
     const [pointsTotal, setPointsTotal] = useState("");
     const [questions, setQuestions] = useState([]);
     const [resumeRequired, setResumeRequired] = useState(false);
     const [paidCommunity, setPaidCommunity] = useState(false);
     const [openCommunity, setOpenCommunity] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     const [challenges, setChallenges] = useState([]);
     const [rewards, setRewards] = useState([]);
     const [table1Data, setTable1Data] = useState([
@@ -31,6 +33,27 @@ const CreateChallenge = () => {
         { Name: "Community B", Eligible: "Inactive", isChecked: false },
         // ... more data
     ]);
+
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const [table2Data, setTable2Data] = useState([
+        { Name: "Credential A", Send: "YE", isChecked: false },
+        { Name: "Credential B", Send: "Inactive", isChecked: false },
+        // ... more data
+    ]);
+
+
+    
+    const filteredData = useMemo(() => {
+        return table2Data.filter(
+          (item) =>
+            item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }, [searchTerm]);
+
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -70,80 +93,33 @@ const CreateChallenge = () => {
 
     const handleCheckboxChange = (index, isChecked) => {
         const updatedTable1Data = [...table1Data];
+        
+
         updatedTable1Data[index].isChecked = isChecked;
+        
         setTable1Data(updatedTable1Data);
+        
+
+    };
+
+    const handleTokenAmountChange = (e) => {
+        const value = e.target.value;
+        if (value === "") {
+            setTokenAmount(0);
+        } else {
+            setTokenAmount(value);
+        }
+    };
+
+
+    const handleCheckboxChangeForCredentials = (index, isChecked) => {
+        const updatedTable2Data = [...table2Data];
+        updatedTable2Data[index].isChecked = isChecked;
+        setTable2Data(updatedTable2Data);
+
     };
       
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-    
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
-
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setSelectedImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const handleSlotsChange = (e) => {
-        const value = e.target.value;
-        if (value === "") {
-            setSlots(Infinity);
-        } else {
-            setSlots(value);
-        }
-    };
-
-    const handlePointsTotalChange = (e) => {
-        const value = e.target.value;
-        if (value === "") {
-            setPointsTotal(0);
-        } else {
-            setPointsTotal(value);
-        }
-    };
-    
-    const handleEditClick = () => {
-        const fileInput = document.querySelector(`.${styles.communityPicFileInput}`);
-        fileInput.click();
-    };
-
-    // const handleContinueClick = () => {
-    //     // Example logic: Check if both name and description are filled
-    //     if (name && description) {
-    //         // Navigate to another page or save the data
-    //         console.log("Both name and description are filled. Continuing...");
-    //         // ... other logic
-    //     } else {
-    //         console.log("Please fill out all required fields.");
-    //     }
-    // };
-
-    const handleAddQuestion = () => {
-        setQuestions([...questions, ""]); // Add a new empty question
-    };
-
-    const handleQuestionChange = (index, value) => {
-        const newQuestions = [...questions];
-        newQuestions[index] = value;
-        setQuestions(newQuestions);
-    };
-
-    const handleRemoveQuestion = (index) => {
-        const newQuestions = [...questions];
-        newQuestions.splice(index, 1);
-        setQuestions(newQuestions);
-    };
 
     const handleAddChallenge = () => {
         setChallenges([...challenges, { challengeDescription: '', points: 0, challengeName: ''}]);
@@ -173,27 +149,6 @@ const CreateChallenge = () => {
         setChallenges(updatedChallenges);
     };
 
-    const handleAddReward = () => {
-        setRewards([...rewards, { points: 0, description: '' }]);
-    };
-
-    const handleRewardPointsChange = (index, value) => {
-        const updatedRewards = [...rewards];
-        updatedRewards[index].points = value;
-        setRewards(updatedRewards);
-    };
-
-    const handleRewardDescriptionChange = (index, value) => {
-        const updatedRewards = [...rewards];
-        updatedRewards[index].description = value;
-        setRewards(updatedRewards);
-    };
-
-    const handleRemoveReward = (index) => {
-        const updatedRewards = [...rewards];
-        updatedRewards.splice(index, 1);
-        setRewards(updatedRewards);
-    };
 
     
 
@@ -272,12 +227,14 @@ const CreateChallenge = () => {
                 ))}
 
                 <div className={styles.generalSpacing}>
-                    <Button 
-                        children="Add Challenge" 
-                        onClick={handleAddChallenge}
-                        containerWidth="200px"
-                        variant="colorful"
-                    />
+                    {challenges.length < 1 && (
+                        <Button 
+                            children="Add Challenge" 
+                            onClick={handleAddChallenge}
+                            containerWidth="200px"
+                            variant="colorful"
+                        />
+                    )}
                 </div>
 
                     
@@ -298,11 +255,6 @@ const CreateChallenge = () => {
                 </div>
 
                 <div className={styles.generalSpacing}>
-                    {/* <Table 
-                        columns={["", "Name", "Eligible?"]} 
-                        data={table1Data} 
-                        width="80%"
-                    /> */}
                     <Table 
                         columns={["", "Name", "Eligible"]} 
                         data={table1Data.map((item, index) => (
@@ -317,13 +269,6 @@ const CreateChallenge = () => {
                         }
                         ))} 
                         width="80%"
-
-                            // columns={[" ", "Date", "Name", "Eligible"]}
-                            // data={table1Data}
-                            // width="97%"
-                            // height="auto"
-                    
- 
                     />
                     
                    
@@ -339,6 +284,80 @@ const CreateChallenge = () => {
                     size={"15px"} 
                     textColor="#8F8F8F"/>
                 </div>
+
+                <div className={styles.generalSpacing}>
+                            <Searchbar
+                            text="Search Credentials"
+                            containerWidth="77%"
+                            onSearchChange={handleSearchChange}
+                            />
+                </div>
+
+
+                <div className={styles.generalSpacing}>
+                    {filteredData.length > 0 ? (
+                        <Table 
+                        columns={["", "Name", "Send"]} 
+                        data={filteredData.map((item, index) => (
+                        {
+                        ...item,
+                        Send: (
+                        <Checkbox 
+                            isChecked={item.isChecked} 
+                            onCheckChange={(isChecked) => handleCheckboxChangeForCredentials(index, isChecked)} 
+                        />
+                        )
+                        }
+                        ))} 
+                        width="80%"
+                    />
+
+                    ) : (
+                        <p>No results found</p> 
+                    )}
+
+                </div>
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={"Tokens"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
+                </div>
+
+                <div className={styles.tokenReward}>
+                
+                    <div className={styles.generalSpacing}>
+                        <Textbox 
+                            text="Amount" 
+                            containerWidth="250px"
+                            type="number"
+                            value={tokenAmount === Infinity ? "" : tokenAmount} 
+                            onChange={handleTokenAmountChange}  
+                        
+                            
+                        />
+                    </div>
+                    
+                    <div className={styles.generalSpacing}>
+                        <Textbox 
+                            text="CURRENCY TYPES" 
+                            containerWidth="250px"
+                            type="number"
+                            
+                        
+                            
+                        />
+                    </div>
+
+                    
+                </div>
+
+
+                    
+
+        
+                   
+                
+
+
 
                 <div className={styles.generalSpacing}>
                     <BoldText text={"Schedule"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
