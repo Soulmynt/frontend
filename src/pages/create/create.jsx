@@ -9,6 +9,8 @@ import CreateCommunity from "./createCommunity.jsx";
 import { BoldText } from "../../components/boldText";
 import { Table } from "../../components/table";
 import { Searchbar } from "../../components/searchbar";
+import { successMessage } from "../../components/successMessage";
+import SuccessMessage from "../../components/successMessage/successMessage";
 
 function Create() {
   const [showCard, setShowCard] = useState(false);
@@ -44,6 +46,9 @@ function Create() {
   return (
     <div className={styles.createContainer}>
       <Background />
+
+      
+      
       <div className={styles.createTextContainer}>
         <BoldText
           text={"Create"}
@@ -90,6 +95,8 @@ function Create() {
                 onSearchChange={handleSearchChange}
               />
             </div>
+
+            
 
             <div className={styles.generalSpacing}>
               {filteredData.length > 0 ? (

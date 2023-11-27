@@ -106,9 +106,17 @@ function MyGroups() {
                 containerHeight = '70%'
                 
                 >
+
+                
                 <div className={styles.generalSpacing}>
                 <BoldText text={`Viewing submissions for "${selectedName}"`} weight={'bold'} />
                 </div>
+
+                <div className={styles.generalSpacing}>
+                    <BoldText text={`Add Challenge Description here + points total (from backend) + associated NFT`} weight={'bold'} />
+                </div>
+
+
                 <div className={styles.generalSpacing}>
                 <Table
                 columns={[" ", "Participant", "Submission", "Review"]}

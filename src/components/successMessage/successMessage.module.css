@@ -1,0 +1,42 @@
+.successMessageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+
+.insideWhiteBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 50vh; 
+}
+
+
+.gradientCircle {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 30vh; 
+
+}
+
+.doubleCheck {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 15vh; 
+
+}
+
+.successText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50%;
+    flex-direction: column;
+    gap: 15px;
+}

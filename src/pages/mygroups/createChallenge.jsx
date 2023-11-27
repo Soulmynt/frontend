@@ -243,7 +243,7 @@ const CreateChallenge = () => {
 
                
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <BoldText text={"Eligibility"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
                 </div>
 
@@ -252,9 +252,9 @@ const CreateChallenge = () => {
                     containerWidth={"250px"} 
                     size={"15px"} 
                     textColor="#8F8F8F"/>
-                </div>
+                </div> */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <Table 
                         columns={["", "Name", "Eligible"]} 
                         data={table1Data.map((item, index) => (
@@ -272,7 +272,7 @@ const CreateChallenge = () => {
                     />
                     
                    
-                </div>
+                </div> */}
 
                 <div className={styles.generalSpacing}>
                     <BoldText text={"Rewards"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
@@ -340,7 +340,7 @@ const CreateChallenge = () => {
                         <Textbox 
                             text="CURRENCY TYPES" 
                             containerWidth="250px"
-                            type="number"
+                            // type="number"
                             
                         
                             

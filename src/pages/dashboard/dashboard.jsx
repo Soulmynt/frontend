@@ -23,7 +23,7 @@ function Dashboard() {
     const handleButtonClick = (componentName) => {
         setActiveComponent(componentName);
         setShowCard(true);
-      };
+    };
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -118,7 +118,7 @@ function Dashboard() {
                     {/* TODO: */}
 
                     <BoldText
-                        text = {"SHOULD BE CHALLENGE DESCRIPTION HERE + AMOUNT OF POINTS WON"}
+                        text = {"SHOULD BE CHALLENGE DESCRIPTION HERE + AMOUNT OF POINTS WON + Challenge NFT"}
                     />
                 </div>
                 <div className={styles.communityPicContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>

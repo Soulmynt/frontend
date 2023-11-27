@@ -4,13 +4,39 @@ import {Background} from '../../components/background'
 import { Textbox } from '../../components/textbox'
 import { Card } from '../../components/card';
 import { BoldText } from '../../components/boldText';
-
+import { Button } from '../../components/button';
+import TransferFunds from './transferFunds.jsx';
 function Profile() {
+
+    const [showCard, setShowCard] = useState(false);
+    const [activeComponent, setActiveComponent] = useState(null);
+
+    const handleButtonClick = (componentName) => {
+        setActiveComponent(componentName);
+        setShowCard(true);
+    };
 
     return (
         <div className = {styles.profileContainer}>
+            
+            
             <Background/>
+
+            <div className={styles.transferFundsButton}>
+                    <Button
+                    children={"Transfer Funds"}
+                    variant="colorful-button"
+                    containerWidth={"250px"}
+                    onClick={() => handleButtonClick("TransferFunds")}
+                    />
+            </div>
+            
             <div className={styles.profileGrid}>
+            
+
+
+            
+            
                 <div className={styles.myCredentialsCard}>
                     <Card>
                         <div className={styles.generalSpacing}>
@@ -28,12 +54,29 @@ function Profile() {
                     </Card>
                 </div>
                 <div className={styles.scheduleChallengesCard}>
-                    <Card  />
+                    <Card>
+                        <div className={styles.generalSpacing}>
+                            <BoldText text={"Monetary Wallet "} containerWidth={"250px"} size={"24px"} weight={"bold"} textColor="#000"/>
+                        </div>
+                    </Card>
                 </div>
-                <div className={styles.draftsCard}>
+                <div className={styles.walletCard}>
                     <Card />
                 </div>         
             </div>
+
+            {showCard && (
+                    <div className={styles.overlayWrapper}>
+                    <div
+                    className={styles.overlayBackground}
+                    onClick={() => setShowCard(false)}
+                    ></div>
+                    {activeComponent === "TransferFunds" && <TransferFunds />}
+                    
+                    
+                    </div>
+                )}
+            
         </div>
 
 

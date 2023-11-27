@@ -1,6 +1,6 @@
 import React from "react";
 
-const Circle = (props) => (
+const Circle = (props, {color="#D9D9D9"}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="200"
@@ -13,7 +13,7 @@ const Circle = (props) => (
       cx="100"
       cy="100"
       r="99"
-      fill="#D9D9D9"
+      fill={color}
       stroke="url(#paint0_linear_623_1469)"
       strokeWidth="2"
     />
