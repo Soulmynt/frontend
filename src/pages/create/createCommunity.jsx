@@ -6,6 +6,8 @@ import { Button } from '../../components/button';
 import { Textbox } from '../../components/textbox';
 import { Checkbox } from '../../components/checkbox';
 import { Table } from '../../components/table';
+import { useAuth } from "../../hooks";
+import { axiosCreateCompany} from "../../utils/axios";
 
 
 
@@ -24,6 +26,9 @@ const CreateCommunity = () => {
     const [openCommunity, setOpenCommunity] = useState(false);
     const [challenges, setChallenges] = useState([]);
     const [rewards, setRewards] = useState([]);
+
+
+    const { auth } = useAuth();
 
     
     const [table1Data, setTable1Data] = useState([
@@ -76,11 +81,28 @@ const CreateCommunity = () => {
         fileInput.click();
     };
 
-    const handleContinueClick = () => {
+    const handleCreateClick = async () => {
         // Example logic: Check if both name and description are filled
         if (name && description) {
-            // Navigate to another page or save the data
-            console.log("Both name and description are filled. Continuing...");
+            const accessToken = auth.AccessToken;
+            const companyInfo = {
+                imageLink: selectedImage, 
+                name: name, 
+                description: description, 
+                QualifyingQuestions: questions,
+                openCommunity: openCommunity
+            };
+            
+
+            let data = await axiosCreateCompany(accessToken, companyInfo);
+
+            setSelectedImage(null);
+            setName('');
+            setDescription('');
+            setQuestions([]);
+            setOpenCommunity(false);
+
+            
             // ... other logic
         } else {
             console.log("Please fill out all required fields.");
@@ -503,7 +525,7 @@ const CreateCommunity = () => {
                     <Button 
                         children="Create!" 
                         disabled={!name || !description} 
-                        onClick={handleContinueClick}
+                        onClick={handleCreateClick}
                         containerWidth="150px"
                         variant="colorful"
                     />

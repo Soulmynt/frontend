@@ -7,13 +7,18 @@ import { Textbox } from '../../components/textbox';
 import { SketchPicker } from 'react-color';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import styles
+import { useAuth } from "../../hooks";
+import { axiosCreateCredential } from "../../utils/axios";
+
 
 const CreateCredentials = () => {
     
     const [selectedImage, setSelectedImage] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
+    const [title, setTitle] = useState('');
     const [editorContent, setEditorContent] = useState('');
     const [color, setColor] = useState('#fff');
+    const {auth} = useAuth();
 
     const modules = {
         toolbar: [
@@ -49,6 +54,32 @@ const CreateCredentials = () => {
     const handleEditClick = () => {
         const fileInput = document.querySelector(`.${styles.fileInput}`);
         fileInput.click();
+    };
+
+
+    const handleCreateClick = async () => {
+        // Example logic: Check if both name and description are filled
+        if (editorContent) {
+            const accessToken = auth.AccessToken;
+            const CredentialInfo = {
+                imageLink: selectedImage, 
+                title: title, 
+                color: color,
+                text: editorContent
+            };
+            
+
+            let data = await axiosCreateCredential(accessToken, CredentialInfo);
+
+            setSelectedImage(null);
+            setTitle('');
+            setColor('#fff');
+            setEditorContent('');
+            
+            // ... other logic
+        } else {
+            console.log("Please fill out all required fields.");
+        }
     };
 
     return (
@@ -112,6 +143,20 @@ const CreateCredentials = () => {
                         }
                             <input type="file" className={styles.fileInput} onChange={handleFileChange} />
                         </div>
+                        <div className = {styles.marginBottom}>
+                        <Textbox
+                            text={"Email"}
+                            variant="white-black-border"
+                            value={title}
+                            onChange = {setTitle}
+                            
+                            containerWidth={"378px"}
+                        />
+
+
+
+
+                        </div>
                         <div className={styles.textEditor}>
                             <ReactQuill 
                                 theme="snow" 
@@ -139,6 +184,8 @@ const CreateCredentials = () => {
                             children={"Create!"} 
                             variant="colorful-button"
                             containerWidth={"100px"}
+                            disabled = {!editorContent}
+                            onClick={handleCreateClick}
                         />
                         </div>
 

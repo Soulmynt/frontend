@@ -68,7 +68,7 @@ function Register() {
   // ! Here is the function we create to call our axios function
   //* It will
   const closeModalAndSubmitUserInfo = async () => {
-    let data = await axiosSignIn(email, "handle", password, keyGen);
+    let data = await axiosSignIn(email, displayHandle, password, keyGen);
     if (data.status == 200) {
       setAuth(data.data);
       setDemoModal(!demoModal);

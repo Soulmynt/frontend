@@ -20,7 +20,7 @@ export async function axiosSignIn(email, handle, password, keyGen) {
 export async function axiosLogIn(email, password) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
   try {
-    let data = await axios.post(`http://localhost:4000/signin`, {
+    let data = await axios.post(`http://localhost:4000/usersignin`, {
       email: email,
       password: password,
     });
@@ -30,6 +30,87 @@ export async function axiosLogIn(email, password) {
     return errorlog;
   }
 }
+
+
+export async function axiosRefresh(email) {
+  // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+  try {
+    let data = await axios.post(`http://localhost:4000/refresh`, {
+      email: email,
+    });
+    return data;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
+
+
+export async function axiosCreateCompany(accessToken, companyInfo) {
+  // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+  try {
+    let data = await axios.post(`http://localhost:4000/createcompany`, {
+      AccessToken: accessToken,
+      companyInfo: companyInfo,
+    });
+    return data;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
+
+export async function axiosUpdateCompanyJoinCode(token, companyId) {
+  // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+  try {
+    let data = await axios.post(`http://localhost:4000/updatecommunityjoincode`, {
+      token: token,
+      companyId: companyId,
+    });
+    return data;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
+
+
+export async function axiosCreateCredential(token, credentialInfo) {
+  // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+  try {
+    let data = await axios.post(`http://localhost:4000/createcredential`, {
+      token: token,
+      CredentialInfo: credentialInfo,
+    });
+    return data;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
+
+export async function axiosJoinCommunity(token, company, joinToken) {
+  // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+  try {
+    let data = await axios.post(`http://localhost:4000/joincompany`, {
+      token: token,
+      company: company,
+      joinToken, joinToken
+    });
+    return data;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
+
+
+
+
+
+
+
+
 
 
 export async function setupAxiosInterceptor(setAuth) {

@@ -8,7 +8,7 @@
 } */
 
 
-.textbox-container {
+.textbox-container.gray {
   display: flex;
   padding: 10px;
   align-items: left;
@@ -16,6 +16,12 @@
   border-radius: 12px;
   background: #F2F2F2;
   width: 100%;
+}
+
+.textbox-container.white-black-border {
+  background: #FFFFFF;
+  border: 1px solid #8F8F8F;
+  color: #8F8F8F;
 }
 
 .textbox-input {

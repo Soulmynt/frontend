@@ -67,7 +67,7 @@ function Create() {
             onClick={() => handleButtonClick("CreateCredential")}
           />
         </div>
-
+ 
         <div className={styles.createCommunitiesButton}>
           <Button
             children={"Create Community"}

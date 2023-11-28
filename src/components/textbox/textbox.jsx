@@ -37,9 +37,10 @@ const Textbox = ({
     handleInputBlur, 
     isRequired=false,
     multiline = false,
+    variant = 'gray',
 }) => {
   return (
-    <div className={`textbox-container ${isFocused ? additionalClass : ''}`} style={{ width: containerWidth, height: containerHeight }}>
+    <div className={`textbox-container ${variant} ${isFocused ? additionalClass : ''}`} style={{ width: containerWidth, height: containerHeight }}>
       {multiline ? (
         <textarea
           value={value}
@@ -51,6 +52,7 @@ const Textbox = ({
           required={isRequired}
           style={{ height: '100%', resize: 'none' }} 
           type = {type}
+          variant = {variant}
         />
       ) : (
         <input 
@@ -62,6 +64,8 @@ const Textbox = ({
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           required={isRequired}
+          variant = {variant}
+          
           
          
         />

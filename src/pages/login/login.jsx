@@ -79,6 +79,7 @@ function Login() {
               <Textbox
                 text={"Email"}
                 type="email"
+                value = {email}
                 onChange={handleEmailChange}
                 containerWidth={"378px"}
               />
