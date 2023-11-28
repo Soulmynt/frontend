@@ -84,7 +84,7 @@ const CreateCommunity = () => {
     const handleCreateClick = async () => {
         // Example logic: Check if both name and description are filled
         if (name && description) {
-            const accessToken = auth.AccessToken;
+            const accessToken = auth.accessToken;
             const companyInfo = {
                 imageLink: selectedImage, 
                 name: name, 

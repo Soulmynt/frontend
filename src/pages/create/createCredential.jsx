@@ -60,7 +60,7 @@ const CreateCredentials = () => {
     const handleCreateClick = async () => {
         // Example logic: Check if both name and description are filled
         if (editorContent) {
-            const accessToken = auth.AccessToken;
+            const accessToken = auth.accessToken;
             const CredentialInfo = {
                 imageLink: selectedImage, 
                 title: title, 
