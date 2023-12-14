@@ -10,6 +10,7 @@ import ManageCommunity from './manageCommunity';
 import RewardsLadder from './rewardsLadder';
 import { Searchbar } from '../../components/searchbar';
 import { Table } from '../../components/table';
+import { TopBar } from '../../components/topBar'
 
 function MyGroups() {
     const [showCard, setShowCard] = useState(false);
@@ -88,6 +89,7 @@ function MyGroups() {
     return (
         <div className = {styles.dashboardContainer}>
             <Background/>
+            <TopBar/>
             
             <div className={styles.myGroupsTextContainer}>
                 <BoldText

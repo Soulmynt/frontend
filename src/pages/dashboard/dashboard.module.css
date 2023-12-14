@@ -105,8 +105,8 @@
     align-items: center;
     position: relative; 
     overflow: hidden;
-    width: 900px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
     margin-top: 4%;
     margin-left: 2%;
 }
@@ -136,3 +136,14 @@
     margin-left: 17%;
     
 }
+
+.imageScrollContainer {
+    display: flex;
+    overflow-x: auto;
+    width: 100%; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    padding: 10px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+

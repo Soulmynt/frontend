@@ -9,6 +9,8 @@ import CreateCommunity from "./createCommunity.jsx";
 import { BoldText } from "../../components/boldText";
 import { Table } from "../../components/table";
 import { Searchbar } from "../../components/searchbar";
+import { TopBar } from '../../components/topBar'
+import ManageCommunity from "../../pages/mygroups/manageCommunity.jsx";
 import { successMessage } from "../../components/successMessage";
 import SuccessMessage from "../../components/successMessage/successMessage";
 
@@ -16,14 +18,29 @@ function Create() {
   const [showCard, setShowCard] = useState(false);
   const [activeComponent, setActiveComponent] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
-  const table1Data = [
-    { Temp: "", Date: "2023-08-15", Status: "Active", Name: "John Doe" },
-    { Temp: "", Date: "2023-08-14", Status: "Inactive", Name: "Jane Smith" },
-    { Temp: "", Date: "2023-08-15", Status: "Active", Name: "John Doe" },
-    { Temp: "", Date: "2023-08-14", Status: "Inactive", Name: "Jane Smith" },
+  const originalData = [
+    { Temp: "", Date: "2023-08-15", Name: "John Doe" },
+    { Temp: "", Date: "2023-08-14", Name: "Jane Smith" },
+    { Temp: "", Date: "2023-08-15", Name: "John Doe" },
+    { Temp: "", Date: "2023-08-14", Name: "Jane Smith" },
     // ... more data
   ];
+
+  const table1Data = originalData.map(entry => ({
+    ...entry,
+    Send: <Button children="Send" onClick={() => handleSendClick()} />
+
+  }));
+
+  const handleSendClick = () => {
+    setIsPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupVisible(false);
+  };
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -33,8 +50,7 @@ function Create() {
     return table1Data.filter(
       (item) =>
         item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.Date.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.Status.toLowerCase().includes(searchTerm.toLowerCase())
+        item.Date.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm]);
 
@@ -46,6 +62,7 @@ function Create() {
   return (
     <div className={styles.createContainer}>
       <Background />
+      < TopBar />
 
       
       
@@ -101,7 +118,7 @@ function Create() {
             <div className={styles.generalSpacing}>
               {filteredData.length > 0 ? (
                 <Table
-                  columns={[" ", "Date", "Status", "Name"]}
+                  columns={[" ", "Date", "Name", "Send"]}
                   data={filteredData}
                   width="97%"
                   height="auto"
@@ -122,6 +139,27 @@ function Create() {
         <div className={styles.sendCredentialsCard}>
           <Card />
         </div>
+
+
+        {isPopupVisible && (
+            <div className={styles.overlayWrapper}>
+            <div className={styles.overlayBackground} onClick={closePopup}></div>
+                <Card
+                containerWidth="70%"
+                containerHeight = '70%'
+                
+                >
+
+                <ManageCommunity/>
+
+                
+                
+
+                
+
+                </Card>
+            </div>
+            )}
 
         {showCard && (
           <div className={styles.overlayWrapper}>

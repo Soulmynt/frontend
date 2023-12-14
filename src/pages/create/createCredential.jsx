@@ -145,9 +145,9 @@ const CreateCredentials = () => {
                         </div>
                         <div className = {styles.marginBottom}>
                         <Textbox
-                            text={"Email"}
+                            text={"Title"}
                             variant="white-black-border"
-                            value={title}
+                            // value={title}
                             onChange = {setTitle}
                             
                             containerWidth={"378px"}

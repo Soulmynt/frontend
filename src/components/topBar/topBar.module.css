@@ -1,0 +1,33 @@
+.topBarContainer {
+    position: fixed;  /* Fixed position relative to the viewport */
+    top: 50px ;          /* Align top edge to the top of the viewport */
+    right: 50px;        /* Align right edge to the right of the viewport */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1000;   /* Ensure it stays on top of other elements */
+}
+
+
+.bringForwardContainer { 
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+}
+
+
+.arrowDown {
+    transform: rotate(90deg); /* Arrow points downwards */
+}
+
+.arrowUp {
+    transform: rotate(-90deg); /* Arrow points upwards */
+}
+
+.dropdownWrapper {
+    position: relative; /* Establishes a positioning context */
+    
+    align-items: center; /* Align items vertically */
+    margin-right: 30px;
+}

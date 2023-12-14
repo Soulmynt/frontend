@@ -1,0 +1,7 @@
+.role-selection-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: row;
+    /* Add more styling as needed */
+  }

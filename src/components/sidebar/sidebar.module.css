@@ -59,3 +59,32 @@
 .linkStyle {
     text-decoration: none;
 }
+
+.subLinkStyle {
+    margin-left: 20px; /* Indent the subcategory link */
+    text-decoration: none;
+    margin-top: -20%;
+  }
+  
+
+.arrowDown{
+    transform: rotate(90deg);
+}
+
+.arrowUp {
+    transform: rotate(-90deg); /* Arrow points upwards */
+}
+
+.dropdownToggle {
+    cursor: pointer;
+    /* Additional styling as needed */
+  }
+  
+  .subLinkStyle {
+    margin-left: 20px; /* Indent the subcategory link */
+    /* Additional styling as needed */
+  }
+  
+  .subButtonContainer {
+    /* Styles for the subcategory button container */
+  }

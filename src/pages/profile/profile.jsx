@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./profile.module.css"
 import {Background} from '../../components/background'
 import { Textbox } from '../../components/textbox'
@@ -6,10 +6,18 @@ import { Card } from '../../components/card';
 import { BoldText } from '../../components/boldText';
 import { Button } from '../../components/button';
 import TransferFunds from './transferFunds.jsx';
+import { TopBar } from '../../components/topBar'
+import { useAuth } from "../../hooks";
+import { axiosSubmitChallenge } from "../../utils/axios";
+
 function Profile() {
 
     const [showCard, setShowCard] = useState(false);
     const [activeComponent, setActiveComponent] = useState(null);
+    const {auth} = useAuth();
+
+
+    const[userInfo, setUserInfo] = useState(null);
 
     const handleButtonClick = (componentName) => {
         setActiveComponent(componentName);
@@ -21,6 +29,7 @@ function Profile() {
             
             
             <Background/>
+            <TopBar />
 
             <div className={styles.transferFundsButton}>
                     <Button

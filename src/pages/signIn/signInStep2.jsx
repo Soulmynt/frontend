@@ -4,6 +4,7 @@ import { ColorfulText } from "../../components/colorfulText";
 import { BoldText } from "../../components/boldText";
 import { PasswordRules } from "../../components/passwordRules";
 import { Circle } from "../../icons/Circle";
+import { RoleSelect } from "../../components/roleSelect";
 import logo from "../../img/plain_logo_black.png";
 import top from "../../img/top.png";
 import bottom from "../../img/bottom.png";
@@ -65,6 +66,13 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
   const [userName, setUserName] = useState("");
   const [displayHandle, setDisplayHandle] = useState("");
   const [isHovered, setIsHovered] = useState(false);
+
+  const[role, setRole]  = useState("");
+  const handleRoleChange = (selectedRole) => {
+    setRole(selectedRole);
+  };
+
+  const isContinueEnabled = userName && displayHandle && role;
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -177,6 +185,31 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
               />
             </div>
 
+            <div>
+
+              <BoldText
+                text= "I am a..."
+                size= {"25px"}
+                weight = {"bold"}
+
+
+
+
+                />
+
+              
+
+
+
+
+            </div>
+
+            <div>
+
+
+            <RoleSelect onChange={handleRoleChange} />
+            </div>
+
             {/* <div className='rules-container'>
                         <ul className='password-rules'>
                             {rules.map(rule => (
@@ -193,6 +226,7 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
               children={"Continue >"}
               containerWidth={"378px"}
               onClick={goToNextStepFunc}
+              disabled={!isContinueEnabled}
             />
           </div>
         </div>
