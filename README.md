@@ -231,7 +231,7 @@ Axios provides comprehensive error handling. You can catch errors for failed req
 Axios offers additional features like request and response configuration, canceling requests, and more. Explore the full documentation for detailed information on all available features.
 
 
-### DATA NEEDED FOR FRONTEND SECTIONS
+# DATA NEEDED FOR FRONTEND SECTIONS
 
 ## DASHBOARD
 User handle
@@ -243,7 +243,7 @@ When user submits to a challenge - POST user handle + submission pictures array 
 
 ## MY GROUPS 
 
-# MANAGE COMPANY 
+### MANAGE COMPANY 
 User handle
 Companies that the admin has created
 Challenges associated with a company (these are POSTed from /CreateChallenge - name, desc, points, rewards (NFT and token), dateStart, dateExpire)
@@ -259,7 +259,7 @@ All users that are a part of a company + points obtained for that company
 MAYBE - add a notifications thing where users can see whether the challenge submission was accepted or denied
 
 
-# CREATE
+### CREATE
 User handle
 Display all credentials (NFTs) created by the company (created by admin in the company, NOT obtained by user) - Need the metadata associated with the NFT , viewing should allow admin to see the credential they created. They should be able to send this to people in their community)
 
