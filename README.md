@@ -231,6 +231,52 @@ Axios provides comprehensive error handling. You can catch errors for failed req
 Axios offers additional features like request and response configuration, canceling requests, and more. Explore the full documentation for detailed information on all available features.
 
 
+### DATA NEEDED FOR FRONTEND SECTIONS
+
+## DASHBOARD
+User handle
+Companies that a user is a part of
+ALL CHALLENGES for the specific company
+Challenge info - name, description, points, dateStart, dateExpire, rewards (both token and NFT) so that user has full details
+
+When user submits to a challenge - POST user handle + submission pictures array for that specific challenge
+
+## MY GROUPS 
+
+# MANAGE COMPANY 
+User handle
+Companies that the admin has created
+Challenges associated with a company (these are POSTed from /CreateChallenge - name, desc, points, rewards (NFT and token), dateStart, dateExpire)
+
+
+When admin clicks review - display challenge name, desc, points, rewards + get all participant data that submitted to that challenge (username, submission pictures array) 
+
+When admin accepts challenge - send rewards to user who completed it
+When admin denies challenge - do not send
+
+All users that are a part of a company + points obtained for that company 
+
+MAYBE - add a notifications thing where users can see whether the challenge submission was accepted or denied
+
+
+# CREATE
+User handle
+Display all credentials (NFTs) created by the company (created by admin in the company, NOT obtained by user) - Need the metadata associated with the NFT , viewing should allow admin to see the credential they created. They should be able to send this to people in their community)
+
+
+*Need Creation limits + sending limits*
+
+## PROFILE 
+User handle
+All user NFTs 
+Total "funds" that were obtained + how much from each company the user is a part of 
+ 
+
+
+
+
+
+
 
 
 
