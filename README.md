@@ -241,6 +241,8 @@ Challenge info - name, description, points, dateStart, dateExpire, rewards (both
 
 When user submits to a challenge - POST user handle + submission pictures array for that specific challenge
 
+User joins a company by entering a join code
+
 ## MY GROUPS 
 
 ### MANAGE COMPANY 
