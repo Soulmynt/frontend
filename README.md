@@ -273,11 +273,10 @@ MAYBE - add a notifications thing where users can see whether the challenge subm
 ### CREATE
 User handle.
 
+Display all credentials (NFTs) created by the company (created by admin in the company, NOT obtained by user) - Need the metadata associated with the NFT. Clicking "view" should allow admin to see the credential they created. They should be able to send this to people in their community)
+
 #### Create Credential
 POST the NFT metadata - title , desc, image
-
-
-Display all credentials (NFTs) created by the company (created by admin in the company, NOT obtained by user) - Need the metadata associated with the NFT , viewing should allow admin to see the credential they created. They should be able to send this to people in their community)
 
 #### Create Community
 POST image, name, desc, challenges. Can also choose option to send a credential automatically when user joins, or when user hits a threshold of points.
