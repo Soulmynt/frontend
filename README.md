@@ -241,7 +241,7 @@ Challenge info - name, description, points, dateStart, dateExpire, rewards (both
 
 When user submits to a challenge - POST user handle + submission pictures array for that specific challenge
 
-User joins a company by entering a join code
+User joins a company by entering a join code - once user joins they can automatically be sent a credential at joining of company if the admin chooses this option. This credential can also be sent once the user has obtained a certain amount of points for the company.
 
 ## MY GROUPS 
 
