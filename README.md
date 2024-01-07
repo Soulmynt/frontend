@@ -234,7 +234,8 @@ Axios offers additional features like request and response configuration, cancel
 # DATA NEEDED FOR FRONTEND SECTIONS
 
 ## DASHBOARD
-User handle
+User handle.
+
 Companies that a user is a part of
 ALL CHALLENGES for the specific company
 Challenge info - name, description, points, dateStart, dateExpire, rewards (both token and NFT) so that user has full details
@@ -246,9 +247,15 @@ User joins a company by entering a join code - once user joins they can automati
 ## MY GROUPS 
 
 ### MANAGE COMPANY 
-User handle
-Companies that the admin has created
-Challenges associated with a company (these are POSTed from /CreateChallenge - name, desc, points, rewards (NFT and token), dateStart, dateExpire)
+User handle.
+
+Companies that the admin has created.
+
+ALL Challenges associated with a company (these are POSTed from /CreateChallenge - name, desc, points, rewards (NFT and token), dateStart, dateExpire)
+
+*Frontend will determine if challenge is scheduled, active, or completed*
+
+For EACH completed challenges, need info for who submitted + if their submission was accepted or not. 
 
 
 When admin clicks review - display challenge name, desc, points, rewards + get all participant data that submitted to that challenge (username, submission pictures array) 
@@ -256,13 +263,15 @@ When admin clicks review - display challenge name, desc, points, rewards + get a
 When admin accepts challenge - send rewards to user who completed it
 When admin denies challenge - do not send
 
+*Need data on user end for if their submission was accepted, denied, or in review*
+
 All users that are a part of a company + points obtained for that company 
 
 MAYBE - add a notifications thing where users can see whether the challenge submission was accepted or denied
 
 
 ### CREATE
-User handle
+User handle.
 
 #### Create Credential
 POST the NFT metadata - title , desc, image
@@ -277,7 +286,8 @@ POST image, name, desc, challenges. Can also choose option to send a credential 
 *Need Creation limits + sending limits*
 
 ## PROFILE 
-User handle
+User handle.
+
 All user NFTs 
 Total "funds" that were obtained + how much from each company the user is a part of 
  
