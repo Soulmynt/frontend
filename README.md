@@ -4,6 +4,7 @@
 - [Create React App](#Create-React-App)
 - [Ethers](#Ethers.js)
 - [Axios](#Axios)
+- [DATA NEEDED FOR FRONTEND SECTIONS](#dataneededforteontendsections)
 
 
 
@@ -248,6 +249,28 @@ Get all members of a specific community and how many points they have associated
 
 User joins a company by entering a join code - once user joins they can automatically be sent a credential at joining of company if the admin chooses this option. This credential can also be sent once the user has obtained a certain amount of points for the company.
 
+ian:  
+         using Token: getUserInfo: -Handle
+                      -array of userCompanies
+                        -Company Id
+                        - Challenge User Status
+         Using Company Id:  fetchOneCompany: - array of challenges
+                                               - Challenge Id
+                                               - name
+                                               - Description
+                                               - startDate
+                                               -expiresDate
+                                               -rewards
+                                               
+                                             - Array of UserCompanies
+                                               - array of UserCompanies Profiles
+                                                 - User Handle
+                                                 - total points for user
+         Using Token, Joincode: JoinCompany
+         Using Token, Challenge Id, Challenge Proof: Submit Challenge
+                   
+
+
 ## MY GROUPS 
 
 ### MANAGE COMPANY 
@@ -273,17 +296,47 @@ All users that are a part of a company + points obtained for that company
 
 MAYBE - add a notifications thing where users can see whether the challenge submission was accepted or denied
 
+Ian: Using Token: getUserInfo: - Handle
+                               - array userCompanies
+                                 - Company Id
+                                 - Admin of Company
+    Using Company Id: fetchOneCompany: - Company Id
+                                       - Array of Challenges
+                                         - Challenge Id
+                                         -Array of Participants
+                                            - User Id
+                                            - Challenge Description
+                                            - Rewards
+                                            - Challenge Proof
+                                            - Challenge Status
+    Using Token, User Id, Challenge Id: confirmChallengeSubmission/ rejectChallengeSubmission
+
 
 ### CREATE
 User handle.
 
 Display all credentials (NFTs) created by the company (created by admin in the company, NOT obtained by user) - Need the metadata associated with the NFT. Clicking "view" should allow admin to see the credential they created. They should be able to send this to people in their community)
 
+Ian: using Token: getUserInfo: - array of UserCompanies
+                                  - Company Id
+                                  - Admin
+                                  - Array of User Companies
+     using Company Id: fetchOneCompany: - Array of Credentials
+                                          - Credential Id
+                                          - Meta Data
+                                        - Array of User Companies
+                                           -User Id
+     using token, UserId credentialId: sendCredentialsToUser
+     using token, companyId, Credential Info: createCredential
 #### Create Credential
 POST the NFT metadata - title , desc, image
 
+ian: See Above and use same paths. 
+
 #### Create Community
 POST image, name, desc, challenges. Can also choose option to send a credential automatically when user joins, or when user hits a threshold of points.
+
+Ian: using Token, Company Info: createCompany
 
 
 *Need Creation limits + sending limits*
@@ -291,8 +344,16 @@ POST image, name, desc, challenges. Can also choose option to send a credential 
 ## PROFILE 
 User handle.
 
+
+
 All user NFTs 
 Total "funds" that were obtained + how much from each company the user is a part of 
+
+Ian: using Token: getUserInfo: - handle
+                               - Array of User Credentials
+                               - array of UserCompanies
+                                  - Points
+                                  - Funds Earned
  
 
 
