@@ -4,7 +4,7 @@
 - [Create React App](#Create-React-App)
 - [Ethers](#Ethers.js)
 - [Axios](#Axios)
-- [DATA NEEDED FOR FRONTEND SECTIONS](#dataneededforteontendsections)
+- [DATA NEEDED FOR FRONTEND SECTIONS](https://github.com/Soulmynt/frontend/blob/main/README.md#data-needed-for-frontend-sections)
 
 
 
