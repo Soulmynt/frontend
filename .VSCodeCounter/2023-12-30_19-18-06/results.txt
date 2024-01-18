@@ -1,0 +1,228 @@
+Date : 2023-12-30 19:18:06
+Directory : /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src
+Total : 150 files,  6427 codes, 857 comments, 1658 blanks, all 8942 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         41 |      3,797 |        625 |      1,116 |      5,538 |
+| CSS            |         38 |      2,167 |        210 |        444 |      2,821 |
+| JavaScript     |         70 |        462 |         22 |         98 |        582 |
+| XML            |          1 |          1 |          0 |          0 |          1 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                            |        150 |      6,427 |        857 |      1,658 |      8,942 |
+| . (Files)                                                                                                                    |          8 |        120 |          7 |         21 |        148 |
+| components                                                                                                                   |         61 |      1,382 |        358 |        300 |      2,040 |
+| components/AuthRoute                                                                                                         |          2 |         13 |          0 |          4 |         17 |
+| components/activeChallengeBox                                                                                                |          3 |         60 |         14 |         22 |         96 |
+| components/background                                                                                                        |          3 |         48 |          0 |         13 |         61 |
+| components/boldText                                                                                                          |          3 |         16 |          0 |          7 |         23 |
+| components/button                                                                                                            |          3 |         77 |          1 |         16 |         94 |
+| components/card                                                                                                              |          3 |         50 |         70 |         18 |        138 |
+| components/checkbox                                                                                                          |          3 |         62 |          1 |         11 |         74 |
+| components/colorfulText                                                                                                      |          3 |         22 |          0 |          4 |         26 |
+| components/dropdown                                                                                                          |          3 |         28 |          0 |          4 |         32 |
+| components/exploreCommunityLarge                                                                                             |          3 |         79 |         27 |         25 |        131 |
+| components/exploreCommunitySmall                                                                                             |          3 |         56 |         25 |         16 |         97 |
+| components/modal                                                                                                             |          2 |         58 |          0 |          8 |         66 |
+| components/passwordRules                                                                                                     |          3 |         48 |          2 |          4 |         54 |
+| components/roleSelect                                                                                                        |          3 |         32 |          1 |          4 |         37 |
+| components/sbt                                                                                                               |          3 |          0 |          0 |          3 |          3 |
+| components/searchbar                                                                                                         |          3 |         39 |          4 |          5 |         48 |
+| components/sidebar                                                                                                           |          3 |        285 |        107 |         39 |        431 |
+| components/successMessage                                                                                                    |          3 |         95 |          2 |         36 |        133 |
+| components/table                                                                                                             |          3 |        168 |         72 |         32 |        272 |
+| components/textbox                                                                                                           |          3 |         82 |         28 |         14 |        124 |
+| components/topBar                                                                                                            |          3 |         64 |          4 |         15 |         83 |
+| context                                                                                                                      |          2 |         14 |          0 |          6 |         20 |
+| hooks                                                                                                                        |          2 |          7 |          0 |          4 |         11 |
+| icons                                                                                                                        |         28 |        201 |          4 |         36 |        241 |
+| icons/Arrow                                                                                                                  |          2 |          8 |          0 |          2 |         10 |
+| icons/Calendar                                                                                                               |          2 |         14 |          0 |          3 |         17 |
+| icons/Circle                                                                                                                 |          2 |         35 |          0 |          3 |         38 |
+| icons/CreateIcon                                                                                                             |          2 |          9 |          0 |          3 |         12 |
+| icons/DashboardIcon                                                                                                          |          2 |          8 |          0 |          2 |         10 |
+| icons/Dots                                                                                                                   |          2 |          8 |          0 |          2 |         10 |
+| icons/DoubleCheck                                                                                                            |          2 |         48 |          0 |          4 |         52 |
+| icons/ExploreIcon                                                                                                            |          2 |          8 |          0 |          2 |         10 |
+| icons/ImageIcon                                                                                                              |          2 |         10 |          0 |          2 |         12 |
+| icons/MyGroupsIcon                                                                                                           |          2 |         10 |          0 |          2 |         12 |
+| icons/ProfileIcon                                                                                                            |          2 |          9 |          0 |          2 |         11 |
+| icons/SearchIcon                                                                                                             |          2 |          8 |          0 |          2 |         10 |
+| icons/SettingsIcon                                                                                                           |          2 |          8 |          0 |          2 |         10 |
+| icons/Share                                                                                                                  |          2 |         18 |          4 |          5 |         27 |
+| pages                                                                                                                        |         46 |      4,566 |        477 |      1,258 |      6,301 |
+| pages/create                                                                                                                 |          7 |        935 |         71 |        250 |      1,256 |
+| pages/dashboard                                                                                                              |          5 |        660 |        109 |        284 |      1,053 |
+| pages/explore                                                                                                                |          3 |         20 |          2 |          5 |         27 |
+| pages/login                                                                                                                  |          3 |        235 |          2 |         36 |        273 |
+| pages/mygroups                                                                                                               |          9 |      1,291 |        122 |        374 |      1,787 |
+| pages/profile                                                                                                                |          5 |        356 |         36 |        129 |        521 |
+| pages/settings                                                                                                               |          3 |         16 |          0 |          4 |         20 |
+| pages/signIn                                                                                                                 |          9 |        990 |        134 |        166 |      1,290 |
+| pages/staging                                                                                                                |          2 |         63 |          1 |         10 |         74 |
+| utils                                                                                                                        |          3 |        137 |         11 |         33 |        181 |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                     | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/App.css                                                           | CSS            |         33 |          0 |          6 |         39 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/App.js                                                            | JavaScript     |         34 |          0 |          4 |         38 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/App.test.js                                                       | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/AuthRoute/AuthRoute.jsx                                | JavaScript JSX |         12 |          0 |          3 |         15 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/AuthRoute/index.js                                     | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/activeChallengeBox/activeChallengeBox.jsx              | JavaScript JSX |         28 |         14 |         16 |         58 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/activeChallengeBox/activeChallengeBox.module.css       | CSS            |         31 |          0 |          6 |         37 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/activeChallengeBox/index.js                            | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/background/background.jsx                              | JavaScript JSX |         17 |          0 |          7 |         24 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/background/background.module.css                       | CSS            |         30 |          0 |          6 |         36 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/background/index.js                                    | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/boldText/boldText.css                                  | CSS            |          7 |          0 |          3 |         10 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/boldText/boldText.jsx                                  | JavaScript JSX |          8 |          0 |          4 |         12 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/boldText/index.js                                      | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/button/button.css                                      | CSS            |         41 |          0 |         10 |         51 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/button/button.jsx                                      | JavaScript JSX |         35 |          1 |          5 |         41 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/button/index.js                                        | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/card/card.css                                          | CSS            |         25 |         64 |         11 |        100 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/card/card.jsx                                          | JavaScript JSX |         24 |          6 |          7 |         37 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/card/index.js                                          | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/checkbox/checkbox.jsx                                  | JavaScript JSX |         22 |          0 |          5 |         27 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/checkbox/checkbox.module.css                           | CSS            |         39 |          1 |          6 |         46 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/checkbox/index.js                                      | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/colorfulText/colorfulText.css                          | CSS            |         13 |          0 |          0 |         13 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/colorfulText/colorfulText.jsx                          | JavaScript JSX |          8 |          0 |          4 |         12 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/colorfulText/index.js                                  | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/dropdown/dropdown.jsx                                  | JavaScript JSX |         17 |          0 |          2 |         19 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/dropdown/dropdown.module.css                           | CSS            |         10 |          0 |          1 |         11 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/dropdown/index.js                                      | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunityLarge/exploreCommunityLarge.jsx        | JavaScript JSX |         44 |         21 |         18 |         83 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunityLarge/exploreCommunityLarge.module.css | CSS            |         34 |          6 |          7 |         47 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunityLarge/index.js                         | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunitySmall/exploreCommunitySmall.jsx        | JavaScript JSX |         31 |         20 |         12 |         63 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunitySmall/exploreCommunitySmall.module.css | CSS            |         24 |          5 |          4 |         33 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunitySmall/index.js                         | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/modal/Modal.jsx                                        | JavaScript JSX |         57 |          0 |          7 |         64 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/modal/index.js                                         | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/passwordRules/index.js                                 | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/passwordRules/passwordRules.css                        | CSS            |          0 |          0 |          1 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/passwordRules/passwordRules.jsx                        | JavaScript JSX |         47 |          2 |          3 |         52 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/roleSelect/index.js                                    | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/roleSelect/roleSelect.css                              | CSS            |          6 |          1 |          0 |          7 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/roleSelect/roleSelect.jsx                              | JavaScript JSX |         25 |          0 |          4 |         29 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sbt/index.js                                           | JavaScript     |          0 |          0 |          1 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sbt/sbt.jsx                                            | JavaScript JSX |          0 |          0 |          1 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sbt/sbt.module.css                                     | CSS            |          0 |          0 |          1 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/searchbar/index.js                                     | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/searchbar/searchbar.jsx                                | JavaScript JSX |         20 |          4 |          2 |         26 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/searchbar/searchbar.module.css                         | CSS            |         18 |          0 |          3 |         21 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sidebar/index.js                                       | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sidebar/sidebar.jsx                                    | JavaScript JSX |        217 |        104 |         19 |        340 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sidebar/sidebar.module.css                             | CSS            |         67 |          3 |         20 |         90 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/successMessage/index.js                                | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/successMessage/successMessage.jsx                      | JavaScript JSX |         62 |          2 |         26 |         90 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/successMessage/successMessage.module.css               | CSS            |         32 |          0 |         10 |         42 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/table/index.js                                         | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/table/table.jsx                                        | JavaScript JSX |        116 |         36 |         21 |        173 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/table/table.module.css                                 | CSS            |         51 |         36 |         11 |         98 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/textbox/index.js                                       | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/textbox/textbox.css                                    | CSS            |         32 |          8 |          6 |         46 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/textbox/textbox.jsx                                    | JavaScript JSX |         49 |         20 |          8 |         77 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/topBar/index.js                                        | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/topBar/topBar.jsx                                      | JavaScript JSX |         37 |          4 |          7 |         48 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/topBar/topBar.module.css                               | CSS            |         26 |          0 |          8 |         34 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/context/Auth.js                                                   | JavaScript     |         13 |          0 |          5 |         18 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/context/index.js                                                  | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/hooks/UseAuth.js                                                  | JavaScript     |          6 |          0 |          3 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/hooks/index.js                                                    | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Arrow/Arrow.js                                              | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Arrow/index.js                                              | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Calendar/Calendar.js                                        | JavaScript     |         13 |          0 |          3 |         16 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Calendar/index.js                                           | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Circle/Circle.js                                            | JavaScript     |         34 |          0 |          3 |         37 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Circle/index.js                                             | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/CreateIcon/createIcon.js                                    | JavaScript     |          8 |          0 |          3 |         11 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/CreateIcon/index.js                                         | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DashboardIcon/dashboardIcon.js                              | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DashboardIcon/index.js                                      | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Dots/dots.js                                                | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Dots/index.js                                               | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DoubleCheck/doubleCheck.js                                  | JavaScript     |         47 |          0 |          4 |         51 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DoubleCheck/index.js                                        | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ExploreIcon/exploreIcon.js                                  | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ExploreIcon/index.js                                        | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ImageIcon/imageIcon.js                                      | JavaScript     |          9 |          0 |          2 |         11 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ImageIcon/index.js                                          | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/MyGroupsIcon/index.js                                       | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/MyGroupsIcon/myGroupsIcon.js                                | JavaScript     |          9 |          0 |          2 |         11 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ProfileIcon/index.js                                        | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ProfileIcon/profileIcon.js                                  | JavaScript     |          8 |          0 |          2 |         10 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SearchIcon/index.js                                         | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SearchIcon/searchIcon.js                                    | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SettingsIcon/index.js                                       | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SettingsIcon/settingsIcon.js                                | JavaScript     |          7 |          0 |          2 |          9 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Share/index.js                                              | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Share/shareIcon.js                                          | JavaScript     |         17 |          4 |          5 |         26 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/index.css                                                         | CSS            |         12 |          0 |          2 |         14 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/index.js                                                          | JavaScript     |         20 |          3 |          4 |         27 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/logo.svg                                                          | XML            |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/create.jsx                                           | JavaScript JSX |        137 |         10 |         33 |        180 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/create.module.css                                    | CSS            |         60 |         30 |         10 |        100 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCommunity.jsx                                  | JavaScript JSX |        418 |         21 |        115 |        554 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCommunity.module.css                           | CSS            |         63 |          1 |         13 |         77 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCredential.jsx                                 | JavaScript JSX |        145 |          8 |         54 |        207 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCredential.module.css                          | CSS            |        111 |          1 |         25 |        137 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/index.js                                             | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/communityCode.jsx                                 | JavaScript JSX |         42 |         19 |         21 |         82 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/communityCode.module.css                          | CSS            |        151 |         15 |         29 |        195 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/dashboard.jsx                                     | JavaScript JSX |        313 |         72 |        204 |        589 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/dashboard.module.css                              | CSS            |        153 |          3 |         30 |        186 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/index.js                                          | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/explore/explore.jsx                                         | JavaScript JSX |         16 |          2 |          5 |         23 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/explore/explore.module.css                                  | CSS            |          3 |          0 |          0 |          3 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/explore/index.js                                            | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/login/index.js                                              | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/login/login.jsx                                             | JavaScript JSX |        117 |          1 |         16 |        134 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/login/login.module.css                                      | CSS            |        117 |          1 |         20 |        138 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/createChallenge.jsx                                | JavaScript JSX |        344 |         38 |        150 |        532 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/createChallenge.module.css                         | CSS            |        146 |          2 |         31 |        179 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/index.js                                           | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/manageCommunity.jsx                                | JavaScript JSX |         65 |          0 |         21 |         86 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/manageCommunity.module.css                         | CSS            |        142 |          1 |         28 |        171 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/mygroups.jsx                                       | JavaScript JSX |        330 |         70 |         80 |        480 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/mygroups.module.css                                | CSS            |         56 |         10 |         15 |         81 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/rewardsLadder.jsx                                  | JavaScript JSX |         65 |          0 |         21 |         86 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/rewardsLadder.module.css                           | CSS            |        142 |          1 |         28 |        171 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/index.js                                            | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/profile.jsx                                         | JavaScript JSX |        160 |          1 |         63 |        224 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/profile.module.css                                  | CSS            |         58 |          0 |         13 |         71 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/transferFunds.jsx                                   | JavaScript JSX |         66 |         20 |         35 |        121 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/transferFunds.module.css                            | CSS            |         71 |         15 |         18 |        104 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/settings/index.js                                           | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/settings/settings.jsx                                       | JavaScript JSX |         12 |          0 |          4 |         16 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/settings/settings.module.css                                | CSS            |          3 |          0 |          0 |          3 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/VerifyPhrase.jsx                                     | JavaScript JSX |        182 |          0 |         15 |        197 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/index.js                                             | JavaScript     |          1 |          0 |          0 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/register.jsx                                         | JavaScript JSX |         95 |         15 |         12 |        122 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signIn.jsx                                           | JavaScript JSX |        148 |          3 |         21 |        172 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signIn.module.css                                    | CSS            |        117 |          1 |         20 |        138 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep2.jsx                                      | JavaScript JSX |        154 |         61 |         41 |        256 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep2.module.css                               | CSS            |        126 |          4 |         22 |        152 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep3.jsx                                      | JavaScript JSX |         50 |         49 |         15 |        114 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep3.module.css                               | CSS            |        117 |          1 |         20 |        138 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/staging/Staging.jsx                                         | JavaScript JSX |         62 |          1 |          9 |         72 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/staging/index.js                                            | JavaScript     |          1 |          0 |          1 |          2 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/reportWebVitals.js                                                | JavaScript     |         12 |          0 |          2 |         14 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/setupTests.js                                                     | JavaScript     |          1 |          4 |          1 |          6 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/utils/ math.js                                                    | JavaScript     |          0 |          0 |          1 |          1 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/utils/Wallet.js                                                   | JavaScript     |         12 |          0 |          5 |         17 |
+| /Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/utils/axios.js                                                    | JavaScript     |        125 |         11 |         27 |        163 |
+| Total                                                                                                                        |                |      6,427 |        857 |      1,658 |      8,942 |
++------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

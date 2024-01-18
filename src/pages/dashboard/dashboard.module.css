@@ -7,6 +7,8 @@
     margin-top: 5.5%;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
 }
 .dashboardGrid {
     margin-left: 17%;
@@ -23,6 +25,13 @@
 .activeChallengesCard {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+}
+
+
+.noCompaniesCard {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
 }
 
 .credentialsCard {
@@ -59,8 +68,8 @@
 }
 
 .activeChallengesContainer {
-    margin-top: 15%;
-    margin-left: 10%;
+    /* margin-top: 15%; */
+    /* margin-left: 10%; */
 }
 
 .overlayWrapper {
@@ -129,8 +138,9 @@
 
 .dashboardsHotButtonsContainer {
     display: flex; 
-    flex-direction: flex-start;
+    flex-direction: row;
     position: relative;
+    gap: 5px;
     margin-top: 1%; 
     z-index: 1;
     margin-left: 17%;
@@ -147,3 +157,30 @@
     white-space: nowrap;
 }
 
+.communityDropdown select {
+    background-color: white; /* Sets the background color to white */
+    color: black; /* Sets the text color */
+    border: none; /* Removes the default border */
+    padding: 10px; /* Adds some padding inside the select box */
+    border-radius: 5px; /* Optional: Matches the border-radius of the Card component */
+    width: 100%; /* Sets the width to fill the container */
+    -webkit-appearance: none; /* Removes default style in WebKit browsers */
+    -moz-appearance: none; /* Removes default style in Firefox */
+    appearance: none; /* Removes default browser styling */
+  }
+
+  .communityDropdown::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid black;
+    pointer-events: none;
+}
+
+.communityDropdown select:focus {
+    outline: none;
+}

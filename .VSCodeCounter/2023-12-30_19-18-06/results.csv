@@ -1,0 +1,152 @@
+"filename", "language", "XML", "JavaScript JSX", "CSS", "JavaScript", "comment", "blank", "total"
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/App.css", "CSS", 0, 0, 33, 0, 0, 6, 39
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/App.js", "JavaScript", 0, 0, 0, 34, 0, 4, 38
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/App.test.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/AuthRoute/AuthRoute.jsx", "JavaScript JSX", 0, 12, 0, 0, 0, 3, 15
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/AuthRoute/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/activeChallengeBox/activeChallengeBox.jsx", "JavaScript JSX", 0, 28, 0, 0, 14, 16, 58
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/activeChallengeBox/activeChallengeBox.module.css", "CSS", 0, 0, 31, 0, 0, 6, 37
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/activeChallengeBox/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/background/background.jsx", "JavaScript JSX", 0, 17, 0, 0, 0, 7, 24
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/background/background.module.css", "CSS", 0, 0, 30, 0, 0, 6, 36
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/background/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/boldText/boldText.css", "CSS", 0, 0, 7, 0, 0, 3, 10
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/boldText/boldText.jsx", "JavaScript JSX", 0, 8, 0, 0, 0, 4, 12
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/boldText/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/button/button.css", "CSS", 0, 0, 41, 0, 0, 10, 51
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/button/button.jsx", "JavaScript JSX", 0, 35, 0, 0, 1, 5, 41
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/button/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/card/card.css", "CSS", 0, 0, 25, 0, 64, 11, 100
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/card/card.jsx", "JavaScript JSX", 0, 24, 0, 0, 6, 7, 37
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/card/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/checkbox/checkbox.jsx", "JavaScript JSX", 0, 22, 0, 0, 0, 5, 27
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/checkbox/checkbox.module.css", "CSS", 0, 0, 39, 0, 1, 6, 46
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/checkbox/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/colorfulText/colorfulText.css", "CSS", 0, 0, 13, 0, 0, 0, 13
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/colorfulText/colorfulText.jsx", "JavaScript JSX", 0, 8, 0, 0, 0, 4, 12
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/colorfulText/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/dropdown/dropdown.jsx", "JavaScript JSX", 0, 17, 0, 0, 0, 2, 19
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/dropdown/dropdown.module.css", "CSS", 0, 0, 10, 0, 0, 1, 11
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/dropdown/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunityLarge/exploreCommunityLarge.jsx", "JavaScript JSX", 0, 44, 0, 0, 21, 18, 83
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunityLarge/exploreCommunityLarge.module.css", "CSS", 0, 0, 34, 0, 6, 7, 47
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunityLarge/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunitySmall/exploreCommunitySmall.jsx", "JavaScript JSX", 0, 31, 0, 0, 20, 12, 63
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunitySmall/exploreCommunitySmall.module.css", "CSS", 0, 0, 24, 0, 5, 4, 33
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/exploreCommunitySmall/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/modal/Modal.jsx", "JavaScript JSX", 0, 57, 0, 0, 0, 7, 64
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/modal/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/passwordRules/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/passwordRules/passwordRules.css", "CSS", 0, 0, 0, 0, 0, 1, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/passwordRules/passwordRules.jsx", "JavaScript JSX", 0, 47, 0, 0, 2, 3, 52
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/roleSelect/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/roleSelect/roleSelect.css", "CSS", 0, 0, 6, 0, 1, 0, 7
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/roleSelect/roleSelect.jsx", "JavaScript JSX", 0, 25, 0, 0, 0, 4, 29
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sbt/index.js", "JavaScript", 0, 0, 0, 0, 0, 1, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sbt/sbt.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 1, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sbt/sbt.module.css", "CSS", 0, 0, 0, 0, 0, 1, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/searchbar/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/searchbar/searchbar.jsx", "JavaScript JSX", 0, 20, 0, 0, 4, 2, 26
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/searchbar/searchbar.module.css", "CSS", 0, 0, 18, 0, 0, 3, 21
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sidebar/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sidebar/sidebar.jsx", "JavaScript JSX", 0, 217, 0, 0, 104, 19, 340
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/sidebar/sidebar.module.css", "CSS", 0, 0, 67, 0, 3, 20, 90
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/successMessage/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/successMessage/successMessage.jsx", "JavaScript JSX", 0, 62, 0, 0, 2, 26, 90
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/successMessage/successMessage.module.css", "CSS", 0, 0, 32, 0, 0, 10, 42
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/table/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/table/table.jsx", "JavaScript JSX", 0, 116, 0, 0, 36, 21, 173
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/table/table.module.css", "CSS", 0, 0, 51, 0, 36, 11, 98
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/textbox/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/textbox/textbox.css", "CSS", 0, 0, 32, 0, 8, 6, 46
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/textbox/textbox.jsx", "JavaScript JSX", 0, 49, 0, 0, 20, 8, 77
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/topBar/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/topBar/topBar.jsx", "JavaScript JSX", 0, 37, 0, 0, 4, 7, 48
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/components/topBar/topBar.module.css", "CSS", 0, 0, 26, 0, 0, 8, 34
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/context/Auth.js", "JavaScript", 0, 0, 0, 13, 0, 5, 18
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/context/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/hooks/UseAuth.js", "JavaScript", 0, 0, 0, 6, 0, 3, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/hooks/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Arrow/Arrow.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Arrow/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Calendar/Calendar.js", "JavaScript", 0, 0, 0, 13, 0, 3, 16
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Calendar/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Circle/Circle.js", "JavaScript", 0, 0, 0, 34, 0, 3, 37
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Circle/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/CreateIcon/createIcon.js", "JavaScript", 0, 0, 0, 8, 0, 3, 11
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/CreateIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DashboardIcon/dashboardIcon.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DashboardIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Dots/dots.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Dots/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DoubleCheck/doubleCheck.js", "JavaScript", 0, 0, 0, 47, 0, 4, 51
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/DoubleCheck/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ExploreIcon/exploreIcon.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ExploreIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ImageIcon/imageIcon.js", "JavaScript", 0, 0, 0, 9, 0, 2, 11
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ImageIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/MyGroupsIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/MyGroupsIcon/myGroupsIcon.js", "JavaScript", 0, 0, 0, 9, 0, 2, 11
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ProfileIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/ProfileIcon/profileIcon.js", "JavaScript", 0, 0, 0, 8, 0, 2, 10
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SearchIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SearchIcon/searchIcon.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SettingsIcon/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/SettingsIcon/settingsIcon.js", "JavaScript", 0, 0, 0, 7, 0, 2, 9
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Share/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/icons/Share/shareIcon.js", "JavaScript", 0, 0, 0, 17, 4, 5, 26
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/index.css", "CSS", 0, 0, 12, 0, 0, 2, 14
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/index.js", "JavaScript", 0, 0, 0, 20, 3, 4, 27
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/logo.svg", "XML", 1, 0, 0, 0, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/create.jsx", "JavaScript JSX", 0, 137, 0, 0, 10, 33, 180
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/create.module.css", "CSS", 0, 0, 60, 0, 30, 10, 100
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCommunity.jsx", "JavaScript JSX", 0, 418, 0, 0, 21, 115, 554
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCommunity.module.css", "CSS", 0, 0, 63, 0, 1, 13, 77
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCredential.jsx", "JavaScript JSX", 0, 145, 0, 0, 8, 54, 207
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/createCredential.module.css", "CSS", 0, 0, 111, 0, 1, 25, 137
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/create/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/communityCode.jsx", "JavaScript JSX", 0, 42, 0, 0, 19, 21, 82
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/communityCode.module.css", "CSS", 0, 0, 151, 0, 15, 29, 195
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/dashboard.jsx", "JavaScript JSX", 0, 313, 0, 0, 72, 204, 589
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/dashboard.module.css", "CSS", 0, 0, 153, 0, 3, 30, 186
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/dashboard/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/explore/explore.jsx", "JavaScript JSX", 0, 16, 0, 0, 2, 5, 23
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/explore/explore.module.css", "CSS", 0, 0, 3, 0, 0, 0, 3
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/explore/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/login/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/login/login.jsx", "JavaScript JSX", 0, 117, 0, 0, 1, 16, 134
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/login/login.module.css", "CSS", 0, 0, 117, 0, 1, 20, 138
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/createChallenge.jsx", "JavaScript JSX", 0, 344, 0, 0, 38, 150, 532
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/createChallenge.module.css", "CSS", 0, 0, 146, 0, 2, 31, 179
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/manageCommunity.jsx", "JavaScript JSX", 0, 65, 0, 0, 0, 21, 86
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/manageCommunity.module.css", "CSS", 0, 0, 142, 0, 1, 28, 171
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/mygroups.jsx", "JavaScript JSX", 0, 330, 0, 0, 70, 80, 480
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/mygroups.module.css", "CSS", 0, 0, 56, 0, 10, 15, 81
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/rewardsLadder.jsx", "JavaScript JSX", 0, 65, 0, 0, 0, 21, 86
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/mygroups/rewardsLadder.module.css", "CSS", 0, 0, 142, 0, 1, 28, 171
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/profile.jsx", "JavaScript JSX", 0, 160, 0, 0, 1, 63, 224
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/profile.module.css", "CSS", 0, 0, 58, 0, 0, 13, 71
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/transferFunds.jsx", "JavaScript JSX", 0, 66, 0, 0, 20, 35, 121
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/profile/transferFunds.module.css", "CSS", 0, 0, 71, 0, 15, 18, 104
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/settings/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/settings/settings.jsx", "JavaScript JSX", 0, 12, 0, 0, 0, 4, 16
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/settings/settings.module.css", "CSS", 0, 0, 3, 0, 0, 0, 3
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/VerifyPhrase.jsx", "JavaScript JSX", 0, 182, 0, 0, 0, 15, 197
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/index.js", "JavaScript", 0, 0, 0, 1, 0, 0, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/register.jsx", "JavaScript JSX", 0, 95, 0, 0, 15, 12, 122
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signIn.jsx", "JavaScript JSX", 0, 148, 0, 0, 3, 21, 172
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signIn.module.css", "CSS", 0, 0, 117, 0, 1, 20, 138
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep2.jsx", "JavaScript JSX", 0, 154, 0, 0, 61, 41, 256
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep2.module.css", "CSS", 0, 0, 126, 0, 4, 22, 152
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep3.jsx", "JavaScript JSX", 0, 50, 0, 0, 49, 15, 114
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/signIn/signInStep3.module.css", "CSS", 0, 0, 117, 0, 1, 20, 138
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/staging/Staging.jsx", "JavaScript JSX", 0, 62, 0, 0, 1, 9, 72
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/pages/staging/index.js", "JavaScript", 0, 0, 0, 1, 0, 1, 2
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/reportWebVitals.js", "JavaScript", 0, 0, 0, 12, 0, 2, 14
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/setupTests.js", "JavaScript", 0, 0, 0, 1, 4, 1, 6
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/utils/ math.js", "JavaScript", 0, 0, 0, 0, 0, 1, 1
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/utils/Wallet.js", "JavaScript", 0, 0, 0, 12, 0, 5, 17
+"/Users/aniket/Documents/Soulmynt/soulmynt-mvp/frontend/src/utils/axios.js", "JavaScript", 0, 0, 0, 125, 11, 27, 163
+"Total", "-", 1, 3797, 2167, 462, 857, 1658, 8942

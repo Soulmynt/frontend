@@ -20,7 +20,7 @@ const numeralWordBank = {
 };
 
 const IntroContainer = styled.div`
-  color: white;
+  color: black;
   font-size: 20px;
   text-align: center;
   grid-row-start: 1;
@@ -44,7 +44,7 @@ const GridContainer = styled.div`
 `;
 
 const PhraseWordContainer = styled.div`
-  color: white;
+  color: black;
   font-size: 20px;
   text-align: center;
   grid-row-start: 3;
@@ -66,7 +66,7 @@ const ConfirmContainer = styled.div`
 `;
 
 const ConfirmText = styled.div`
-  color: white;
+  color: black;
   font-size: 20px;
   text-align: center;
 `;

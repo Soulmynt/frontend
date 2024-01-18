@@ -16,7 +16,7 @@ export const ModalOverlay = styled.div`
 const ModalWrapper = styled.div`
   width: ${({ width }) => `${width}px`};
   height: ${({ height }) => `${height}px`};
-  background: #000;
+  background: #FFF;
   border-radius: 25px;
   box-shadow: inset 1px 1px 2px rgba(43, 45, 45, 0.3),
     inset -1px -1px 2px rgba(31, 33, 33, 0.5);
@@ -31,7 +31,7 @@ const CloseWrapper = styled.div`
 `;
 
 const CloseButton = styled.button`
-  color: #fffff;
+  color: #000;
 `;
 
 const Modal = ({

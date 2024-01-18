@@ -1,0 +1,7 @@
+.arrowDown{
+    transform: rotate(90deg);
+}
+
+.arrowUp {
+    transform: rotate(-90deg); /* Arrow points upwards */
+}

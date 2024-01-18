@@ -21,7 +21,7 @@ function App() {
         {/*<Route element={<RequireAuth />}>*/}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/mygroups" element={<MyGroups />} />
+        <Route path="/managechallenges" element={<MyGroups />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />

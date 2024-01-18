@@ -104,24 +104,24 @@ const Sidebar = () => {
         {showMyGroupsDropdown && (
           <>
             {/* Challenges Subcategory */}
-            <Link to="/mygroups" className={styles.subLinkStyle}>
+            <Link to="/managechallenges" className={styles.subLinkStyle}>
             <div className={styles.buttonContainer}>
               <Button
-                variant={getButtonVariant("/mygroups")}
+                variant={getButtonVariant("/managechallenges")}
                 containerWidth={"150px"}
                 containerHeight={"50px"}
               >
                 <div className={styles.sidebarSectionsContainer}>
                   <div className={styles.sidebarIconsContainer}>
-                    <MyGroupsIcon color={getIconColor("/mygroups")} />
+                    <MyGroupsIcon color={getIconColor("/managechallenges")} />
                   </div>
                   <div className={styles.sidebarTextContainer}>
                     <BoldText
-                      text={"My Groups"}
+                      text={"Manage Challenges"}
                       containerWidth={"150px"}
                       size={"18px"}
                       weight={"400"}
-                      textColor={getIconColor("/mygroups")}
+                      textColor={getIconColor("/managechallenges")}
                     />
                   </div>
                 </div>
@@ -296,7 +296,7 @@ const Sidebar = () => {
           </div>
         </Link>
         {/* SETTINGS */}
-        <Link to="/settings" className={styles.linkStyle}>
+        {/* <Link to="/settings" className={styles.linkStyle}>
           <div className={styles.buttonContainer}>
             <Button
               variant={getButtonVariant("/settings")}
@@ -320,7 +320,7 @@ const Sidebar = () => {
               </div>
             </Button>
           </div>
-        </Link>
+        </Link> */}
         {/* <div className = {styles.sidebarSectionsContainer}>
                     <div className = {styles.sidebarIconsContainer}>
                         <SettingsIcon />

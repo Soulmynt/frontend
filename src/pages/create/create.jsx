@@ -132,13 +132,13 @@ function Create() {
           </Card>
         </div>
 
-        <div className={styles.recentCommunitiesCard}>
+        {/* <div className={styles.recentCommunitiesCard}>
           <Card />
         </div>
 
         <div className={styles.sendCredentialsCard}>
           <Card />
-        </div>
+        </div> */}
 
 
         {isPopupVisible && (

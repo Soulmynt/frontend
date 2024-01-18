@@ -19,6 +19,9 @@
     margin-top: 5.5%;
     position: relative;
     z-index: 2;
+    gap: 2px;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -78,3 +81,32 @@
     margin-left: 2%;
 }
 
+
+
+.communityDropdown select {
+    background-color: white; /* Sets the background color to white */
+    color: black; /* Sets the text color */
+    border: none; /* Removes the default border */
+    padding: 10px; /* Adds some padding inside the select box */
+    border-radius: 5px; /* Optional: Matches the border-radius of the Card component */
+    width: 100%; /* Sets the width to fill the container */
+    -webkit-appearance: none; /* Removes default style in WebKit browsers */
+    -moz-appearance: none; /* Removes default style in Firefox */
+    appearance: none; /* Removes default browser styling */
+  }
+
+  .communityDropdown::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid black;
+    pointer-events: none;
+}
+
+.communityDropdown select:focus {
+    outline: none;
+}

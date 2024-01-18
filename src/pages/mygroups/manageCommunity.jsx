@@ -7,6 +7,7 @@ import { Textbox } from '../../components/textbox';
 import { Checkbox } from '../../components/checkbox';
 import { Table } from '../../components/table';
 import { Searchbar } from "../../components/searchbar";
+import { Link } from 'react-router-dom';
 
 
 
@@ -26,16 +27,22 @@ const ManageCommunity = () => {
     { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
     ];
 
+    const modifiedData = table1Data.map(item => ({
+        ...item,
+        Username: <Link to={`/explore?username=${item.Username}`}>{item.Username}</Link>,
+    }));
+    
+
     const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
     };
 
     const filteredData = useMemo(() => {
-    return table1Data.filter(
+    return modifiedData.filter(
         (item) =>
-        item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.Date.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.Status.toLowerCase().includes(searchTerm.toLowerCase())
+        item.Name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        item.Username.toLowerCase().includes(searchTerm.toLowerCase())
+        
     );
     }, [searchTerm]);
 

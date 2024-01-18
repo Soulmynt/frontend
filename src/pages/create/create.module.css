@@ -13,7 +13,7 @@
     margin-left: 17%;
     margin-top: 1%;
     display: grid;
-    grid-template-columns: 30% 30% 30%; /* L to R */
+    grid-template-columns: 20% 40% 30%; /* L to R */
     grid-template-rows: 7% 50% 22.5%; /* Top to Bottom */
     gap: 1rem; /* Optional: Adjust as needed for spacing between cards */
     height: 90vh; 
@@ -22,15 +22,15 @@
 }
 
 .recentCredentialsCard {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.recentCommunitiesCard {
+/* .recentCommunitiesCard {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
@@ -40,6 +40,8 @@
     grid-row: 2 / 3;
 }
 
+*/
+
 .createCredentialButton {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -48,7 +50,7 @@
 .createCommunitiesButton {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-}
+} 
 
 /* .overlayBackground{
     position: fixed;

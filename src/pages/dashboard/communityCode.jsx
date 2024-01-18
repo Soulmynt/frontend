@@ -6,10 +6,13 @@ import { Card } from '../../components/card'
 import { BoldText } from '../../components/boldText';
 import { Button } from '../../components/button';
 import { ActiveChallengeBox } from '../../components/activeChallengeBox';
+import { useAuth } from "../../hooks";
+import { axiosJoinCommunity} from "../../utils/axios";
 
 const CommunityCode = () => {
     // State to hold the input for each box
     const [code, setCode] = useState(["", "", "", "", "", ""]);
+    const {auth, userInfo, setUserInfo} = useAuth();
   
     // Function to update the individual box state
     const updateCode = (index, value) => {
@@ -23,6 +26,12 @@ const CommunityCode = () => {
       event.preventDefault();
       // Combine code array into a string and compare with the community code
       const communityCode = code.join('');
+    //   let data = await axiosJoinCommunity(accessToken, communityCode);
+    
+
+
+
+      
       console.log(communityCode); // Here you would normally compare with the actual community code
     };
   

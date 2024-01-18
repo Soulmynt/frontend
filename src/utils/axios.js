@@ -89,12 +89,11 @@ export async function axiosCreateCredential(token, credentialInfo) {
   }
 }
 
-export async function axiosJoinCommunity(token, company, joinToken) {
+export async function axiosJoinCommunity(token, joinToken) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
   try {
     let data = await axios.post(`http://localhost:4000/joincompany`, {
       token: token,
-      company: company,
       joinToken, joinToken
     });
     return data;
@@ -137,7 +136,7 @@ export async function setupAxiosInterceptor(setAuth) {
         error.config._retry = true;
         try {
           // Assuming '/auth/refresh' is the endpoint that refreshes the access token
-          const response = await axios.post('/auth/refresh');
+          const response = await axios.post('/refresh');
           
           // Update the auth state with the new access token
           setAuth(prevAuth => ({
