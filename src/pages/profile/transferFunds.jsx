@@ -60,9 +60,10 @@ const TransferFunds = () => {
                     </div>
 
                     <div className={styles.generalSpacing}>
-                        <Textbox 
-                                text="CURRENCY TYPES" 
+                        <BoldText 
+                                text="USDC" 
                                 containerWidth="250px"
+                                weight="bold"
                                 // type="number"
                         />
                     </div>

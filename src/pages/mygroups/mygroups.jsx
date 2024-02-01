@@ -254,7 +254,7 @@ function MyGroups() {
                             "description": "hqh",
                             "points": "Number",
                             "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-23",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -271,7 +271,7 @@ function MyGroups() {
                             "description": "hello",
                             "points": 100,
                             "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-23",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -350,7 +350,7 @@ function MyGroups() {
                             "description": "hqh",
                             "points": "Number",
                             "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-20",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -367,7 +367,7 @@ function MyGroups() {
                             "description": "hello",
                             "points": 100,
                             "dateCreated": "2024-01-15",
-                            "dateExpires": "2024-01-20",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -447,7 +447,7 @@ function MyGroups() {
                             "description": "hqh",
                             "points": "Number",
                             "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-10",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -464,7 +464,7 @@ function MyGroups() {
                             "description": "hello",
                             "points": 100,
                             "dateCreated": "2024-01-10",
-                            "dateExpires": "2024-01-11",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -697,14 +697,14 @@ function MyGroups() {
                     onClick={() => handleButtonClick("ManageCommunity")}
                     />
             </div>
-            <div className={styles.rewardsLadderButton}>
+            {/* <div className={styles.rewardsLadderButton}>
                     <Button
                     children={"Rewards Ladder"}
                     variant="colorful-button"
                     containerWidth={"250px"}
                     onClick={() => handleButtonClick("RewardsLadder")}
                     />
-            </div>
+            </div> */}
 
             <div className={styles.boxWrapper}>
                 <Card gradientBorder={true} borderRadius="5px" containerHeight="auto" containerWidth="200px">
@@ -839,7 +839,7 @@ function MyGroups() {
 
                     </Card>
                 </div>
-                <div className={styles.draftsCard}>
+                {/* <div className={styles.draftsCard}>
                 <Card>
                         <div className={styles.generalSpacing}>
                             <BoldText
@@ -854,7 +854,7 @@ function MyGroups() {
 
 
                     </Card>
-                </div> 
+                </div>  */}
                 {showCard && (
                     <div className={styles.overlayWrapper}>
                     <div
@@ -862,7 +862,7 @@ function MyGroups() {
                     onClick={() => setShowCard(false)}
                     ></div>
                     {activeComponent === "CreateChallenge" && <CreateChallenge />}
-                    {activeComponent === "ManageCommunity" && <ManageCommunity />}
+                    {activeComponent === "ManageCommunity" && <ManageCommunity selectedCompanyId={selectedCommunity._id} />}
                     {activeComponent === "RewardsLadder" && <RewardsLadder />}
                     </div>
                 )}        

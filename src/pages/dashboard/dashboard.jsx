@@ -11,6 +11,7 @@ import CommunityCode from './communityCode.jsx'
 import { TopBar } from '../../components/topBar'
 import { useAuth } from "../../hooks";
 import { axiosSubmitChallenge } from "../../utils/axios";
+import {Leaderboard} from '../../components/leaderboard/';
 import moment from 'moment-timezone';
 
 
@@ -34,7 +35,7 @@ function Dashboard() {
        
         id: "ObjectId",
         email: "String",
-        handle: "String",
+        handle: "me",
         companies: [
                 {
                     _id: 1,
@@ -98,6 +99,63 @@ function Dashboard() {
         credentials: ["String"],
           
     }
+
+
+    //TODO:
+    //call the endpoint to get the members for the selcted company
+
+    // Function to fetch company data by ID
+    // const fetchCompanyData = async () => {
+    //     try {
+    //         // Assuming you have an API endpoint where you can pass companyId as a parameter
+    //         const response = await axios.get(`/api/company/${selectedCompanyId}`);
+    //         setCompanyData(response.data);
+    //         // Now you have companyData that you can use to render your component
+    //     } catch (error) {
+    //         console.error('Error fetching company data:', error);
+    //     }
+    // };
+
+    // // useEffect to fetch company data when selectedCompanyId changes
+    // useEffect(() => {
+    //     if (selectedCompanyId) {
+    //         fetchCompanyData();
+    //     }
+    // }, [selectedCompanyId]); 
+
+    const specificCompanyUsers = {
+        users: [
+        {
+            "user": "A",
+            "handle": "@A",
+            "CompanyId": "String",
+            "CompanyName": "String",
+            "RewardPoints": 200,
+            "admin": false,
+            },
+            {
+            "user": "B",
+            "handle": "@B",
+            "CompanyId": "String",
+            "CompanyName": "String",
+            "RewardPoints": 100,
+            "admin": false,
+            },
+            {
+                "user": "B",
+                "handle": "me",
+                "CompanyId": "String",
+                "CompanyName": "String",
+                "RewardPoints": 100,
+                "admin": false,
+                },
+
+        ],
+      }
+
+
+
+
 
     //TODO: UNCOMMENT
 
@@ -187,7 +245,7 @@ function Dashboard() {
             "userCompanyProfile": {    
                     "_id": 1,          
                     "image": "String",  
-                    "name": "XYZ",
+                    "name": "Soulmynt",
                     "Status": "String",
                     "Description": "String",
                     "QualifyingQuestions": ["String"],
@@ -196,12 +254,12 @@ function Dashboard() {
                     "challenges": [
 
                         {
-                            "name": "ah", 
+                            "name": "Host a hackathon", 
                             "company": "ObjectId",
                             "description": "hh",
                             "points": "Number",
                             "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-20",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -213,12 +271,12 @@ function Dashboard() {
                             }],
                         },
                         {
-                            "name": "nn", 
+                            "name": "Post on social media", 
                             "company": "ObjectId",
                             "description": "hello",
                             "points": 100,
                             "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-20",
+                            "dateExpires": "2024-01-30",
                             "credentialArray": ["ObjectId"],
                             "tokenReward": { "tokenType": "String", "amount": "Number" },
                             "active": "Boolean",
@@ -571,13 +629,39 @@ function Dashboard() {
 
                     </Card>
                 </div>
-                <div className={styles.credentialsCard}>
+                {/* <div className={styles.credentialsCard}>
                     <Card/>
-                </div>
+                </div> */}
                 <div className={styles.leaderboardsCard}>
-                    <Card  />
+                    <Card>
+
+                    <div className={styles.generalSpacing}>
+                        <BoldText
+                                text={"Leaderboard "}
+                                containerWidth={"250px"}
+                                size={"24px"}
+                                weight={"bold"}
+                                textColor="#000"
+                        />
+
+                        <Leaderboard users={specificCompanyUsers.users} myHandle={userInfo.handle} />
+                    </div>
+
+
+    
+                        
+                        
+                        
+                        
+                    </Card>  
+                    
+                    
+                    
+                
+
+            
                 </div>
-                <div className={styles.rewardsLadderCard}>
+                {/* <div className={styles.rewardsLadderCard}>
                     <Card />
                 </div>
                 <div className={styles.pollsCard}>
@@ -585,7 +669,7 @@ function Dashboard() {
                 </div>
                 <div className={styles.announcementsCard}>
                     <Card />
-                </div>
+                </div> */}
 
                 </>
 

@@ -57,8 +57,8 @@ const CreateChallenge = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    const [startTime, setStartTime] = useState(new Date());
-    const [endTime, setEndTime] = useState(new Date());
+    // const [startTime, setStartTime] = useState(new Date());
+    // const [endTime, setEndTime] = useState(new Date());
 
     const handleStartChange = (date) => {
         setStartDate(date);
@@ -67,13 +67,13 @@ const CreateChallenge = () => {
         setEndDate(date);
     };
 
-    const handleStartTimeChange = (date) => {
-        setStartTime(date);
-    };
+    // const handleStartTimeChange = (date) => {
+    //     setStartTime(date);
+    // };
     
-    const handleEndTimeChange = (date) => {
-        setEndTime(date);
-    };
+    // const handleEndTimeChange = (date) => {
+    //     setEndTime(date);
+    // };
 
 
 
@@ -160,7 +160,7 @@ const CreateChallenge = () => {
         <div className={styles.createCredentialContainer}>
             
 
-            <Card positionType='relative' containerWidth='800px' containerHeight='2100px'>
+            <Card positionType='relative' containerWidth='800px' containerHeight='1250px'>
                 <div className = {styles.createCommunityText}>
                     <BoldText text={"Create Challenge"} containerWidth={"250px"} size={"25px"} weight={"bold"} textColor="#000"/>
                 </div>
@@ -337,9 +337,11 @@ const CreateChallenge = () => {
                     </div>
                     
                     <div className={styles.generalSpacing}>
-                        <Textbox 
-                            text="CURRENCY TYPES" 
+                        <BoldText 
+                            text="USDC" 
                             containerWidth="250px"
+                            weight = "bold"
+
                             // type="number"
                             
                         
@@ -407,18 +409,18 @@ const CreateChallenge = () => {
 
                                     </div>
 
-                                    <div className={styles.grayTimeBorderBox}>
+                                    {/* <div className={styles.grayTimeBorderBox}>
                                         <DatePicker
                                             className={styles.timeContainer}
-                                            selected={startTime}
-                                            onChange={handleStartTimeChange}
+                                            // selected={startTime}
+                                            // onChange={handleStartTimeChange}
                                             showTimeSelect
                                             showTimeSelectOnly
                                             timeIntervals={15} // The interval of time options. In this case, every 15 minutes.
                                             timeCaption="Time"
                                             dateFormat="h:mm aa" // Format for 12-hour clock notation with AM/PM.
                                         />
-                                    </div>
+                                    </div> */}
 
                                     </div>
 
@@ -459,18 +461,18 @@ const CreateChallenge = () => {
                                         
                                         </div>
 
-                                        <div className={styles.grayTimeBorderBox}>
+                                        {/* <div className={styles.grayTimeBorderBox}>
                                             <DatePicker
                                                 className={styles.timeContainer}
-                                                selected={endTime}
-                                                onChange={handleEndTimeChange}
+                                                // selected={endTime}
+                                                // onChange={handleEndTimeChange}
                                                 showTimeSelect
                                                 showTimeSelectOnly
                                                 timeIntervals={15} // The interval of time options. In this case, every 15 minutes.
                                                 timeCaption="Time"
                                                 dateFormat="h:mm aa" // Format for 12-hour clock notation with AM/PM.
                                             />
-                                        </div>
+                                        </div> */}
 
                                     </div>
 
@@ -491,13 +493,13 @@ const CreateChallenge = () => {
 
                 <div className={styles.continueButtonContainer}>
 
-                    <Button 
+                    {/* <Button 
                         children="Draft" 
                         // disabled={!name || !description} 
                         // onClick={handleContinueClick}
                         containerWidth="150px"
                         variant="colorful"
-                    />
+                    /> */}
                     <Button 
                         children="Publish" 
                         // disabled={!name || !description} 

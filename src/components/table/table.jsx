@@ -96,12 +96,12 @@ const Table = ({ columns, data, width, height, onImageClick, onReviewClick, item
               <td key={colIndex} className={colIndex === 0 ? styles.dotsContainer : ''}>
                   {colIndex === 0 ? (
                     <div onClick={() => handleDotsClick(rowIndex)}>
-                      <Dots className={styles.dots}/>
+                      {/* <Dots className={styles.dots}/>
                       {openDropdown === rowIndex && (
                         <Dropdown 
                           options={['View', 'Edit', 'Delete']} 
                           onOptionClick={(option) => handleDropdownOptionClick(option, rowIndex)} />
-                      )}
+                      )} */}
                     </div>
                   ) : (
                     column === 'Submission' ? (

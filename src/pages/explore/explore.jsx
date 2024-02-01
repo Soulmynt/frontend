@@ -91,14 +91,14 @@ function Explore() {
             //     setUserData(response.data.message.userCompany);
             // }
 
-            console.log("hello")
+            
 
             const response = {
                 "success": true,
                 "message": {
                   "userCompany": [
                     {
-                      "user":"Me",
+                      "user": username,
                       "handle":"String",
                       "companyId":"Schema Object Id",
                       "companyName":"A",
@@ -151,7 +151,7 @@ function Explore() {
                     <Card>
                     <div className={styles.generalSpacing}>
                             <BoldText 
-                                text={`Viewing Profile for: ${userData && userData.length > 0 ? userData[0].user : "Loading..."}`} 
+                                text={`Viewing Profile for: ${userData && userData.length > 0 ? userData[0].user : "N/A"}`} 
                                 containerWidth={"250px"} 
                                 size={"24px"} 
                                 weight={"bold"} 

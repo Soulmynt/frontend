@@ -186,7 +186,7 @@ const CreateCommunity = () => {
     return (
         <div className={styles.createCredentialContainer}>
 
-            <Card positionType='relative' containerWidth='800px' containerHeight='2100px'>
+            <Card positionType='relative' containerWidth='800px' containerHeight='1300px'>
                 <div className = {styles.createCommunityText}>
                     <BoldText text={"Create Community (Basic Information) "} containerWidth={"250px"} size={"25px"} weight={"bold"} textColor="#000"/>
                 </div>
@@ -243,11 +243,11 @@ const CreateCommunity = () => {
                     />
                 </div>
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <BoldText text={"Open Slots"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
-                </div>
+                </div> */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <BoldText text={"how many slots do you want your community to have (can change later - leave blank for unlimited)"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
                 </div>
 
@@ -264,17 +264,17 @@ const CreateCommunity = () => {
                 </div>
 
 
-                
+                 */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <BoldText text={"Application Questions"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
                 </div>
 
                 <div className={styles.generalSpacing}>
                     <BoldText text={"Leave this section empty if your community does not require application questions"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
-                </div>
+                </div> */}
 
-                {questions.map((question, index) => (
+                {/* {questions.map((question, index) => (
                     <div key={index} className={styles.generalSpacing}>
                         <Textbox 
                             text={`Add 1 question for your community application`} 
@@ -293,9 +293,9 @@ const CreateCommunity = () => {
                             />
                         </div>
                     </div>
-                ))}
+                ))} */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <Button 
                         children="Add Question" 
                         onClick={handleAddQuestion}
@@ -407,17 +407,17 @@ const CreateCommunity = () => {
 
                     
 
-                </div>
+                </div> */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <BoldText text={"Rewards Ladder"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
-                </div>
+                </div> */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <BoldText text={"Add a points total + Associated reward (Note: points are not necessary)"} containerWidth={"250px"} size={"15px"} textColor="#8F8F8F"/>
-                </div>
+                </div> */}
 
-                {rewards.map((reward, index) => (
+                {/* {rewards.map((reward, index) => (
                     <div key={index} className={styles.generalSpacing}>
                         <div className={styles.activeChallengesContainer}>
                             <Textbox 
@@ -445,23 +445,23 @@ const CreateCommunity = () => {
                             />
                         </div>
                     </div>
-                ))}
+                ))} */}
 
-                <div className={styles.generalSpacing}>
+                {/* <div className={styles.generalSpacing}>
                     <Button 
                         children="Add Reward" 
                         onClick={handleAddReward}
                         containerWidth="150px"
                         variant="colorful"
                     />
-                </div>
+                </div> */}
 
                 <div className={styles.generalSpacing}>
                     <BoldText text={"Send Credentials"} containerWidth={"250px"} size={"15px"} weight={"bold"} textColor="#000"/>
                 </div>
 
                 <div className={styles.generalSpacing}>
-                    <BoldText text={"soulmynt will automatically Send this membership token to people that join your community. Alternatively, choose to send this credential only when the user has reached a threshold of points"} 
+                    <BoldText text={"Soulmynt will automatically send this membership token to people that join your community. Alternatively, choose to send this credential only when the user has reached a threshold of points"} 
                     containerWidth={"250px"} 
                     size={"15px"} 
                     textColor="#8F8F8F"/>
