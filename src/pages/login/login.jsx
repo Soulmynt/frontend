@@ -33,6 +33,7 @@ function Login() {
     let data = await axiosLogIn(email, password);
     setPassword("");
     setEmail("");
+    console.log(data.data.userprofile)
     if (data.status == 200) {
       setAuth(data.data.userprofile);
       navigate("/dashboard");

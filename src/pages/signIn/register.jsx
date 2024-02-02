@@ -49,6 +49,7 @@ function Register() {
       setTimeout(async () => {
         await makeWallet();
         setDemoModal(!demoModal);
+        console.log(keyGen)
       }, 1000);
     }
   }, [currentStep]);

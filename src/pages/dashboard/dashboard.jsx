@@ -17,6 +17,7 @@ import moment from 'moment-timezone';
 
 function Dashboard() {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
+    let response;
   
 
     // const [selectedImage, setSelectedImage] = useState(null);
@@ -26,12 +27,37 @@ function Dashboard() {
 
     const [showCard, setShowCard] = useState(false);
     const [activeComponent, setActiveComponent] = useState(null);
-    // const {auth, userInfo, setUserInfo} = useAuth();
+    const {auth, userInfo, setUserInfo} = useAuth();
+    // const accessToken = auth.accessToken;
+    // console.log(accessToken);
+    
+    console.log(userInfo);
+
+    useEffect(() => {
+        const accessToken = auth.accessToken;
+        console.log("Verify Access Token Shows up in useEffect: ", accessToken)
+        
+        const url = `http://localhost:4000/userinfo?accessToken=${accessToken}`;
+
+        
+    
+        const fetchUserInfo = async () => {
+            try {
+                const response = await axios.get(url);
+                setUserInfo(response.data.userProfile);
+            } catch (error) {
+                console.error("Fetching user info failed:", error);
+            }
+        };
+    
+        fetchUserInfo();
+    }, []);
 
 
 
 
-    const userInfo = {
+
+    const f = {
        
         id: "ObjectId",
         email: "String",
@@ -159,13 +185,13 @@ function Dashboard() {
 
     //TODO: UNCOMMENT
 
-    const nonAdminCompanies = userInfo.companies.filter(company => !company.admin);
+    const nonAdminCompanies = userInfo && userInfo.companies ? userInfo.companies.filter(company => !company.admin) : [];
+
     const isPartOfAnyNonAdminCompany = nonAdminCompanies.length > 0;
 
     const [selectedCommunity, setSelectedCommunity] = useState(
         isPartOfAnyNonAdminCompany ? nonAdminCompanies[0] : "No Communities"
     );
-
 
     // const isPartOfAnyCompany = userInfo.companies && userInfo.companies.length > 0;
     // const [selectedCommunity, setSelectedCommunity] = useState(
@@ -189,21 +215,7 @@ function Dashboard() {
 
     //TODO: Uncomment
 
-    // useEffect(() => {
-    //     const accessToken = auth.accessToken;
-    //     const url = `http://www.soulMynt.com/api/v1/getuserinfo?token=${accessToken}`;
     
-    //     const fetchUserInfo = async () => {
-    //         try {
-    //             const response = await axios.get(url);
-    //             setUserInfo(response.data.userProfile);
-    //         } catch (error) {
-    //             console.error("Fetching user info failed:", error);
-    //         }
-    //     };
-    
-    //     fetchUserInfo();
-    // }, []);
 
 
     //TODO: TEMP STUFF
