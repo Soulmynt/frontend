@@ -34,7 +34,6 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       const accessToken = auth.accessToken;
-
       const userInfo = await axiosGetUserInfo(accessToken);
       setUserInfo(userInfo);
     };
