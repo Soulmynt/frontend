@@ -49,7 +49,7 @@ function Register() {
       setTimeout(async () => {
         await makeWallet();
         setDemoModal(!demoModal);
-        console.log(keyGen)
+        console.log(keyGen);
       }, 1000);
     }
   }, [currentStep]);
@@ -71,6 +71,7 @@ function Register() {
   const closeModalAndSubmitUserInfo = async () => {
     let data = await axiosSignIn(email, displayHandle, password, keyGen);
     if (data.status == 200) {
+      console.log("sign in returns 200, return data info: ", data.data);
       setAuth(data.data);
       setDemoModal(!demoModal);
       navigate("/dashboard");
