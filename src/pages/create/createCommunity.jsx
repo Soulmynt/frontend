@@ -89,8 +89,11 @@ const CreateCommunity = () => {
                 imageLink: selectedImage, 
                 name: name, 
                 description: description, 
+                Capacity: 3, 
                 QualifyingQuestions: questions,
-                openCommunity: openCommunity
+                paidCommunity: true,
+                resume: false, 
+                openCommunity: true
             };
             
 

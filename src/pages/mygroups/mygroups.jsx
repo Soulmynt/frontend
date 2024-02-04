@@ -11,7 +11,9 @@ import RewardsLadder from './rewardsLadder';
 import { Searchbar } from '../../components/searchbar';
 import { Table } from '../../components/table';
 import { TopBar } from '../../components/topBar'
+import { useAuth } from "../../hooks";
 import moment from 'moment-timezone';
+import { axiosGetUserInfo } from "../../utils/axios";
 
 function MyGroups() {
     const [showCard, setShowCard] = useState(false);
@@ -22,6 +24,18 @@ function MyGroups() {
 
     const [selectedImageSrc, setSelectedImageSrc] = useState(null);
     const [selectedReviewText, setSelectedReviewText] = useState(null);
+    const { auth, userInfo, setUserInfo } = useAuth();
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const accessToken = auth.accessToken;
+          const userInfo = await axiosGetUserInfo(accessToken);
+          setUserInfo(userInfo);
+        };
+    
+        fetchData();
+      }, []);
+
 
     const handleImageClick = (imageSrc) => {
         setSelectedImageSrc(imageSrc);
@@ -75,84 +89,128 @@ function MyGroups() {
 
     //TODO: GET USER INFO FROM THE ENDPOINT IF THEY ARE A COMMUNTIY MANAGER
 
-    const userInfo = {
+    // const userInfo = {
        
-        id: "ObjectId",
-        email: "String",
-        handle: "String",
-        companies: [
-                {
-                    _id: 1,
-                    "user": "String",
-                   "handle": "String",
-                   "CompanyId": "1",
-                   "companyName": "XYZ",
-                   "Credentials": [],
-                   "challenges": [
-                    {
-                        "name": "ah", 
-                        "company": "ObjectId",
-                        "description": "hh",
-                        "points": "Number",
-                        "dateCreated": "2024-01-03",
-                        "dateExpires": "2024-01-09",
-                        "credentialArray": ["ObjectId"],
-                        "tokenReward": { "tokenType": "String", "amount": "Number" },
-                        "active": "Boolean",
-                        "participants": [{
-                          "user": "ObjectId",
-                          "proof": ["String"],
-                          "completedDate": "Date",
-                          "confirmed": "Boolean",
-                        }],
-                    },
-                    {
-                        "name": "nn", 
-                        "company": "ObjectId",
-                        "description": "hello",
-                        "points": 100,
-                        "dateCreated": "2024-01-03",
-                        "dateExpires": "2024-01-09",
-                        "credentialArray": ["ObjectId"],
-                        "tokenReward": { "tokenType": "String", "amount": "Number" },
-                        "active": "Boolean",
-                        "participants": [{
-                          "user": "ObjectId",
-                          "proof": ["String"],
-                          "completedDate": "Date",
-                          "confirmed": "Boolean",
-                        }],
-                    }
-                   ],
-                   "RewardPoints": "Number",
-                   "admin": true,
-                },
-                {
-                    _id: 2,
-                    "user": "String",
-                   "handle": "String",
-                   "CompanyId": "2",
-                   "companyName": "ABC",
-                   "Credentials": [],
-                   "Challenges": [],
-                   "RewardPoints": "Number",
-                   "admin": true,
-                },
+    //     id: "ObjectId",
+    //     email: "String",
+    //     handle: "String",
+    //     companies: [
+    //             {
+    //                 _id: 1,
+    //                 "user": "String",
+    //                "handle": "String",
+    //                "CompanyId": "1",
+    //                "companyName": "XYZ",
+    //                "Credentials": [],
+    //                "challenges": [
+    //                 {
+    //                     "name": "ah", 
+    //                     "company": "ObjectId",
+    //                     "description": "hh",
+    //                     "points": "Number",
+    //                     "dateCreated": "2024-01-03",
+    //                     "dateExpires": "2024-01-09",
+    //                     "credentialArray": ["ObjectId"],
+    //                     "tokenReward": { "tokenType": "String", "amount": "Number" },
+    //                     "active": "Boolean",
+    //                     "participants": [{
+    //                       "user": "ObjectId",
+    //                       "proof": ["String"],
+    //                       "completedDate": "Date",
+    //                       "confirmed": "Boolean",
+    //                     }],
+    //                 },
+    //                 {
+    //                     "name": "nn", 
+    //                     "company": "ObjectId",
+    //                     "description": "hello",
+    //                     "points": 100,
+    //                     "dateCreated": "2024-01-03",
+    //                     "dateExpires": "2024-01-09",
+    //                     "credentialArray": ["ObjectId"],
+    //                     "tokenReward": { "tokenType": "String", "amount": "Number" },
+    //                     "active": "Boolean",
+    //                     "participants": [{
+    //                       "user": "ObjectId",
+    //                       "proof": ["String"],
+    //                       "completedDate": "Date",
+    //                       "confirmed": "Boolean",
+    //                     }],
+    //                 }
+    //                ],
+    //                "RewardPoints": "Number",
+    //                "admin": true,
+    //             },
+    //             {
+    //                 _id: 2,
+    //                 "user": "String",
+    //                "handle": "String",
+    //                "CompanyId": "2",
+    //                "companyName": "ABC",
+    //                "Credentials": [],
+    //                "Challenges": [],
+    //                "RewardPoints": "Number",
+    //                "admin": true,
+    //             },
         
-        ],
-        credentials: ["String"],
+    //     ],
+    //     credentials: ["String"],
           
-    }
+    // }
 
     
 
-    const adminCompanies = userInfo.companies.filter(company => company.admin);
-    const isPartOfAnyAdminCompany = adminCompanies.length > 0;
 
-    const [selectedCommunity, setSelectedCommunity] = useState(
-        isPartOfAnyAdminCompany ? adminCompanies[0] : "No Communities"
-    );
+    // const adminCompanies =
+    // userInfo && userInfo.companies
+    //   ? userInfo.companies.filter((company) => company.admin)
+    //   : [];
 
+    // const isPartOfAnyAdminCompany = adminCompanies.length > 0;
+
+   
+
+    // const [selectedCommunity, setSelectedCommunity] = useState(
+    //     isPartOfAnyAdminCompany ? adminCompanies[0] : "No Communities"
+    // );
+
+    //TODO: CHANGED TO USEEFFECT FOR NOW
+    const [adminCompanies, setAdminCompanies] = useState([]);
+
+    const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+
+    // useEffect(() => {
+    //     if (userInfo && userInfo.companies && userInfo.companies.length > 0) {
+    //         const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+
+    //         setAdminCompanies(newAdminCompanies); // Update admin companies state
+
+    //         // Update selected community based on new admin companies
+    //         if (newAdminCompanies.length > 0) {
+    //             setSelectedCommunity(newAdminCompanies[0]); // Select the first admin company
+    //         } else {
+    //             setSelectedCommunity("No Communities");
+    //         }
+    //     }
+    // }, [userInfo]);
+
+   
+    useEffect(() => {
+        if (userInfo && userInfo.companies) {
+            const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+            
+            setAdminCompanies(newAdminCompanies)
+            if (newAdminCompanies.length > 0) {
+                setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
+            } else {
+                setSelectedCommunity("No Communities");
+            }
+        } else {
+            setSelectedCommunity("No Communities");
+        }
+    }, [userInfo]);
+
+    
 
     // const [selectedCommunity, setSelectedCommunity] = useState("No communities");
     // const [adminCompanies, setAdminCompanies] = useState([]);
@@ -602,7 +660,7 @@ function MyGroups() {
                     text={
                     typeof selectedCommunity === 'string' && selectedCommunity === "No Communities" 
                         ? "No Communities" 
-                        : `Community Name: ${selectedCommunity.companyName}`
+                        : `Community Name: ${selectedCommunity.CompanyName}`
                     } 
                     containerWidth={"250px"} 
                     size={"18px"} 
@@ -713,7 +771,7 @@ function MyGroups() {
                     {
                     // The adminCompanies array is derived from userInfo and is kept up-to-date
                     adminCompanies.map(company => (
-                    <option key={company} value={company._id}>{company.companyName}</option>
+                    <option key={company} value={company._id}>{company.CompanyName}</option>
                     ))
                     }
                     </select>
