@@ -94,10 +94,9 @@ const CreateCommunity = () => {
     if (name && description) {
       const accessToken = auth.accessToken;
       const companyInfo = {
-        imageLink: "https://www.google.com",
-        name: "Test Company",
-        description: "This is a test company",
-        opencommunity: true,
+        imageLink: selectedImage,
+        name: name,
+        description: description,
       };
 
       let data = await axiosCreateCompany(accessToken, companyInfo);
