@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styles from "./create.module.css";
 import { Background } from "../../components/background";
 // import { Textbox } from '../../components/textbox'
@@ -13,12 +13,25 @@ import { TopBar } from '../../components/topBar'
 import ManageCommunity from "../../pages/mygroups/manageCommunity.jsx";
 import { successMessage } from "../../components/successMessage";
 import SuccessMessage from "../../components/successMessage/successMessage";
+import { axiosGetUserInfo } from "../../utils/axios";
+import { useAuth } from "../../hooks";
 
 function Create() {
   const [showCard, setShowCard] = useState(false);
   const [activeComponent, setActiveComponent] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const { auth, userInfo, setUserInfo } = useAuth();
+  const [companyId, setCompanyId] = useState(null);
+  // useEffect(() => {
+  //     const fetchData = async () => {
+  //       const accessToken = auth.accessToken;
+  //       const userInfo = await axiosGetUserInfo(accessToken);
+  //       setUserInfo(userInfo);
+  //     };
+
+  //     fetchData();
+  //   }, []);
 
   const originalData = [
     { Temp: "", Date: "2023-08-15", Name: "John Doe" },
@@ -59,6 +72,41 @@ function Create() {
     setShowCard(true);
   };
 
+  const [adminCompanies, setAdminCompanies] = useState([]);
+
+  const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+
+  useEffect(() => {
+    if (userInfo && userInfo.companies) {
+        const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+        
+        setAdminCompanies(newAdminCompanies)
+        if (newAdminCompanies.length > 0) {
+            setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
+            console.log(newAdminCompanies[0])
+            setCompanyId(newAdminCompanies[0]._id)
+            console.log(companyId)
+        } else {
+            setSelectedCommunity("No Communities");
+        }
+    } else {
+        setSelectedCommunity("No Communities");
+    }
+  }, [userInfo]);
+
+  
+
+  const handleCommunityChange = (event) => {
+    // console.log("Changing selected community to:", event.target.value);
+    // setSelectedCommunity(event.target.value);
+    // Additional logic to fetch and display data for the selected community
+    const currCompanyId = event.target.value
+    setCompanyId(currCompanyId);
+    const selected = adminCompanies.find((company => company._id === currCompanyId))
+    console.log("HEIG", selected)
+    setSelectedCommunity(selected);
+  };
+
   return (
     <div className={styles.createContainer}>
       <Background />
@@ -73,6 +121,17 @@ function Create() {
           size={"25px"}
           weight={"bold"}
           textColor="#000"
+        />
+
+        <BoldText 
+            text={
+            typeof selectedCommunity === 'string' && selectedCommunity === "No Communities" 
+                ? "No Communities" 
+                : `Community Name: ${selectedCommunity.CompanyName}`
+            } 
+            containerWidth={"250px"} 
+            size={"18px"} 
+            textColor="#000"
         />
       </div>
       <div className={styles.createGrid}>
@@ -93,6 +152,23 @@ function Create() {
             onClick={() => handleButtonClick("CreateCommunity")}
           />
         </div>
+
+        <div className={styles.boxWrapper}>
+            <Card gradientBorder={true} borderRadius="5px" containerHeight="auto" containerWidth="200px">
+                <div className={styles.communityDropdown}>
+                <select value={selectedCommunity._id} onChange={handleCommunityChange}>
+                {
+                // The adminCompanies array is derived from userInfo and is kept up-to-date
+                adminCompanies.map(company => (
+                <option key={company} value={company._id}>{company.CompanyName}</option>
+                ))
+                }
+                </select>
+                </div>
+            </Card>
+        </div>
+
+        
 
         <div className={styles.recentCredentialsCard}>
           <Card>
@@ -167,7 +243,7 @@ function Create() {
               className={styles.overlayBackground}
               onClick={() => setShowCard(false)}
             ></div>
-            {activeComponent === "CreateCredential" && <CreateCredential />}
+            {activeComponent === "CreateCredential" && <CreateCredential currentCompanyId = {companyId}/>}
             {activeComponent === "CreateCommunity" && <CreateCommunity />}
           </div>
         )}

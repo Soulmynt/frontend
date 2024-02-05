@@ -11,7 +11,7 @@ import { useAuth } from "../../hooks";
 import { axiosCreateCredential } from "../../utils/axios";
 
 
-const CreateCredentials = () => {
+const CreateCredentials = ({currentCompanyId}) => {
     
     const [selectedImage, setSelectedImage] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
@@ -56,16 +56,23 @@ const CreateCredentials = () => {
         fileInput.click();
     };
 
+    const extractText = (html) => {
+        return html.replace(/<\/?[^>]+(>|$)/g, "");
+      };
+      
+
 
     const handleCreateClick = async () => {
         // Example logic: Check if both name and description are filled
         if (editorContent) {
             const accessToken = auth.accessToken;
+            console.log("CMC", currentCompanyId);
             const CredentialInfo = {
-                imageLink: selectedImage, 
-                title: title, 
-                color: color,
-                text: editorContent
+                Title: title, 
+                ImageLink: selectedImage, 
+                company: currentCompanyId,
+                Color: color,
+                text: extractText(editorContent) 
             };
             
 
@@ -148,7 +155,7 @@ const CreateCredentials = () => {
                             text={"Title"}
                             variant="white-black-border"
                             // value={title}
-                            onChange = {setTitle}
+                            onChange={(e) => setTitle(e.target.value)}
                             
                             containerWidth={"378px"}
                         />

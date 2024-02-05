@@ -210,6 +210,7 @@ function MyGroups() {
         }
     }, [userInfo]);
 
+    console.log(adminCompanies)
     
 
     // const [selectedCommunity, setSelectedCommunity] = useState("No communities");
@@ -240,9 +241,9 @@ function MyGroups() {
         // console.log("Changing selected community to:", event.target.value);
         // setSelectedCommunity(event.target.value);
         // Additional logic to fetch and display data for the selected community
-        const companyId = parseInt(event.target.value, 10)
+        const companyId = event.target.value
         const selected = adminCompanies.find((company => company._id === companyId))
-        console.log(selected)
+        console.log("HEIG", selected)
         setSelectedCommunity(selected);
     };
 

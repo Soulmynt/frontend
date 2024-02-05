@@ -193,7 +193,7 @@ const CreateCommunity = () => {
       <Card
         positionType="relative"
         containerWidth="800px"
-        containerHeight="1300px"
+        containerHeight="900px"
       >
         <div className={styles.createCommunityText}>
           <BoldText
@@ -504,7 +504,7 @@ const CreateCommunity = () => {
                     />
                 </div> */}
 
-        <div className={styles.generalSpacing}>
+        {/* <div className={styles.generalSpacing}>
           <BoldText
             text={"Send Credentials"}
             containerWidth={"250px"}
@@ -523,14 +523,10 @@ const CreateCommunity = () => {
             size={"15px"}
             textColor="#8F8F8F"
           />
-        </div>
+        </div> */}
 
-        <div className={styles.generalSpacing}>
-          {/* <Table 
-                        columns={["", "This", "is", "placeholder", "Seleect"]} 
-                        data={table1Data} 
-                        width="80%"
-                    /> */}
+        {/* <div className={styles.generalSpacing}>
+          
           <Table
             columns={["", "This", "is", "placeholder", "Select"]}
             data={table1Data.map((item, index) => ({
@@ -546,9 +542,9 @@ const CreateCommunity = () => {
             }))}
             width="80%"
           />
-        </div>
+        </div> */}
 
-        <div className={styles.generalSpacing}>
+        {/* <div className={styles.generalSpacing}>
           <BoldText
             text={
               "Points total needed to receive above credential automatically by soulmynt (leave blank if you want to send the credentials manually)"
@@ -567,7 +563,7 @@ const CreateCommunity = () => {
             value={pointsTotal === 0 ? "" : pointsTotal}
             onChange={handlePointsTotalChange}
           />
-        </div>
+        </div> */}
 
         <div className={styles.continueButtonContainer}>
           <Button

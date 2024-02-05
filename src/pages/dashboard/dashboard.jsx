@@ -41,7 +41,8 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  
+  console.log("hello", userInfo);
+
 
   const f = {
     id: "ObjectId",
