@@ -76,10 +76,6 @@ const CreateCredentials = ({ currentCompanyId }) => {
         let data = await axiosCreateCredential(accessToken, CredentialInfo);
 
         if (data.status == 200) {
-          setSelectedImage(null);
-          setTitle("");
-          setColor("#fff");
-          setEditorContent("");
           navigate("/create");
         }
       } catch (error) {
