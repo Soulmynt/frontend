@@ -13,7 +13,7 @@ import { TopBar } from '../../components/topBar'
 import ManageCommunity from "../../pages/mygroups/manageCommunity.jsx";
 import { successMessage } from "../../components/successMessage";
 import SuccessMessage from "../../components/successMessage/successMessage";
-import { axiosGetUserInfo } from "../../utils/axios";
+import { axiosGetUserInfo, axiosGetOneCompanyInfo} from "../../utils/axios";
 import { useAuth } from "../../hooks";
 
 function Create() {
@@ -21,17 +21,20 @@ function Create() {
   const [activeComponent, setActiveComponent] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const { auth, userInfo, setUserInfo } = useAuth();
+  const { auth, userInfo, setUserInfo, currentCompanyInfo, setCurrentCompanyInfo } = useAuth();
   const [companyId, setCompanyId] = useState(null);
-  // useEffect(() => {
-  //     const fetchData = async () => {
-  //       const accessToken = auth.accessToken;
-  //       const userInfo = await axiosGetUserInfo(accessToken);
-  //       setUserInfo(userInfo);
-  //     };
+  
 
-  //     fetchData();
-  //   }, []);
+    useEffect(() => {
+      const fetchData = async () => {
+        const accessToken = auth.accessToken;
+        const userInfo = await axiosGetUserInfo(accessToken);
+        setUserInfo(userInfo);
+      };
+
+      fetchData();
+    }, []);
+
 
   const originalData = [
     { Temp: "", Date: "2023-08-15", Name: "John Doe" },
@@ -81,10 +84,11 @@ function Create() {
         const newAdminCompanies = userInfo.companies.filter(company => company.admin);
         
         setAdminCompanies(newAdminCompanies)
+        console.log("newd", newAdminCompanies)
         if (newAdminCompanies.length > 0) {
             setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
             console.log(newAdminCompanies[0])
-            setCompanyId(newAdminCompanies[0]._id)
+            setCompanyId(newAdminCompanies[0].CompanyId)
             console.log(companyId)
         } else {
             setSelectedCommunity("No Communities");
@@ -93,6 +97,16 @@ function Create() {
         setSelectedCommunity("No Communities");
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    const fetchData2 = async () => {
+      const currentCompanyInfo = await axiosGetOneCompanyInfo(companyId);
+      setCurrentCompanyInfo(currentCompanyInfo);
+    };
+
+    fetchData2();
+  }, []);
+
 
   
 

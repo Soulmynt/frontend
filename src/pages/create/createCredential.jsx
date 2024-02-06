@@ -18,7 +18,7 @@ const CreateCredentials = ({currentCompanyId}) => {
     const [title, setTitle] = useState('');
     const [editorContent, setEditorContent] = useState('');
     const [color, setColor] = useState('#fff');
-    const {auth} = useAuth();
+    const {auth, userInfo} = useAuth();
 
     const modules = {
         toolbar: [
@@ -66,17 +66,18 @@ const CreateCredentials = ({currentCompanyId}) => {
         // Example logic: Check if both name and description are filled
         if (editorContent) {
             const accessToken = auth.accessToken;
+
+            console.log("gg", accessToken);
             console.log("CMC", currentCompanyId);
             const CredentialInfo = {
                 Title: title, 
                 ImageLink: selectedImage, 
-                company: currentCompanyId,
                 Color: color,
                 text: extractText(editorContent) 
             };
             
-
-            let data = await axiosCreateCredential(accessToken, CredentialInfo);
+            
+            let data = await axiosCreateCredential(accessToken, currentCompanyId, CredentialInfo);
 
             setSelectedImage(null);
             setTitle('');
