@@ -23,32 +23,139 @@ function Create() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const { auth, userInfo, setUserInfo, currentCompanyInfo, setCurrentCompanyInfo } = useAuth();
   const [companyId, setCompanyId] = useState(null);
+  const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+
+ 
   
 
+    // useEffect(() => {
+    // const fetchData = async () => {
+    // const accessToken = auth.accessToken;
+
+   
+    // try {
+    //   const userInfo = await axiosGetUserInfo(accessToken);
+      
+    //   setUserInfo(userInfo);
+      
+    //   if (companyId) {
+    //     const currentCompanyInfo = await axiosGetOneCompanyInfo(companyId);
+    //     console.log("HJER")
+    //     setCurrentCompanyInfo(currentCompanyInfo);
+    //     // setSelectedCommunity(currentCompanyInfo);
+    //   }
+    // } catch (error) {
+    //   console.log("useEffect on Create Error: ", error);
+    // }
+    // };
+
+    // fetchData();
+    // }, []);
+
+
+    // useEffect(() => {
+    //   if (userInfo && userInfo.companies) {
+    //       const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+          
+    //       setAdminCompanies(newAdminCompanies)
+    //       console.log("newd", newAdminCompanies)
+    //       if (newAdminCompanies.length > 0 && (!selectedCommunity || selectedCommunity == newAdminCompanies[0])) { //theoreticalyl can split this lol
+    //           setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
+    //           setCurrentCompanyInfo(newAdminCompanies[0])
+    //           console.log(newAdminCompanies[0])
+    //           setCompanyId(newAdminCompanies[0].CompanyId)
+    //       } else if (newAdminCompanies.length > 0 && selectedCommunity != newAdminCompanies[0]) {
+    //         //Do nothing because the handleCommunityChange takes care of it
+    //         console.log("CUD",selectedCommunity)
+    //       }
+    //       else {
+    //           setSelectedCommunity("No Communities");
+    //       }
+    //   } else {
+    //       setSelectedCommunity("No Communities");
+    //   }
+    // }, []);
+  
     useEffect(() => {
       const fetchData = async () => {
-        const accessToken = auth.accessToken;
-        const userInfo = await axiosGetUserInfo(accessToken);
-        setUserInfo(userInfo);
+        try {
+          // Assuming auth.accessToken is stable when this effect runs
+          const accessToken = auth.accessToken;
+    
+          // Fetch user info first
+          const userInfo = await axiosGetUserInfo(accessToken);
+          setUserInfo(userInfo);
+    
+          // Determine admin companies and set selected community
+          if (userInfo && userInfo.companies) {
+            const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+            setAdminCompanies(newAdminCompanies);
+    
+            if (newAdminCompanies.length > 0) {
+              //const selectedCompany = newAdminCompanies[0]; // or apply logic to find a specific one
+              setSelectedCommunity(newAdminCompanies[0]);
+              console.log("I am here", newAdminCompanies[0])
+              
+    
+              // Fetch and set company info for the selected company
+              const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].CompanyId);
+              setCompanyId(newAdminCompanies[0].CompanyId)
+              setCurrentCompanyInfo(currentCompanyInfo);
+            } else {
+              setSelectedCommunity("No Communities");
+              setCurrentCompanyInfo(null);
+            }
+          } else {
+            setSelectedCommunity("No Communities");
+            setCurrentCompanyInfo(null);
+          }
+        } catch (error) {
+          console.log("Combined useEffect Error: ", error);
+        }
       };
-
+    
       fetchData();
-    }, []);
+    }, [showCard]); // Empty array means this runs once on component mount
+    
+    
 
 
-  const originalData = [
-    { Temp: "", Date: "2023-08-15", Name: "John Doe" },
-    { Temp: "", Date: "2023-08-14", Name: "Jane Smith" },
-    { Temp: "", Date: "2023-08-15", Name: "John Doe" },
-    { Temp: "", Date: "2023-08-14", Name: "Jane Smith" },
-    // ... more data
-  ];
+    // useEffect(() => {
+    //   const fetchData2 = async () => {
+        
+    //     const currentCompanyInfo = await axiosGetOneCompanyInfo(companyId);
+    //     setCurrentCompanyInfo(currentCompanyInfo);
+    //   };
+  
+    //   fetchData2();
+    // }, []);
+    // useEffect(() => {
+    //   const fetchData2 = async () => {
+    //     if (companyId) {
+    //       try {
+    //         const currentCompanyInfo = await axiosGetOneCompanyInfo(companyId);
+    //         setCurrentCompanyInfo(currentCompanyInfo);
+    //         console.log("HE")
+    //       } catch (error) {
+    //         console.error("Failed to fetch company info:", error);
+    //       }
+    //     }
+    //   };
+    
+    //   fetchData2();
+    // }, []);
 
-  const table1Data = originalData.map(entry => ({
-    ...entry,
-    Send: <Button children="Send" onClick={() => handleSendClick()} />
+  // const originalData = [
+    
+  // ];
 
-  }));
+  const [tableData, setTableData] = useState([]);
+
+  // const table1Data = originalData.map(entry => ({
+  //   ...entry,
+  //   Send: <Button children="Send" onClick={() => handleSendClick()} />
+
+  // }));
 
   const handleSendClick = () => {
     setIsPopupVisible(true);
@@ -61,14 +168,13 @@ function Create() {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  
+  const handleCredentialCreated = () => {
+    setShowCard(false); // Close the modal
+    // Optionally, trigger re-render or fetch updated data here
+  };
 
-  const filteredData = useMemo(() => {
-    return table1Data.filter(
-      (item) =>
-        item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.Date.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm]);
+  
 
   const handleButtonClick = (componentName) => {
     setActiveComponent(componentName);
@@ -77,49 +183,93 @@ function Create() {
 
   const [adminCompanies, setAdminCompanies] = useState([]);
 
-  const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+  
 
-  useEffect(() => {
-    if (userInfo && userInfo.companies) {
-        const newAdminCompanies = userInfo.companies.filter(company => company.admin);
-        
-        setAdminCompanies(newAdminCompanies)
-        console.log("newd", newAdminCompanies)
-        if (newAdminCompanies.length > 0) {
-            setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
-            console.log(newAdminCompanies[0])
-            setCompanyId(newAdminCompanies[0].CompanyId)
-            console.log(companyId)
-        } else {
-            setSelectedCommunity("No Communities");
-        }
-    } else {
-        setSelectedCommunity("No Communities");
-    }
-  }, [userInfo]);
-
-  useEffect(() => {
-    const fetchData2 = async () => {
-      const currentCompanyInfo = await axiosGetOneCompanyInfo(companyId);
-      setCurrentCompanyInfo(currentCompanyInfo);
-    };
-
-    fetchData2();
-  }, []);
-
+  
+  
 
   
 
+  // const handleCommunityChange = (event) => {
+  //   // console.log("Changing selected community to:", event.target.value);
+  //   // setSelectedCommunity(event.target.value);
+  //   // Additional logic to fetch and display data for the selected community
+    
+    
+    
+  //   setCompanyId(event.target.value);
+  //   console.log("CID", companyId)
+
+  //   const selected = adminCompanies.find((company => company.CompanyId === companyId))
+  //   const currentCompanyInfo = await axiosGetOneCompanyInfo(companyId);
+    
+   
+  //   setSelectedCommunity(selected);
+  //   setCurrentCompanyInfo(selected);
+  // };
   const handleCommunityChange = (event) => {
-    // console.log("Changing selected community to:", event.target.value);
-    // setSelectedCommunity(event.target.value);
-    // Additional logic to fetch and display data for the selected community
-    const currCompanyId = event.target.value
-    setCompanyId(currCompanyId);
-    const selected = adminCompanies.find((company => company._id === currCompanyId))
-    console.log("HEIG", selected)
-    setSelectedCommunity(selected);
-  };
+    const newCompanyId = event.target.value;
+    setCompanyId(newCompanyId); // This sets the companyId state
+
+    // Define an async function inside the handler
+    const fetchAndSetCompanyInfo = async () => {
+        try {
+            // Wait for the axios call to complete
+            const currentCompanyInfo = await axiosGetOneCompanyInfo(newCompanyId);
+            console.log("enw cid ", companyId);
+            console.log("Fetched Company Info", currentCompanyInfo);
+
+            // Find the selected company object from adminCompanies
+            const selected = adminCompanies.find(company => company.CompanyId === newCompanyId);
+
+            // Update state with the fetched company info and selected company
+            setCurrentCompanyInfo(currentCompanyInfo);
+            setSelectedCommunity(selected || null); // Fallback to null if not found
+            
+
+            if (currentCompanyInfo && currentCompanyInfo.credentials) {
+              const processedCredentials = currentCompanyInfo.credentials[0].map(credential => ({
+
+                  
+                  // Assuming the structure of your credential, adjust as necessary
+                  Name: credential.Title,
+                  
+                  // Add more fields as needed
+                  Send: <Button children="Send" onClick={() => handleSendClick(credential)} />
+
+                  
+              }));
+              
+
+              
+              setTableData(processedCredentials);
+              console.log("ASUIBNIAS", tableData)
+              
+            } else {
+              // Handle case where there are no credentials
+              setTableData([]);
+            }
+        } catch (error) {
+            console.error("Error fetching company info:", error);
+            // Handle error (e.g., set error state, show notification)
+        }
+    };
+
+    // Call the async function
+    fetchAndSetCompanyInfo();
+};
+
+const filteredData = useMemo(() => {
+  // Check if tableData exists and has length
+  if (!tableData || tableData.length === 0) {
+    return []; // Return an empty array if tableData doesn't exist or is empty
+  }
+
+  // Proceed with filtering if tableData exists
+  return tableData.filter(item =>
+    item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}, [tableData, searchTerm]); // Include tableData in the dependency array
 
   return (
     <div className={styles.createContainer}>
@@ -170,11 +320,11 @@ function Create() {
         <div className={styles.boxWrapper}>
             <Card gradientBorder={true} borderRadius="5px" containerHeight="auto" containerWidth="200px">
                 <div className={styles.communityDropdown}>
-                <select value={selectedCommunity._id} onChange={handleCommunityChange}>
+                <select value={selectedCommunity.CompanyId} onChange={handleCommunityChange}>
                 {
                 // The adminCompanies array is derived from userInfo and is kept up-to-date
                 adminCompanies.map(company => (
-                <option key={company} value={company._id}>{company.CompanyName}</option>
+                <option key={company} value={company.CompanyId}>{company.CompanyName}</option>
                 ))
                 }
                 </select>
@@ -208,7 +358,7 @@ function Create() {
             <div className={styles.generalSpacing}>
               {filteredData.length > 0 ? (
                 <Table
-                  columns={[" ", "Date", "Name", "Send"]}
+                  columns={[" ", , "Name", "Send"]}
                   data={filteredData}
                   width="97%"
                   height="auto"
@@ -257,7 +407,7 @@ function Create() {
               className={styles.overlayBackground}
               onClick={() => setShowCard(false)}
             ></div>
-            {activeComponent === "CreateCredential" && <CreateCredential currentCompanyId = {companyId}/>}
+            {activeComponent === "CreateCredential" && <CreateCredential currentCompanyId={companyId} onCredentialCreated={handleCredentialCreated} />}
             {activeComponent === "CreateCommunity" && <CreateCommunity />}
           </div>
         )}

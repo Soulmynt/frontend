@@ -11,7 +11,7 @@ import "react-quill/dist/quill.snow.css"; // Import styles
 import { useAuth } from "../../hooks";
 import { axiosCreateCredential } from "../../utils/axios";
 
-const CreateCredentials = ({ currentCompanyId }) => {
+const CreateCredentials = ({ currentCompanyId, onCredentialCreated }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [title, setTitle] = useState("");
@@ -63,20 +63,20 @@ const CreateCredentials = ({ currentCompanyId }) => {
     // Example logic: Check if both name and description are filled
     if (editorContent) {
       const accessToken = auth.accessToken;
-      console.log("CMC", currentCompanyId);
       const CredentialInfo = {
         Title: title,
         ImageLink: selectedImage,
-        company: currentCompanyId,
         Color: color,
         text: extractText(editorContent),
       };
 
       try {
-        let data = await axiosCreateCredential(accessToken, CredentialInfo);
+        let data = await axiosCreateCredential(accessToken, currentCompanyId, CredentialInfo);
 
         if (data.status == 200) {
-          navigate("/create");
+          console.log("This should hit if Successful:")
+        //   navigate('.', { state: { key: Date.now() } });;
+          onCredentialCreated();
         }
       } catch (error) {
         console.log(error);

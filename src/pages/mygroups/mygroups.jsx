@@ -921,7 +921,7 @@ function MyGroups() {
                     onClick={() => setShowCard(false)}
                     ></div>
                     {activeComponent === "CreateChallenge" && <CreateChallenge />}
-                    {activeComponent === "ManageCommunity" && <ManageCommunity selectedCompanyId={selectedCommunity._id} />}
+                    {activeComponent === "ManageCommunity" && <ManageCommunity selectedCompanyId={selectedCommunity.CompanyId} />}
                     {activeComponent === "RewardsLadder" && <RewardsLadder />}
                     </div>
                 )}        

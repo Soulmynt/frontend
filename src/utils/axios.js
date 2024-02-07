@@ -63,8 +63,8 @@ export async function axiosGetOneCompanyInfo(cId) {
   const companyId = { companyId: cId };
   try {
     let data = await axios.post(`http://localhost:4000/onecompany`, companyId);
-    console.log("HELLOOODATA", data);
-    return data;
+    console.log("HELLOOODATA", data.data.company);
+    return data.data.company;
   } catch (e) {
     const errorlog = { data: { error: e } };
     return errorlog;
@@ -115,6 +115,7 @@ export async function axiosCreateCredential(token, cId, credentialInfo) {
       companyId: cId,
       CredentialInfo: credentialInfo,
     });
+    console.log("sueccess")
     return data;
   } catch (e) {
     const errorlog = { data: { error: e } };
