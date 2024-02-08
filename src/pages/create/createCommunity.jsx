@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./createCommunity.module.css";
 import { Card } from "../../components/card";
 import { BoldText } from "../../components/boldText";
@@ -10,7 +11,7 @@ import { useAuth } from "../../hooks";
 import { axiosCreateCompany } from "../../utils/axios";
 
 const CreateCommunity = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -26,6 +27,7 @@ const CreateCommunity = () => {
   const [rewards, setRewards] = useState([]);
 
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
   const [table1Data, setTable1Data] = useState([
     {
@@ -94,18 +96,25 @@ const CreateCommunity = () => {
     if (name && description) {
       const accessToken = auth.accessToken;
       const companyInfo = {
-        imageLink: selectedImage,
+        imageLink: "", // Currently since no image upload is implemented, this is empty
         name: name,
         description: description,
       };
+      try {
+        let data = await axiosCreateCompany(accessToken, companyInfo);
+        if (data.status === 200) {
+          console.log("success");
 
-      let data = await axiosCreateCompany(accessToken, companyInfo);
-
-      setSelectedImage(null);
-      setName("");
-      setDescription("");
-      setQuestions([]);
-      setOpenCommunity(false);
+          setSelectedImage(null);
+          setName("");
+          setDescription("");
+          setQuestions([]);
+          setOpenCommunity(false);
+          navigate("/dashboard");
+        }
+      } catch (e) {
+        console.log({ error: e });
+      }
 
       // ... other logic
     } else {
