@@ -46,7 +46,7 @@ export async function axiosRefresh(email) {
 
 export async function axiosGetUserInfo(token) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's accessToken  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
-  
+
   const tokenObject = { accessToken: token };
   try {
     let data = await axios.post(`http://localhost:4000/userinfo`, tokenObject);
@@ -59,7 +59,7 @@ export async function axiosGetUserInfo(token) {
 
 export async function axiosGetOneCompanyInfo(cId) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's accessToken  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
-  
+
   const companyId = { companyId: cId };
   try {
     let data = await axios.post(`http://localhost:4000/onecompany`, companyId);
@@ -71,11 +71,10 @@ export async function axiosGetOneCompanyInfo(cId) {
   }
 }
 
-
 export async function axiosCreateCompany(accessToken, companyInfo) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
-  console.log("ci", companyInfo)
-  console.log("at", accessToken)
+  console.log("ci", companyInfo);
+  console.log("at", accessToken);
   try {
     let data = await axios.post(`http://localhost:4000/createcompany`, {
       accessToken: accessToken,
@@ -107,15 +106,15 @@ export async function axiosUpdateCompanyJoinCode(token, companyId) {
 
 export async function axiosCreateCredential(token, cId, credentialInfo) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
-  console.log(token)
-  console.log(credentialInfo)
+  console.log(token);
+  console.log(credentialInfo);
   try {
     let data = await axios.post(`http://localhost:4000/createcredential`, {
       accessToken: token,
       companyId: cId,
-      CredentialInfo: credentialInfo,
+      credentialInfo: credentialInfo,
     });
-    console.log("sueccess")
+    console.log("sueccess");
     return data;
   } catch (e) {
     const errorlog = { data: { error: e } };

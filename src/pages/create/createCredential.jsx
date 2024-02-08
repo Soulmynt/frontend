@@ -12,7 +12,7 @@ import { useAuth } from "../../hooks";
 import { axiosCreateCredential } from "../../utils/axios";
 
 const CreateCredentials = ({ currentCompanyId, onCredentialCreated }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const [title, setTitle] = useState("");
   const [editorContent, setEditorContent] = useState("");
@@ -40,14 +40,16 @@ const CreateCredentials = ({ currentCompanyId, onCredentialCreated }) => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    // ! This function will handle submitting image to server or aws bucket and then getting the link back, but for now will just return empyty string
+    // const file = e.target.files[0];
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     setSelectedImage(reader.result);
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
+    setSelectedImage("");
   };
 
   const handleEditClick = () => {
@@ -64,18 +66,22 @@ const CreateCredentials = ({ currentCompanyId, onCredentialCreated }) => {
     if (editorContent) {
       const accessToken = auth.accessToken;
       const CredentialInfo = {
-        Title: title,
-        ImageLink: selectedImage,
-        Color: color,
+        title: title,
+        tmageLink: selectedImage,
+        color: color,
         text: extractText(editorContent),
       };
 
       try {
-        let data = await axiosCreateCredential(accessToken, currentCompanyId, CredentialInfo);
+        let data = await axiosCreateCredential(
+          accessToken,
+          currentCompanyId,
+          CredentialInfo
+        );
 
         if (data.status == 200) {
-          console.log("This should hit if Successful:")
-        //   navigate('.', { state: { key: Date.now() } });;
+          console.log("This should hit if Successful:");
+          //   navigate('.', { state: { key: Date.now() } });;
           onCredentialCreated();
         }
       } catch (error) {
