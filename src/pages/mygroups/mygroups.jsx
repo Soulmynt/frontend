@@ -13,7 +13,7 @@ import { Table } from '../../components/table';
 import { TopBar } from '../../components/topBar'
 import { useAuth } from "../../hooks";
 import moment from 'moment-timezone';
-import { axiosGetUserInfo } from "../../utils/axios";
+import { axiosGetUserInfo, axiosGetOneCompanyInfo } from "../../utils/axios";
 
 function MyGroups() {
     const [showCard, setShowCard] = useState(false);
@@ -25,16 +25,77 @@ function MyGroups() {
     const [selectedImageSrc, setSelectedImageSrc] = useState(null);
     const [selectedReviewText, setSelectedReviewText] = useState(null);
     const { auth, userInfo, setUserInfo } = useAuth();
+    const [companyId, setCompanyId] = useState(null);
+    const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+    const [adminCompanies, setAdminCompanies] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       const accessToken = auth.accessToken;
+    //       const userInfo = await axiosGetUserInfo(accessToken);
+    //       setUserInfo(userInfo);
+    //     };
+    
+    //     fetchData();
+    //   }, []);
+
+    //   useEffect(() => {
+    //     if (userInfo && userInfo.companies) {
+    //         const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+            
+    //         setAdminCompanies(newAdminCompanies)
+    //         if (newAdminCompanies.length > 0) {
+    //             setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
+    //         } else {
+    //             setSelectedCommunity("No Communities");
+    //         }
+    //     } else {
+    //         setSelectedCommunity("No Communities");
+    //     }
+    // }, [userInfo]);
 
     useEffect(() => {
         const fetchData = async () => {
-          const accessToken = auth.accessToken;
-          const userInfo = await axiosGetUserInfo(accessToken);
-          setUserInfo(userInfo);
+          try {
+            // Assuming auth.accessToken is stable when this effect runs
+            const accessToken = auth.accessToken;
+      
+            // Fetch user info first
+            const userInfo = await axiosGetUserInfo(accessToken);
+            setUserInfo(userInfo);
+      
+            // Determine admin companies and set selected community
+            if (userInfo && userInfo.companies) {
+              const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+              setAdminCompanies(newAdminCompanies);
+      
+              if (newAdminCompanies.length > 0) {
+                //const selectedCompany = newAdminCompanies[0]; // or apply logic to find a specific one
+                
+                console.log("I am here", newAdminCompanies[0])
+                
+      
+                // Fetch and set company info for the selected company
+                const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].CompanyId);
+                setCompanyId(newAdminCompanies[0].CompanyId)
+                // setCurrentCompanyInfo(currentCompanyInfo);
+                setSelectedCommunity(newAdminCompanies[0]);
+              } else {
+                setSelectedCommunity("No Communities");
+                // setCurrentCompanyInfo(null);
+              }
+            } else {
+              setSelectedCommunity("No Communities");
+            //   setCurrentCompanyInfo(null);
+            }
+          } catch (error) {
+            console.log("Combined useEffect Error: ", error);
+          }
         };
-    
+      
         fetchData();
-      }, []);
+      }, [showCard]); // Empty array means this runs once on component mount
+
 
 
     const handleImageClick = (imageSrc) => {
@@ -175,9 +236,9 @@ function MyGroups() {
     // );
 
     //TODO: CHANGED TO USEEFFECT FOR NOW
-    const [adminCompanies, setAdminCompanies] = useState([]);
+    // const [adminCompanies, setAdminCompanies] = useState([]);
 
-    const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+    
 
     // useEffect(() => {
     //     if (userInfo && userInfo.companies && userInfo.companies.length > 0) {
@@ -195,21 +256,7 @@ function MyGroups() {
     // }, [userInfo]);
 
    
-    useEffect(() => {
-        if (userInfo && userInfo.companies) {
-            const newAdminCompanies = userInfo.companies.filter(company => company.admin);
-            
-            setAdminCompanies(newAdminCompanies)
-            if (newAdminCompanies.length > 0) {
-                setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
-            } else {
-                setSelectedCommunity("No Communities");
-            }
-        } else {
-            setSelectedCommunity("No Communities");
-        }
-    }, [userInfo]);
-
+    
     console.log(adminCompanies)
     
 
@@ -237,14 +284,43 @@ function MyGroups() {
     //     }
     // }, [userInfo]); // Re-run when userInfo changes
 
+    // const handleCommunityChange = (event) => {
+    //     // console.log("Changing selected community to:", event.target.value);
+    //     // setSelectedCommunity(event.target.value);
+    //     // Additional logic to fetch and display data for the selected community
+    //     const companyId = event.target.value
+    //     const selected = adminCompanies.find((company => company._id === companyId))
+    //     console.log("HEIG", selected)
+    //     setSelectedCommunity(selected);
+    // };
     const handleCommunityChange = (event) => {
-        // console.log("Changing selected community to:", event.target.value);
-        // setSelectedCommunity(event.target.value);
-        // Additional logic to fetch and display data for the selected community
-        const companyId = event.target.value
-        const selected = adminCompanies.find((company => company._id === companyId))
-        console.log("HEIG", selected)
-        setSelectedCommunity(selected);
+        const newCompanyId = event.target.value;
+        setCompanyId(newCompanyId); // This sets the companyId state
+    
+        // Define an async function inside the handler
+        const fetchAndSetCompanyInfo = async () => {
+            try {
+                // Wait for the axios call to complete
+                const currentCompanyInfo = await axiosGetOneCompanyInfo(newCompanyId);
+                console.log("enw cid ", companyId);
+                console.log("Fetched Company Info", currentCompanyInfo);
+    
+                // Find the selected company object from adminCompanies
+                const selected = adminCompanies.find(company => company.CompanyId === newCompanyId);
+    
+                // Update state with the fetched company info and selected company
+                // setCurrentCompanyInfo(currentCompanyInfo);
+                setSelectedCommunity(selected || "No Communities"); // Fallback to null if not found
+
+              
+            } catch (error) {
+                console.error("Error fetching company info:", error);
+                // Handle error (e.g., set error state, show notification)
+            }
+        };
+    
+        // Call the async function
+        fetchAndSetCompanyInfo();
     };
 
    
@@ -273,93 +349,21 @@ function MyGroups() {
     //     fetchData();
     // }, []); // Dependencies array can be adjusted based on when you need to refetch the data
 
-
-    // const getActiveChallenges = (companyData) => {
-    //     // Process companyData to get active challenges
-    //     // ...
-    // };
-    
-    // const getScheduledChallenges = (companyData) => {
-    //     // Process companyData to get scheduled challenges
-    //     // ...
-    // };
     
 
-   
-
-
-    const getActiveChallenges = () => {
+    const getActiveChallenges = (companyData) => {
+        // Process companyData to get active challenges
+        // ...
         const now = moment().tz('America/New_York');
+        // const specificCompanyData = response.userCompanyProfile;
 
-         //TODO: GET THE COMPANY INFO BASED ON THE SELECTED COMPANY'S ID  - NEED TO HIT THE ENDPOINT
+        
 
-        const response = 
-        {
-            "success": true,
-            "userCompanyProfile": {    
-                    "_id": 1,          
-                    "image": "String",  
-                    "name": "XYZ",
-                    "Status": "String",
-                    "Description": "String",
-                    "QualifyingQuestions": ["String"],
-                    "Resume": "Boolean",
-                    "OpenCommunity": "Boolean",
-                    "challenges": [
+        if (!selectedCommunity || !selectedCommunity.challenges) return [];
 
-                        {
-                            "name": "ah", 
-                            "company": "ObjectId",
-                            "description": "hqh",
-                            "points": "Number",
-                            "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-30",
-                            "credentialArray": ["ObjectId"],
-                            "tokenReward": { "tokenType": "String", "amount": "Number" },
-                            "active": "Boolean",
-                            "participants": [{
-                              "user": "ObjectId",
-                              "proof": ["String"],
-                              "completedDate": "Date",
-                              "confirmed": "Boolean",
-                            }],
-                        },
-                        {
-                            "name": "nn", 
-                            "company": "ObjectId",
-                            "description": "hello",
-                            "points": 100,
-                            "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-30",
-                            "credentialArray": ["ObjectId"],
-                            "tokenReward": { "tokenType": "String", "amount": "Number" },
-                            "active": "Boolean",
-                            "participants": [{
-                              "user": "ObjectId",
-                              "proof": ["String"],
-                              "completedDate": "Date",
-                              "confirmed": "Boolean",
-                            }],
-                        }
-
-
-
-
-                    ],
-                    "Rewards": [{ "reward": "String", "PointsReq": "Number" }],
-                    "address": "String",
-                    "users": [{ "user": "ObjectId", "Points": "Number" }],
-                    "admins": ["ObjectId"],
-                    "joinCode": "String",
-            }
-        }
-
-        const specificCompanyData = response.userCompanyProfile;
-
-
-        if (!specificCompanyData || !specificCompanyData.challenges) return [];
+        // console.log("SDNV", selectedCommunity)
     
-        return specificCompanyData.challenges
+        return selectedCommunity.challenges
             .filter(challenge => {
                 // Ensure the challenge dates are interpreted as Date objects
                 const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
@@ -385,77 +389,16 @@ function MyGroups() {
             })
             .sort((a, b) => a.Remaining - b.Remaining); // Sort based on time remaining
     };
-
-    const getScheduledChallenges = () => {
+    
+    const getScheduledChallenges = (companyData) => {
+        // Process companyData to get scheduled challenges
+        // ...
         const now = moment().tz('America/New_York');
-
-        const response = 
-        {
-            "success": true,
-            "userCompanyProfile": {    
-                    "_id": 1,          
-                    "image": "String",  
-                    "name": "XYZ",
-                    "Status": "String",
-                    "Description": "String",
-                    "QualifyingQuestions": ["String"],
-                    "Resume": "Boolean",
-                    "OpenCommunity": "Boolean",
-                    "challenges": [
-
-                        {
-                            "name": "ah", 
-                            "company": "ObjectId",
-                            "description": "hqh",
-                            "points": "Number",
-                            "dateCreated": "2024-01-03",
-                            "dateExpires": "2024-01-30",
-                            "credentialArray": ["ObjectId"],
-                            "tokenReward": { "tokenType": "String", "amount": "Number" },
-                            "active": "Boolean",
-                            "participants": [{
-                              "user": "ObjectId",
-                              "proof": ["String"],
-                              "completedDate": "Date",
-                              "confirmed": "Boolean",
-                            }],
-                        },
-                        {
-                            "name": "nn", 
-                            "company": "ObjectId",
-                            "description": "hello",
-                            "points": 100,
-                            "dateCreated": "2024-01-15",
-                            "dateExpires": "2024-01-30",
-                            "credentialArray": ["ObjectId"],
-                            "tokenReward": { "tokenType": "String", "amount": "Number" },
-                            "active": "Boolean",
-                            "participants": [{
-                              "user": "ObjectId",
-                              "proof": ["String"],
-                              "completedDate": "Date",
-                              "confirmed": "Boolean",
-                            }],
-                        }
-
-
-
-
-                    ],
-                    "Rewards": [{ "reward": "String", "PointsReq": "Number" }],
-                    "address": "String",
-                    "users": [{ "user": "ObjectId", "Points": "Number" }],
-                    "admins": ["ObjectId"],
-                    "joinCode": "String",
-            }
-        }
+        // const specificCompanyData = response.userCompanyProfile;
     
-        // Assuming response comes from an API call or similar
-        const specificCompanyData = response.userCompanyProfile;
+        if (!selectedCommunity || !selectedCommunity.challenges) return [];
     
-        if (!specificCompanyData || !specificCompanyData.challenges) return [];
-    
-        return specificCompanyData.challenges
+        return selectedCommunity.challenges
             .filter(challenge => {
                 // Interpret the challenge start date as a Date object
                 const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
@@ -480,6 +423,203 @@ function MyGroups() {
             })
             .sort((a, b) => a.Starts - b.Starts); // Sort based on time until start
     };
+    
+
+   
+
+
+    // const getActiveChallenges = () => {
+    //     const now = moment().tz('America/New_York');
+
+    //      //TODO: GET THE COMPANY INFO BASED ON THE SELECTED COMPANY'S ID  - NEED TO HIT THE ENDPOINT
+
+    //     const response = 
+    //     {
+    //         "success": true,
+    //         "userCompanyProfile": {    
+    //                 "_id": 1,          
+    //                 "image": "String",  
+    //                 "name": "XYZ",
+    //                 "Status": "String",
+    //                 "Description": "String",
+    //                 "QualifyingQuestions": ["String"],
+    //                 "Resume": "Boolean",
+    //                 "OpenCommunity": "Boolean",
+    //                 "challenges": [
+
+    //                     {
+    //                         "name": "ah", 
+    //                         "company": "ObjectId",
+    //                         "description": "hqh",
+    //                         "points": "Number",
+    //                         "dateCreated": "2024-01-03",
+    //                         "dateExpires": "2024-01-30",
+    //                         "credentialArray": ["ObjectId"],
+    //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
+    //                         "active": "Boolean",
+    //                         "participants": [{
+    //                           "user": "ObjectId",
+    //                           "proof": ["String"],
+    //                           "completedDate": "Date",
+    //                           "confirmed": "Boolean",
+    //                         }],
+    //                     },
+    //                     {
+    //                         "name": "nn", 
+    //                         "company": "ObjectId",
+    //                         "description": "hello",
+    //                         "points": 100,
+    //                         "dateCreated": "2024-01-03",
+    //                         "dateExpires": "2024-01-30",
+    //                         "credentialArray": ["ObjectId"],
+    //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
+    //                         "active": "Boolean",
+    //                         "participants": [{
+    //                           "user": "ObjectId",
+    //                           "proof": ["String"],
+    //                           "completedDate": "Date",
+    //                           "confirmed": "Boolean",
+    //                         }],
+    //                     }
+
+
+
+
+    //                 ],
+    //                 "Rewards": [{ "reward": "String", "PointsReq": "Number" }],
+    //                 "address": "String",
+    //                 "users": [{ "user": "ObjectId", "Points": "Number" }],
+    //                 "admins": ["ObjectId"],
+    //                 "joinCode": "String",
+    //         }
+    //     }
+
+    //     const specificCompanyData = response.userCompanyProfile;
+
+
+    //     if (!specificCompanyData || !specificCompanyData.challenges) return [];
+    
+    //     return specificCompanyData.challenges
+    //         .filter(challenge => {
+    //             // Ensure the challenge dates are interpreted as Date objects
+    //             const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
+    //             const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
+    
+    //             // Check if the current date is within the active challenge period
+    //             return now.isSameOrAfter(startDate) && now.isSameOrBefore(endDate);
+    //         })
+    //         .map(challenge => {
+    //             // Calculate time remaining as the difference between endDate and now
+    //             const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
+    //             const timeRemaining = endDate - now;
+    
+    //             // Convert time remaining from milliseconds into a more readable format (e.g., hours)
+    //             const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
+    //             const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    
+    //             return {
+    //                 Name: challenge.name,
+    //                 Remaining: `${hoursRemaining} hrs ${minutesRemaining} mins`, // or more sophisticated formatting
+    //                 challengeData: challenge, // Keep the original challenge data for later use
+    //             };
+    //         })
+    //         .sort((a, b) => a.Remaining - b.Remaining); // Sort based on time remaining
+    // };
+
+    // const getScheduledChallenges = () => {
+    //     const now = moment().tz('America/New_York');
+
+    //     const response = 
+    //     {
+    //         "success": true,
+    //         "userCompanyProfile": {    
+    //                 "_id": 1,          
+    //                 "image": "String",  
+    //                 "name": "XYZ",
+    //                 "Status": "String",
+    //                 "Description": "String",
+    //                 "QualifyingQuestions": ["String"],
+    //                 "Resume": "Boolean",
+    //                 "OpenCommunity": "Boolean",
+    //                 "challenges": [
+
+    //                     {
+    //                         "name": "ah", 
+    //                         "company": "ObjectId",
+    //                         "description": "hqh",
+    //                         "points": "Number",
+    //                         "dateCreated": "2024-01-03",
+    //                         "dateExpires": "2024-01-30",
+    //                         "credentialArray": ["ObjectId"],
+    //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
+    //                         "active": "Boolean",
+    //                         "participants": [{
+    //                           "user": "ObjectId",
+    //                           "proof": ["String"],
+    //                           "completedDate": "Date",
+    //                           "confirmed": "Boolean",
+    //                         }],
+    //                     },
+    //                     {
+    //                         "name": "nn", 
+    //                         "company": "ObjectId",
+    //                         "description": "hello",
+    //                         "points": 100,
+    //                         "dateCreated": "2024-01-15",
+    //                         "dateExpires": "2024-01-30",
+    //                         "credentialArray": ["ObjectId"],
+    //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
+    //                         "active": "Boolean",
+    //                         "participants": [{
+    //                           "user": "ObjectId",
+    //                           "proof": ["String"],
+    //                           "completedDate": "Date",
+    //                           "confirmed": "Boolean",
+    //                         }],
+    //                     }
+
+
+
+
+    //                 ],
+    //                 "Rewards": [{ "reward": "String", "PointsReq": "Number" }],
+    //                 "address": "String",
+    //                 "users": [{ "user": "ObjectId", "Points": "Number" }],
+    //                 "admins": ["ObjectId"],
+    //                 "joinCode": "String",
+    //         }
+    //     }
+    
+    //     // Assuming response comes from an API call or similar
+    //     const specificCompanyData = response.userCompanyProfile;
+    
+    //     if (!specificCompanyData || !specificCompanyData.challenges) return [];
+    
+    //     return specificCompanyData.challenges
+    //         .filter(challenge => {
+    //             // Interpret the challenge start date as a Date object
+    //             const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
+                
+    //             // Check if the challenge start date is in the future
+    //             return now.isBefore(startDate);
+    //         })
+    //         .map(challenge => {
+    //             // Calculate time until the challenge starts
+    //             const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
+    //             const timeUntilStart = startDate - now;
+    
+    //             // Convert time until start from milliseconds to a more readable format
+    //             const daysUntilStart = Math.floor(timeUntilStart / (1000 * 60 * 60 * 24));
+    //             const hoursUntilStart = Math.floor((timeUntilStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    
+    //             return {
+    //                 Name: challenge.name,
+    //                 Starts: `${daysUntilStart} days ${hoursUntilStart} hrs`, // or more sophisticated formatting
+    //                 challengeData: challenge, // Keep the original challenge data for later use
+    //             };
+    //         })
+    //         .sort((a, b) => a.Starts - b.Starts); // Sort based on time until start
+    // };
     
     
     const getCompletedChallenges = () => {
@@ -571,7 +711,6 @@ function MyGroups() {
     };
     
   
-
     const originalData = getActiveChallenges();
     const scheduledData = getScheduledChallenges();
     const completedChallenges = getCompletedChallenges();
@@ -768,11 +907,11 @@ function MyGroups() {
             <div className={styles.boxWrapper}>
                 <Card gradientBorder={true} borderRadius="5px" containerHeight="auto" containerWidth="200px">
                     <div className={styles.communityDropdown}>
-                    <select value={selectedCommunity._id} onChange={handleCommunityChange}>
+                    <select value={selectedCommunity.CompanyId} onChange={handleCommunityChange}>
                     {
                     // The adminCompanies array is derived from userInfo and is kept up-to-date
                     adminCompanies.map(company => (
-                    <option key={company} value={company._id}>{company.CompanyName}</option>
+                    <option key={company} value={company.CompanyId}>{company.CompanyName}</option>
                     ))
                     }
                     </select>

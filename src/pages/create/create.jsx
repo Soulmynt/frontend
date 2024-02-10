@@ -243,7 +243,7 @@ function Create() {
 
               
               setTableData(processedCredentials);
-              console.log("ASUIBNIAS", tableData)
+              
               
             } else {
               // Handle case where there are no credentials
