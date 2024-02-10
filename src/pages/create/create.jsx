@@ -98,8 +98,8 @@ function Create() {
               
     
               // Fetch and set company info for the selected company
-              const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].CompanyId);
-              setCompanyId(newAdminCompanies[0].CompanyId)
+              const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
+              setCompanyId(newAdminCompanies[0].companyId)
               setCurrentCompanyInfo(currentCompanyInfo);
             } else {
               setSelectedCommunity("No Communities");
@@ -220,7 +220,7 @@ function Create() {
             console.log("Fetched Company Info", currentCompanyInfo);
 
             // Find the selected company object from adminCompanies
-            const selected = adminCompanies.find(company => company.CompanyId === newCompanyId);
+            const selected = adminCompanies.find(company => company.companyId === newCompanyId);
 
             // Update state with the fetched company info and selected company
             setCurrentCompanyInfo(currentCompanyInfo);
@@ -291,7 +291,7 @@ const filteredData = useMemo(() => {
             text={
             typeof selectedCommunity === 'string' && selectedCommunity === "No Communities" 
                 ? "No Communities" 
-                : `Community Name: ${selectedCommunity.CompanyName}`
+                : `Community Name: ${selectedCommunity.companyName}`
             } 
             containerWidth={"250px"} 
             size={"18px"} 
@@ -320,11 +320,11 @@ const filteredData = useMemo(() => {
         <div className={styles.boxWrapper}>
             <Card gradientBorder={true} borderRadius="5px" containerHeight="auto" containerWidth="200px">
                 <div className={styles.communityDropdown}>
-                <select value={selectedCommunity.CompanyId} onChange={handleCommunityChange}>
+                <select value={selectedCommunity.companyId} onChange={handleCommunityChange}>
                 {
                 // The adminCompanies array is derived from userInfo and is kept up-to-date
                 adminCompanies.map(company => (
-                <option key={company} value={company.CompanyId}>{company.CompanyName}</option>
+                <option key={company} value={company.companyId}>{company.companyName}</option>
                 ))
                 }
                 </select>

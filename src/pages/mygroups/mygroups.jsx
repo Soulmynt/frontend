@@ -76,8 +76,8 @@ function MyGroups() {
                 
       
                 // Fetch and set company info for the selected company
-                const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].CompanyId);
-                setCompanyId(newAdminCompanies[0].CompanyId)
+                const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
+                setCompanyId(newAdminCompanies[0].companyId)
                 // setCurrentCompanyInfo(currentCompanyInfo);
                 setSelectedCommunity(newAdminCompanies[0]);
               } else {
@@ -306,7 +306,7 @@ function MyGroups() {
                 console.log("Fetched Company Info", currentCompanyInfo);
     
                 // Find the selected company object from adminCompanies
-                const selected = adminCompanies.find(company => company.CompanyId === newCompanyId);
+                const selected = adminCompanies.find(company => company.companyId === newCompanyId);
     
                 // Update state with the fetched company info and selected company
                 // setCurrentCompanyInfo(currentCompanyInfo);
@@ -800,7 +800,7 @@ function MyGroups() {
                     text={
                     typeof selectedCommunity === 'string' && selectedCommunity === "No Communities" 
                         ? "No Communities" 
-                        : `Community Name: ${selectedCommunity.CompanyName}`
+                        : `Community Name: ${selectedCommunity.companyName}`
                     } 
                     containerWidth={"250px"} 
                     size={"18px"} 
@@ -907,11 +907,11 @@ function MyGroups() {
             <div className={styles.boxWrapper}>
                 <Card gradientBorder={true} borderRadius="5px" containerHeight="auto" containerWidth="200px">
                     <div className={styles.communityDropdown}>
-                    <select value={selectedCommunity.CompanyId} onChange={handleCommunityChange}>
+                    <select value={selectedCommunity.companyId} onChange={handleCommunityChange}>
                     {
                     // The adminCompanies array is derived from userInfo and is kept up-to-date
                     adminCompanies.map(company => (
-                    <option key={company} value={company.CompanyId}>{company.CompanyName}</option>
+                    <option key={company} value={company.companyId}>{company.companyName}</option>
                     ))
                     }
                     </select>
@@ -1060,7 +1060,7 @@ function MyGroups() {
                     onClick={() => setShowCard(false)}
                     ></div>
                     {activeComponent === "CreateChallenge" && <CreateChallenge />}
-                    {activeComponent === "ManageCommunity" && <ManageCommunity selectedCompanyId={selectedCommunity.CompanyId} />}
+                    {activeComponent === "ManageCommunity" && <ManageCommunity selectedCompanyId={selectedCommunity.companyId} />}
                     {activeComponent === "RewardsLadder" && <RewardsLadder />}
                     </div>
                 )}        
