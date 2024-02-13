@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from "react-router-dom";
 import styles from "./createChallenge.module.css"
 import { Card } from '../../components/card';
 import { BoldText } from '../../components/boldText';
@@ -10,9 +11,11 @@ import { Calendar } from '../../icons/Calendar';
 import { Searchbar } from '../../components/searchbar';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useAuth } from "../../hooks";
+import { axiosCreateChallenge } from '../../utils/axios';
 
 
-const CreateChallenge = () => {
+const CreateChallenge = ({selectedCompanyId}) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
     const [name, setName] = useState('');
@@ -28,12 +31,15 @@ const CreateChallenge = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [challenges, setChallenges] = useState([]);
     const [rewards, setRewards] = useState([]);
+    const { auth } = useAuth();
+    const navigate = useNavigate();
     const [table1Data, setTable1Data] = useState([
         { Name: "Community A", Eligible: "YE", isChecked: false },
         { Name: "Community B", Eligible: "Inactive", isChecked: false },
         // ... more data
     ]);
 
+    console.log('CJHA;;', challenges)
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -67,6 +73,18 @@ const CreateChallenge = () => {
         setEndDate(date);
     };
 
+    function formatDateToYYYYMMDD(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // getMonth() returns 0-11
+        const day = date.getDate();
+      
+        // Pad the month and day with leading zeros if necessary
+        const formattedMonth = month.toString().padStart(2, '0');
+        const formattedDay = day.toString().padStart(2, '0');
+      
+        return `${year}-${formattedMonth}-${formattedDay}`;
+      }
+
     // const handleStartTimeChange = (date) => {
     //     setStartTime(date);
     // };
@@ -74,6 +92,45 @@ const CreateChallenge = () => {
     // const handleEndTimeChange = (date) => {
     //     setEndTime(date);
     // };
+
+    const handleSubmitClick = async () => {
+        // Example logic: Check if both name and description are filled
+        const formattedStartDate = formatDateToYYYYMMDD(startDate);
+        const formattedEndDate = formatDateToYYYYMMDD(endDate);
+        if (challenges && challenges[0].challengeName && challenges[0].challengeDescription) {
+          const accessToken = auth.accessToken;
+          const challengeObject = {
+            name: challenges[0].challengeName, // Currently since no image upload is implemented, this is empty
+            company: selectedCompanyId,
+            points: challenges[0].points,
+            EffectiveDate: formattedStartDate, 
+            dateExpires: formattedEndDate, 
+            credentialArray: [],
+            tokenReward: tokenAmount,
+            
+          };
+          try {
+            let data = await axiosCreateChallenge(accessToken, challengeObject);
+            if (data.status === 200) {
+              console.log("success");
+    
+              setSelectedImage(null);
+              setName("");
+              setDescription("");
+              setQuestions([]);
+              setOpenCommunity(false);
+              navigate("/managechallenges");
+            }
+          } catch (e) {
+            console.log({ error: e });
+          }
+    
+          // ... other logic
+        } else {
+          console.log("Please fill out all required fields.");
+        }
+      };
+    
 
 
 
@@ -492,7 +549,7 @@ const CreateChallenge = () => {
 
 
                 <div className={styles.continueButtonContainer}>
-
+                    
                     {/* <Button 
                         children="Draft" 
                         // disabled={!name || !description} 
@@ -502,8 +559,11 @@ const CreateChallenge = () => {
                     /> */}
                     <Button 
                         children="Publish" 
-                        // disabled={!name || !description} 
-                        // onClick={handleContinueClick}
+                        disabled={challenges?.length == 0 
+                            || challenges[0].challengeName == "" 
+                            || challenges[0].challengeDescription == ""
+                    } 
+                        onClick={handleSubmitClick}
                         containerWidth="150px"
                         variant="colorful"
                     />

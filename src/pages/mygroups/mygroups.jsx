@@ -24,7 +24,7 @@ function MyGroups() {
 
     const [selectedImageSrc, setSelectedImageSrc] = useState(null);
     const [selectedReviewText, setSelectedReviewText] = useState(null);
-    const { auth, userInfo, setUserInfo } = useAuth();
+    const { auth, userInfo, setUserInfo, currentCompanyInfo, setCurrentCompanyInfo} = useAuth();
     const [companyId, setCompanyId] = useState(null);
     const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
     const [adminCompanies, setAdminCompanies] = useState([]);
@@ -59,6 +59,7 @@ function MyGroups() {
           try {
             // Assuming auth.accessToken is stable when this effect runs
             const accessToken = auth.accessToken;
+            // console.log('Sxx')
       
             // Fetch user info first
             const userInfo = await axiosGetUserInfo(accessToken);
@@ -71,15 +72,28 @@ function MyGroups() {
       
               if (newAdminCompanies.length > 0) {
                 //const selectedCompany = newAdminCompanies[0]; // or apply logic to find a specific one
+                // const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
+
+                if(selectedCommunity == "No Communities"){
+                    // setSelectedCommunity(newAdminCompanies[0]);
+                    
+                    setCompanyId(newAdminCompanies[0].companyId)
+                    // setCurrentCompanyInfo(currentCompanyInfo);
+                    
+                    // console.log("AS")
+                    fetchAndSetCompanyInfo(newAdminCompanies[0].companyId)
+
+                }
+                else{
+                    
+                    fetchAndSetCompanyInfo(companyId);
+                }
                 
-                console.log("I am here", newAdminCompanies[0])
+                // console.log("I am here", newAdminCompanies[0])
                 
       
                 // Fetch and set company info for the selected company
-                const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
-                setCompanyId(newAdminCompanies[0].companyId)
-                // setCurrentCompanyInfo(currentCompanyInfo);
-                setSelectedCommunity(newAdminCompanies[0]);
+                
               } else {
                 setSelectedCommunity("No Communities");
                 // setCurrentCompanyInfo(null);
@@ -148,112 +162,9 @@ function MyGroups() {
     };
 
 
-    //TODO: GET USER INFO FROM THE ENDPOINT IF THEY ARE A COMMUNTIY MANAGER
-
-    // const userInfo = {
-       
-    //     id: "ObjectId",
-    //     email: "String",
-    //     handle: "String",
-    //     companies: [
-    //             {
-    //                 _id: 1,
-    //                 "user": "String",
-    //                "handle": "String",
-    //                "CompanyId": "1",
-    //                "companyName": "XYZ",
-    //                "Credentials": [],
-    //                "challenges": [
-    //                 {
-    //                     "name": "ah", 
-    //                     "company": "ObjectId",
-    //                     "description": "hh",
-    //                     "points": "Number",
-    //                     "dateCreated": "2024-01-03",
-    //                     "dateExpires": "2024-01-09",
-    //                     "credentialArray": ["ObjectId"],
-    //                     "tokenReward": { "tokenType": "String", "amount": "Number" },
-    //                     "active": "Boolean",
-    //                     "participants": [{
-    //                       "user": "ObjectId",
-    //                       "proof": ["String"],
-    //                       "completedDate": "Date",
-    //                       "confirmed": "Boolean",
-    //                     }],
-    //                 },
-    //                 {
-    //                     "name": "nn", 
-    //                     "company": "ObjectId",
-    //                     "description": "hello",
-    //                     "points": 100,
-    //                     "dateCreated": "2024-01-03",
-    //                     "dateExpires": "2024-01-09",
-    //                     "credentialArray": ["ObjectId"],
-    //                     "tokenReward": { "tokenType": "String", "amount": "Number" },
-    //                     "active": "Boolean",
-    //                     "participants": [{
-    //                       "user": "ObjectId",
-    //                       "proof": ["String"],
-    //                       "completedDate": "Date",
-    //                       "confirmed": "Boolean",
-    //                     }],
-    //                 }
-    //                ],
-    //                "RewardPoints": "Number",
-    //                "admin": true,
-    //             },
-    //             {
-    //                 _id: 2,
-    //                 "user": "String",
-    //                "handle": "String",
-    //                "CompanyId": "2",
-    //                "companyName": "ABC",
-    //                "Credentials": [],
-    //                "Challenges": [],
-    //                "RewardPoints": "Number",
-    //                "admin": true,
-    //             },
-        
-    //     ],
-    //     credentials: ["String"],
-          
-    // }
-
+    
     
 
-
-    // const adminCompanies =
-    // userInfo && userInfo.companies
-    //   ? userInfo.companies.filter((company) => company.admin)
-    //   : [];
-
-    // const isPartOfAnyAdminCompany = adminCompanies.length > 0;
-
-   
-
-    // const [selectedCommunity, setSelectedCommunity] = useState(
-    //     isPartOfAnyAdminCompany ? adminCompanies[0] : "No Communities"
-    // );
-
-    //TODO: CHANGED TO USEEFFECT FOR NOW
-    // const [adminCompanies, setAdminCompanies] = useState([]);
-
-    
-
-    // useEffect(() => {
-    //     if (userInfo && userInfo.companies && userInfo.companies.length > 0) {
-    //         const newAdminCompanies = userInfo.companies.filter(company => company.admin);
-
-    //         setAdminCompanies(newAdminCompanies); // Update admin companies state
-
-    //         // Update selected community based on new admin companies
-    //         if (newAdminCompanies.length > 0) {
-    //             setSelectedCommunity(newAdminCompanies[0]); // Select the first admin company
-    //         } else {
-    //             setSelectedCommunity("No Communities");
-    //         }
-    //     }
-    // }, [userInfo]);
 
    
     
@@ -293,34 +204,50 @@ function MyGroups() {
     //     console.log("HEIG", selected)
     //     setSelectedCommunity(selected);
     // };
+    const [originalData, setOriginalData] = useState([])
+
+    
+
+    const fetchAndSetCompanyInfo = async (cId) => {
+        try {
+            // Wait for the axios call to complete
+            const currentCompanyInfo = await axiosGetOneCompanyInfo(cId);
+            console.log("enw cid ", cId);
+            console.log("Fetched Company Info", currentCompanyInfo);
+            
+            setCurrentCompanyInfo(currentCompanyInfo);
+            // setSelectedCommunity(currentCompanyInfo);
+            console.log("Fetched selected Info", selectedCommunity);
+            
+
+            
+            console.log("OG", originalData)
+
+            // Find the selected company object from adminCompanies
+            // const selected = adminCompanies.find(company => company.companyId === newCompanyId);
+
+            // Update state with the fetched company info and selected company
+            // setCurrentCompanyInfo(currentCompanyInfo);
+            // setSelectedCommunity(selected || "No Communities"); // Fallback to null if not found
+
+          
+        } catch (error) {
+            console.error("Error fetching company info:", error);
+            // Handle error (e.g., set error state, show notification)
+        }
+    };
+
     const handleCommunityChange = (event) => {
         const newCompanyId = event.target.value;
-        setCompanyId(newCompanyId); // This sets the companyId state
-    
-        // Define an async function inside the handler
-        const fetchAndSetCompanyInfo = async () => {
-            try {
-                // Wait for the axios call to complete
-                const currentCompanyInfo = await axiosGetOneCompanyInfo(newCompanyId);
-                console.log("enw cid ", companyId);
-                console.log("Fetched Company Info", currentCompanyInfo);
-    
-                // Find the selected company object from adminCompanies
-                const selected = adminCompanies.find(company => company.companyId === newCompanyId);
-    
-                // Update state with the fetched company info and selected company
-                // setCurrentCompanyInfo(currentCompanyInfo);
-                setSelectedCommunity(selected || "No Communities"); // Fallback to null if not found
+        // setCompanyId(newCompanyId); // This sets the companyId state
+        const selected = adminCompanies.find(company => company.companyId === newCompanyId);
+        // const currentCompanyInfo = axiosGetOneCompanyInfo(companyId);
+        // setCurrentCompanyInfo(selected);
+        // setCurrentCompanyInfo(selected);
+        setSelectedCommunity(selected || "No Communities"); 
+        setCompanyId(newCompanyId);
 
-              
-            } catch (error) {
-                console.error("Error fetching company info:", error);
-                // Handle error (e.g., set error state, show notification)
-            }
-        };
-    
-        // Call the async function
-        fetchAndSetCompanyInfo();
+        fetchAndSetCompanyInfo(newCompanyId);
     };
 
    
@@ -351,15 +278,19 @@ function MyGroups() {
 
     
 
-    const getActiveChallenges = (companyData) => {
+    const getActiveChallenges = (selectedCommunity) => {
         // Process companyData to get active challenges
         // ...
         const now = moment().tz('America/New_York');
         // const specificCompanyData = response.userCompanyProfile;
 
+        console.log("BEFoRE")
+
         
 
         if (!selectedCommunity || !selectedCommunity.challenges) return [];
+
+        console.log("afetr")
 
         // console.log("SDNV", selectedCommunity)
     
@@ -389,6 +320,8 @@ function MyGroups() {
             })
             .sort((a, b) => a.Remaining - b.Remaining); // Sort based on time remaining
     };
+
+    // const originalData = getActiveChallenges();
     
     const getScheduledChallenges = (companyData) => {
         // Process companyData to get scheduled challenges
@@ -711,7 +644,7 @@ function MyGroups() {
     };
     
   
-    const originalData = getActiveChallenges();
+    
     const scheduledData = getScheduledChallenges();
     const completedChallenges = getCompletedChallenges();
 
@@ -1059,7 +992,7 @@ function MyGroups() {
                     className={styles.overlayBackground}
                     onClick={() => setShowCard(false)}
                     ></div>
-                    {activeComponent === "CreateChallenge" && <CreateChallenge />}
+                    {activeComponent === "CreateChallenge" && <CreateChallenge selectedCompanyId = {selectedCommunity.companyId} />}
                     {activeComponent === "ManageCommunity" && <ManageCommunity selectedCompanyId={selectedCommunity.companyId} />}
                     {activeComponent === "RewardsLadder" && <RewardsLadder />}
                     </div>

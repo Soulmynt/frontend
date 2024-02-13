@@ -93,14 +93,26 @@ function Create() {
     
             if (newAdminCompanies.length > 0) {
               //const selectedCompany = newAdminCompanies[0]; // or apply logic to find a specific one
-              setSelectedCommunity(newAdminCompanies[0]);
-              console.log("I am here", newAdminCompanies[0])
-              
-    
-              // Fetch and set company info for the selected company
               const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
-              setCompanyId(newAdminCompanies[0].companyId)
-              setCurrentCompanyInfo(currentCompanyInfo);
+              if(selectedCommunity == "No Communities"){
+                setSelectedCommunity(newAdminCompanies[0]);
+                console.log("I am here", newAdminCompanies[0])
+                
+      
+                // Fetch and set company info for the selected company
+                // const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
+                setCompanyId(newAdminCompanies[0].companyId)
+                setCurrentCompanyInfo(currentCompanyInfo);
+                fetchAndSetCompanyInfo(newAdminCompanies[0].companyId);
+
+              }
+              else{
+                fetchAndSetCompanyInfo(companyId);
+
+              }
+              
+
+             
             } else {
               setSelectedCommunity("No Communities");
               setCurrentCompanyInfo(null);
@@ -172,7 +184,14 @@ function Create() {
   const handleCredentialCreated = () => {
     setShowCard(false); // Close the modal
     // Optionally, trigger re-render or fetch updated data here
+    fetchAndSetCompanyInfo(companyId);
+
+    
+    
   };
+
+
+
 
   
 
@@ -183,6 +202,48 @@ function Create() {
 
   const [adminCompanies, setAdminCompanies] = useState([]);
 
+
+  const fetchAndSetCompanyInfo = async (cId) => {
+    try {
+        
+        // Wait for the axios call to complete
+        const currentCompanyInfo = await axiosGetOneCompanyInfo(cId);
+        console.log("enw cid ", cId);
+        console.log("Fetched Company Info", currentCompanyInfo);
+
+        // Find the selected company object from adminCompanies
+        
+
+        // Update state with the fetched company info and selected company
+        
+
+        if (currentCompanyInfo && currentCompanyInfo.credentials) {
+          const processedCredentials = currentCompanyInfo.credentials[0].map(credential => ({
+
+              
+              // Assuming the structure of your credential, adjust as necessary
+              Name: credential.title,
+              
+              // Add more fields as needed
+              Send: <Button children="Send" onClick={() => handleSendClick(credential)} />
+
+              
+          }));
+          
+
+          
+          setTableData(processedCredentials);
+          
+          
+        } else {
+          // Handle case where there are no credentials
+          setTableData([]);
+        }
+    } catch (error) {
+        console.error("Error fetching company info:", error);
+        // Handle error (e.g., set error state, show notification)
+    }
+};
   
 
   
@@ -209,54 +270,16 @@ function Create() {
   // };
   const handleCommunityChange = (event) => {
     const newCompanyId = event.target.value;
-    setCompanyId(newCompanyId); // This sets the companyId state
-
-    // Define an async function inside the handler
-    const fetchAndSetCompanyInfo = async () => {
-        try {
-            // Wait for the axios call to complete
-            const currentCompanyInfo = await axiosGetOneCompanyInfo(newCompanyId);
-            console.log("enw cid ", companyId);
-            console.log("Fetched Company Info", currentCompanyInfo);
-
-            // Find the selected company object from adminCompanies
-            const selected = adminCompanies.find(company => company.companyId === newCompanyId);
-
-            // Update state with the fetched company info and selected company
-            setCurrentCompanyInfo(currentCompanyInfo);
-            setSelectedCommunity(selected || null); // Fallback to null if not found
-            
-
-            if (currentCompanyInfo && currentCompanyInfo.credentials) {
-              const processedCredentials = currentCompanyInfo.credentials[0].map(credential => ({
-
-                  
-                  // Assuming the structure of your credential, adjust as necessary
-                  Name: credential.Title,
-                  
-                  // Add more fields as needed
-                  Send: <Button children="Send" onClick={() => handleSendClick(credential)} />
-
-                  
-              }));
-              
-
-              
-              setTableData(processedCredentials);
-              
-              
-            } else {
-              // Handle case where there are no credentials
-              setTableData([]);
-            }
-        } catch (error) {
-            console.error("Error fetching company info:", error);
-            // Handle error (e.g., set error state, show notification)
-        }
-    };
-
-    // Call the async function
-    fetchAndSetCompanyInfo();
+     // This sets the companyId state
+    console.log("CID", event.target.value)
+    console.log("CIDDDD", companyId)
+    const selected = adminCompanies.find(company => company.companyId === newCompanyId);
+    // const currentCompanyInfo = axiosGetOneCompanyInfo(companyId);
+    setCurrentCompanyInfo(selected);
+    setSelectedCommunity(selected || "No Communities"); // Fallback to null if not found
+    setCompanyId(newCompanyId);
+        
+    fetchAndSetCompanyInfo(newCompanyId);
 };
 
 const filteredData = useMemo(() => {
@@ -358,7 +381,7 @@ const filteredData = useMemo(() => {
             <div className={styles.generalSpacing}>
               {filteredData.length > 0 ? (
                 <Table
-                  columns={[" ", , "Name", "Send"]}
+                  columns={[" ", "Name", "Send"]}
                   data={filteredData}
                   width="97%"
                   height="auto"
