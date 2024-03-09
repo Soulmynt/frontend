@@ -33,13 +33,21 @@ function Login() {
     let data = await axiosLogIn(email, password);
     setPassword("");
     setEmail("");
-    console.log(data.data.userprofile)
+    console.log(data.data.userprofile);
     if (data.status == 200) {
       setAuth(data.data.userprofile);
       navigate("/dashboard");
+      return;
+    } else if (data.data.error.response.status == 422) {
+      alert("User Does not Exist, check username or create a new account");
+      return;
+    } else if (data.data.error.response.status == 403) {
+      alert("Invalid Password, please try again.");
+      return;
     } else {
-      console.log("an error occurred, no workie");
+      console.log("Here is the data: ", data.data.error.response.status);
     }
+    alert("something went wrong, please try again.");
   };
 
   const [isPassFocused, setisPassFocused] = useState(false);
@@ -80,7 +88,7 @@ function Login() {
               <Textbox
                 text={"Email"}
                 type="email"
-                value = {email}
+                value={email}
                 onChange={handleEmailChange}
                 containerWidth={"378px"}
               />
