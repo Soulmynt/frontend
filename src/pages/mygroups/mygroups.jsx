@@ -82,6 +82,7 @@ function MyGroups() {
                     
                     // console.log("AS")
                     fetchAndSetCompanyInfo(newAdminCompanies[0].companyId)
+                    // setOriginalData(getActiveChallenges(currentCompanyInfo))
 
                 }
                 else{
@@ -108,7 +109,7 @@ function MyGroups() {
         };
       
         fetchData();
-      }, [showCard]); // Empty array means this runs once on component mount
+      }, [showCard, selectedCommunity]); // Empty array means this runs once on component mount
 
 
 
@@ -204,7 +205,9 @@ function MyGroups() {
     //     console.log("HEIG", selected)
     //     setSelectedCommunity(selected);
     // };
-    const [originalData, setOriginalData] = useState([])
+    // const [originalData, setOriginalData] = useState([])
+
+    let originalData = [];
 
     
 
@@ -218,6 +221,14 @@ function MyGroups() {
             setCurrentCompanyInfo(currentCompanyInfo);
             // setSelectedCommunity(currentCompanyInfo);
             console.log("Fetched selected Info", selectedCommunity);
+
+            // setOriginalData(selectedCommunity.challenges)
+
+            const active =  getActiveChallenges(currentCompanyInfo)
+            console.log("ACTIVE", active)
+            originalData = active;
+
+        
             
 
             
@@ -292,16 +303,33 @@ function MyGroups() {
 
         console.log("afetr")
 
-        // console.log("SDNV", selectedCommunity)
+        console.log("SDNV", selectedCommunity.challenges[0])
+
+        const allChallenges = selectedCommunity.challenges[0]
+
+        
     
-        return selectedCommunity.challenges
+        return allChallenges
             .filter(challenge => {
                 // Ensure the challenge dates are interpreted as Date objects
-                const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
+                const startDate = moment.tz(challenge.effectiveDate, 'America/New_York').startOf('day');
                 const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
+                console.log("CNAME", challenge)
+                console.log("SD", challenge.effectiveDate, startDate.format())
+                console.log("ED", challenge.dateExpires, endDate.format())
+                console.log("Now", now.format())
+
+                console.log("istrue", now.isSameOrAfter(startDate) && now.isSameOrBefore(endDate))
+
+                
+
+                
+
+                
     
                 // Check if the current date is within the active challenge period
-                return now.isSameOrAfter(startDate) && now.isSameOrBefore(endDate);
+                const isBetween = now.isBetween(startDate, endDate, null, '[]');
+                return isBetween
             })
             .map(challenge => {
                 // Calculate time remaining as the difference between endDate and now
@@ -311,7 +339,9 @@ function MyGroups() {
                 // Convert time remaining from milliseconds into a more readable format (e.g., hours)
                 const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
                 const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    
+
+                console.log("passed thru", challenge.name)
+                
                 return {
                     Name: challenge.name,
                     Remaining: `${hoursRemaining} hrs ${minutesRemaining} mins`, // or more sophisticated formatting
