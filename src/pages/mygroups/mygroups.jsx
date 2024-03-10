@@ -28,6 +28,7 @@ function MyGroups() {
     const [companyId, setCompanyId] = useState(null);
     const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
     const [adminCompanies, setAdminCompanies] = useState([]);
+    const [originalData, setOriginalData] = useState([])
 
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -109,7 +110,7 @@ function MyGroups() {
         };
       
         fetchData();
-      }, [showCard, selectedCommunity]); // Empty array means this runs once on component mount
+      }, [showCard]); // Empty array means this runs once on component mount
 
 
 
@@ -205,9 +206,9 @@ function MyGroups() {
     //     console.log("HEIG", selected)
     //     setSelectedCommunity(selected);
     // };
-    // const [originalData, setOriginalData] = useState([])
+    
 
-    let originalData = [];
+    // let originalData = [];
 
     
 
@@ -226,8 +227,7 @@ function MyGroups() {
 
             const active =  getActiveChallenges(currentCompanyInfo)
             console.log("ACTIVE", active)
-            originalData = active;
-
+            setOriginalData(active)
         
             
 
@@ -703,10 +703,13 @@ function MyGroups() {
     //     // ... more data ...
     // ];
 
+    console.log("OGDATE", originalData)
     const table1Data = originalData.map(entry => ({
         ...entry,
         Submissions: <Button children="Review" onClick={() => handleReviewClick(entry.challengeData)} />
       }));
+
+      console.log("T1data", table1Data)
 
     //   const handleReviewClick = (name) => {
     //     setSelectedName(name);
@@ -723,19 +726,34 @@ function MyGroups() {
     // ];
 
 
-
-
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
       };
+      
     
-      const filteredData = useMemo(() => {
-        return table1Data.filter(
-          (item) =>
-            item.Name.toLowerCase().includes(searchTerm.toLowerCase())
-       
+    const filteredData = useMemo(() => {
+        // Check if tableData exists and has length
+        if (!table1Data || table1Data.length === 0) {
+          return []; // Return an empty array if tableData doesn't exist or is empty
+        }
+      
+        // Proceed with filtering if tableData exists
+        return table1Data.filter(item =>
+          item.Name.toLowerCase().includes(searchTerm.toLowerCase())
         );
-      }, [searchTerm]);
+      }, [table1Data, searchTerm]); // Include tableData in the dependency array
+
+    // const handleSearchChange = (e) => {
+    //     setSearchTerm(e.target.value);
+    //   };
+    
+    //   const filteredData = useMemo(() => {
+    //     return table1Data.filter(
+    //       (item) =>
+    //         item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+       
+    //     );
+    //   }, [searchTerm]);
 
       
     
