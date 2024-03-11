@@ -28,12 +28,11 @@ const Sidebar = () => {
     return isActive(path) ? "#FFFFFF" : "#8F8F8F";
   };
 
-  const {showMyGroupsDropdown, setShowMyGroupsDropdown} = useAuth();
+  const { showMyGroupsDropdown, setShowMyGroupsDropdown, userInfo } = useAuth();
 
   const toggleMyGroupsDropdown = () => {
     setShowMyGroupsDropdown(!showMyGroupsDropdown);
   };
-
 
   // const toggleCreateDropdown = () => {
   //   setShowCreate(!showCreate);
@@ -82,84 +81,99 @@ const Sidebar = () => {
             </Button>
           </div>
         </Link>
-        {/* MY GROUPS */}
-        <div className={styles.linkStyle} onClick={toggleMyGroupsDropdown}>
-          <div className={styles.buttonContainer}>
-            <Button variant="transparent" containerWidth={"150px"} containerHeight={"50px"}>
-              <div className={styles.sidebarSectionsContainer}>
-                <div className={styles.sidebarIconsContainer}>
-                  {/* Other icon for My Groups */}
-                </div>
-                <div className={styles.sidebarTextContainer}>
-                  <BoldText text={"My Groups"} containerWidth={"150px"} size={"18px"} weight={"400"} textColor="#8F8F8F"/>
-                </div>
-                <div className={showMyGroupsDropdown ? styles.arrowUp : styles.arrowDown}>
-                  <Arrow />
-                </div>
-              </div>
-            </Button>
-          </div>
-        </div>
-
-        {showMyGroupsDropdown && (
+        {userInfo.communityAdmin ? (
           <>
-            {/* Challenges Subcategory */}
-            <Link to="/managechallenges" className={styles.subLinkStyle}>
-            <div className={styles.buttonContainer}>
-              <Button
-                variant={getButtonVariant("/managechallenges")}
-                containerWidth={"150px"}
-                containerHeight={"50px"}
-              >
-                <div className={styles.sidebarSectionsContainer}>
-                  <div className={styles.sidebarIconsContainer}>
-                    <MyGroupsIcon color={getIconColor("/managechallenges")} />
+            <div className={styles.linkStyle} onClick={toggleMyGroupsDropdown}>
+              <div className={styles.buttonContainer}>
+                <Button
+                  variant="transparent"
+                  containerWidth={"150px"}
+                  containerHeight={"50px"}
+                >
+                  <div className={styles.sidebarSectionsContainer}>
+                    <div className={styles.sidebarIconsContainer}>
+                      {/* Other icon for My Groups */}
+                    </div>
+                    <div className={styles.sidebarTextContainer}>
+                      <BoldText
+                        text={"My Groups"}
+                        containerWidth={"150px"}
+                        size={"18px"}
+                        weight={"400"}
+                        textColor="#8F8F8F"
+                      />
+                    </div>
+                    <div
+                      className={
+                        showMyGroupsDropdown ? styles.arrowUp : styles.arrowDown
+                      }
+                    >
+                      <Arrow />
+                    </div>
                   </div>
-                  <div className={styles.sidebarTextContainer}>
-                    <BoldText
-                      text={"Manage Challenges"}
-                      containerWidth={"150px"}
-                      size={"18px"}
-                      weight={"400"}
-                      textColor={getIconColor("/managechallenges")}
-                    />
-                  </div>
-                </div>
-              </Button>
-            </div>
-          </Link>
-            {/* Create Subcategory */}
-            <Link to="/create" className={styles.subLinkStyle}>
-          <div className={styles.buttonContainer}>
-            <Button
-              variant={getButtonVariant("/create")}
-              containerWidth={"150px"}
-              containerHeight={"50px"}
-              onClick={() => {}}
-            >
-              <div className={styles.sidebarSectionsContainer}>
-                <div className={styles.sidebarIconsContainer}>
-                  <CreateIcon color={getIconColor("/create")} />
-                </div>
-                <div className={styles.sidebarTextContainer}>
-                  <BoldText
-                    text={"Create"}
-                    containerWidth={"150px"}
-                    size={"18px"}
-                    weight={"400"}
-                    textColor={getIconColor("/create")}
-                  />
-                </div>
+                </Button>
               </div>
-            </Button>
-          </div>
-        </Link>
-          </>
-        )}
+            </div>
 
-        
-        
-        {/* <Link to="/mygroups" className={styles.linkStyle}>
+            {showMyGroupsDropdown && (
+              <>
+                {/* Challenges Subcategory */}
+                <Link to="/managechallenges" className={styles.subLinkStyle}>
+                  <div className={styles.buttonContainer}>
+                    <Button
+                      variant={getButtonVariant("/managechallenges")}
+                      containerWidth={"150px"}
+                      containerHeight={"50px"}
+                    >
+                      <div className={styles.sidebarSectionsContainer}>
+                        <div className={styles.sidebarIconsContainer}>
+                          <MyGroupsIcon
+                            color={getIconColor("/managechallenges")}
+                          />
+                        </div>
+                        <div className={styles.sidebarTextContainer}>
+                          <BoldText
+                            text={"Manage Challenges"}
+                            containerWidth={"150px"}
+                            size={"18px"}
+                            weight={"400"}
+                            textColor={getIconColor("/managechallenges")}
+                          />
+                        </div>
+                      </div>
+                    </Button>
+                  </div>
+                </Link>
+                {/* Create Subcategory */}
+                <Link to="/create" className={styles.subLinkStyle}>
+                  <div className={styles.buttonContainer}>
+                    <Button
+                      variant={getButtonVariant("/create")}
+                      containerWidth={"150px"}
+                      containerHeight={"50px"}
+                      onClick={() => {}}
+                    >
+                      <div className={styles.sidebarSectionsContainer}>
+                        <div className={styles.sidebarIconsContainer}>
+                          <CreateIcon color={getIconColor("/create")} />
+                        </div>
+                        <div className={styles.sidebarTextContainer}>
+                          <BoldText
+                            text={"Create"}
+                            containerWidth={"150px"}
+                            size={"18px"}
+                            weight={"400"}
+                            textColor={getIconColor("/create")}
+                          />
+                        </div>
+                      </div>
+                    </Button>
+                  </div>
+                </Link>
+              </>
+            )}
+
+            {/* <Link to="/mygroups" className={styles.linkStyle}>
             <div className={styles.buttonContainer}>
               <Button
                 variant={getButtonVariant("/mygroups")}
@@ -183,15 +197,15 @@ const Sidebar = () => {
               </Button>
             </div>
           </Link> */}
-          {/* <div className={styles.dropdownToggle} onClick={toggleCreateDropdown}>
+            {/* <div className={styles.dropdownToggle} onClick={toggleCreateDropdown}>
             <Arrow />
           </div> */}
 
-          {/* <div className={showCreate ? styles.arrowRight : styles.arrowDown}>
+            {/* <div className={showCreate ? styles.arrowRight : styles.arrowDown}>
                 <Arrow/>
           </div> */}
-        {/* CREATE */}
-        {/* <Link to="/create" className={styles.sublinkStyle}>
+            {/* CREATE */}
+            {/* <Link to="/create" className={styles.sublinkStyle}>
           <div className={styles.buttonContainer}>
             <Button
               variant={getButtonVariant("/create")}
@@ -216,7 +230,7 @@ const Sidebar = () => {
             </Button>
           </div>
         </Link> */}
-        {/* {showCreate && (
+            {/* {showCreate && (
             <Link to="/create" className={styles.subLinkStyle}>
               <div className={styles.subButtonContainer}>
                 <Button
@@ -242,6 +256,10 @@ const Sidebar = () => {
               </div>
             </Link>
           )} */}
+          </>
+        ) : (
+          <></>
+        )}
         {/* Explore */}
         <Link to="/explore" className={styles.linkStyle}>
           <div className={styles.buttonContainer}>
@@ -267,8 +285,8 @@ const Sidebar = () => {
               </div>
             </Button>
           </div>
-        </Link>    
-                
+        </Link>
+
         {/* PROFILE */}
         <Link to="/profile" className={styles.linkStyle}>
           <div className={styles.buttonContainer}>
