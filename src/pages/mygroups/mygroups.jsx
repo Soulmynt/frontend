@@ -16,80 +16,92 @@ import moment from "moment-timezone";
 import { axiosGetUserInfo, axiosGetOneCompanyInfo } from "../../utils/axios";
 
 function MyGroups() {
-  const [showCard, setShowCard] = useState(false);
-  const [activeComponent, setActiveComponent] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [selectedName, setSelectedName] = useState("");
 
-  const [selectedImageSrc, setSelectedImageSrc] = useState(null);
-  const [selectedReviewText, setSelectedReviewText] = useState(null);
-  const {
-    auth,
-    userInfo,
-    setUserInfo,
-    currentCompanyInfo,
-    setCurrentCompanyInfo,
-  } = useAuth();
-  const [companyId, setCompanyId] = useState(null);
-  const [selectedCommunity, setSelectedCommunity] = useState("No Communities");
-  const [adminCompanies, setAdminCompanies] = useState([]);
 
-  // useEffect(() => {
-  //     const fetchData = async () => {
-  //       const accessToken = auth.accessToken;
-  //       const userInfo = await axiosGetUserInfo(accessToken);
-  //       setUserInfo(userInfo);
-  //     };
+    const [showCard, setShowCard] = useState(false);
+    const [activeComponent, setActiveComponent] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [selectedName, setSelectedName] = useState('');
 
-  //     fetchData();
-  //   }, []);
+    const [selectedImageSrc, setSelectedImageSrc] = useState(null);
+    const [selectedReviewText, setSelectedReviewText] = useState(null);
+    const { auth, userInfo, setUserInfo, currentCompanyInfo, setCurrentCompanyInfo} = useAuth();
+    const [companyId, setCompanyId] = useState(null);
+    const [selectedCommunity, setSelectedCommunity] = useState("No Communities")
+    const [adminCompanies, setAdminCompanies] = useState([]);
+    const [originalData, setOriginalData] = useState([])
 
-  //   useEffect(() => {
-  //     if (userInfo && userInfo.companies) {
-  //         const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       const accessToken = auth.accessToken;
+    //       const userInfo = await axiosGetUserInfo(accessToken);
+    //       setUserInfo(userInfo);
+    //     };
+    
+    //     fetchData();
+    //   }, []);
 
-  //         setAdminCompanies(newAdminCompanies)
-  //         if (newAdminCompanies.length > 0) {
-  //             setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
-  //         } else {
-  //             setSelectedCommunity("No Communities");
-  //         }
-  //     } else {
-  //         setSelectedCommunity("No Communities");
-  //     }
-  // }, [userInfo]);
+    //   useEffect(() => {
+    //     if (userInfo && userInfo.companies) {
+    //         const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+            
+    //         setAdminCompanies(newAdminCompanies)
+    //         if (newAdminCompanies.length > 0) {
+    //             setSelectedCommunity(newAdminCompanies[0]); // Assuming you want to select the first admin company
+    //         } else {
+    //             setSelectedCommunity("No Communities");
+    //         }
+    //     } else {
+    //         setSelectedCommunity("No Communities");
+    //     }
+    // }, [userInfo]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Assuming auth.accessToken is stable when this effect runs
-        const accessToken = auth.accessToken;
-        // console.log('Sxx')
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            // Assuming auth.accessToken is stable when this effect runs
+            const accessToken = auth.accessToken;
+            // console.log('Sxx')
+      
+            // Fetch user info first
+            const userInfo = await axiosGetUserInfo(accessToken);
+            setUserInfo(userInfo);
+      
+            // Determine admin companies and set selected community
+            if (userInfo && userInfo.companies) {
+              const newAdminCompanies = userInfo.companies.filter(company => company.admin);
+              setAdminCompanies(newAdminCompanies);
+      
+              if (newAdminCompanies.length > 0) {
+                //const selectedCompany = newAdminCompanies[0]; // or apply logic to find a specific one
+                // const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
 
-        // Fetch user info first
-        const userInfo = await axiosGetUserInfo(accessToken);
-        setUserInfo(userInfo);
+                if(selectedCommunity == "No Communities"){
+                    // setSelectedCommunity(newAdminCompanies[0]);
+                    
+                    setCompanyId(newAdminCompanies[0].companyId)
+                    // setCurrentCompanyInfo(currentCompanyInfo);
+                    
+                    // console.log("AS")
+                    fetchAndSetCompanyInfo(newAdminCompanies[0].companyId)
+                    // setOriginalData(getActiveChallenges(currentCompanyInfo))
 
-        // Determine admin companies and set selected community
-        if (userInfo && userInfo.companies) {
-          const newAdminCompanies = userInfo.companies.filter(
-            (company) => company.admin
-          );
-          setAdminCompanies(newAdminCompanies);
-
-          if (newAdminCompanies.length > 0) {
-            //const selectedCompany = newAdminCompanies[0]; // or apply logic to find a specific one
-            // const currentCompanyInfo = await axiosGetOneCompanyInfo(newAdminCompanies[0].companyId);
-
-            if (selectedCommunity == "No Communities") {
-              // setSelectedCommunity(newAdminCompanies[0]);
-
-              setCompanyId(newAdminCompanies[0].companyId);
-              // setCurrentCompanyInfo(currentCompanyInfo);
-
-              // console.log("AS")
-              fetchAndSetCompanyInfo(newAdminCompanies[0].companyId);
+                }
+                else{
+                    
+                    fetchAndSetCompanyInfo(companyId);
+                }
+                
+                // console.log("I am here", newAdminCompanies[0])
+                
+      
+                // Fetch and set company info for the selected company
+                
+              } else {
+                setSelectedCommunity("No Communities");
+                // setCurrentCompanyInfo(null);
+              }
             } else {
               fetchAndSetCompanyInfo(companyId);
             }
@@ -349,262 +361,74 @@ function MyGroups() {
           (timeUntilStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
         );
 
-        return {
-          Name: challenge.name,
-          Starts: `${daysUntilStart} days ${hoursUntilStart} hrs`, // or more sophisticated formatting
-          challengeData: challenge, // Keep the original challenge data for later use
-        };
-      })
-      .sort((a, b) => a.Starts - b.Starts); // Sort based on time until start
-  };
 
-  // const getActiveChallenges = () => {
-  //     const now = moment().tz('America/New_York');
+    // useEffect to update selectedCommunity when userInfo changes
+    // useEffect(() => {
+    //     const hasCompanies = userInfo.companies && userInfo.companies.length > 0;
+    //     const newAdminCompanies = hasCompanies
+    //         ? userInfo.companies.filter(company => company.admins?.includes(userInfo.handle))
+    //         : [];
+        
+    //     setAdminCompanies(newAdminCompanies);
+    
+    //     if (!isInitialized || (adminCompanies.length > 0 && selectedCommunity === "You have not created any companies")) {
+    //         setSelectedCommunity(
+    //             newAdminCompanies.length > 0 ? newAdminCompanies[0].name : "You have not created any companies"
+    //         );
+    //         setIsInitialized(true); // Ensure this block doesn't run again unnecessarily
+    //     }
+    // }, [userInfo]); // Re-run when userInfo changes
 
-  //      //TODO: GET THE COMPANY INFO BASED ON THE SELECTED COMPANY'S ID  - NEED TO HIT THE ENDPOINT
+    // const handleCommunityChange = (event) => {
+    //     // console.log("Changing selected community to:", event.target.value);
+    //     // setSelectedCommunity(event.target.value);
+    //     // Additional logic to fetch and display data for the selected community
+    //     const companyId = event.target.value
+    //     const selected = adminCompanies.find((company => company._id === companyId))
+    //     console.log("HEIG", selected)
+    //     setSelectedCommunity(selected);
+    // };
+    
 
-  //     const response =
-  //     {
-  //         "success": true,
-  //         "userCompanyProfile": {
-  //                 "_id": 1,
-  //                 "image": "String",
-  //                 "name": "XYZ",
-  //                 "Status": "String",
-  //                 "Description": "String",
-  //                 "QualifyingQuestions": ["String"],
-  //                 "Resume": "Boolean",
-  //                 "OpenCommunity": "Boolean",
-  //                 "challenges": [
+    // let originalData = [];
 
-  //                     {
-  //                         "name": "ah",
-  //                         "company": "ObjectId",
-  //                         "description": "hqh",
-  //                         "points": "Number",
-  //                         "dateCreated": "2024-01-03",
-  //                         "dateExpires": "2024-01-30",
-  //                         "credentialArray": ["ObjectId"],
-  //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
-  //                         "active": "Boolean",
-  //                         "participants": [{
-  //                           "user": "ObjectId",
-  //                           "proof": ["String"],
-  //                           "completedDate": "Date",
-  //                           "confirmed": "Boolean",
-  //                         }],
-  //                     },
-  //                     {
-  //                         "name": "nn",
-  //                         "company": "ObjectId",
-  //                         "description": "hello",
-  //                         "points": 100,
-  //                         "dateCreated": "2024-01-03",
-  //                         "dateExpires": "2024-01-30",
-  //                         "credentialArray": ["ObjectId"],
-  //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
-  //                         "active": "Boolean",
-  //                         "participants": [{
-  //                           "user": "ObjectId",
-  //                           "proof": ["String"],
-  //                           "completedDate": "Date",
-  //                           "confirmed": "Boolean",
-  //                         }],
-  //                     }
+    
 
-  //                 ],
-  //                 "Rewards": [{ "reward": "String", "PointsReq": "Number" }],
-  //                 "address": "String",
-  //                 "users": [{ "user": "ObjectId", "Points": "Number" }],
-  //                 "admins": ["ObjectId"],
-  //                 "joinCode": "String",
-  //         }
-  //     }
+    const fetchAndSetCompanyInfo = async (cId) => {
+        try {
+            // Wait for the axios call to complete
+            const currentCompanyInfo = await axiosGetOneCompanyInfo(cId);
+            console.log("enw cid ", cId);
+            console.log("Fetched Company Info", currentCompanyInfo);
+            
+            setCurrentCompanyInfo(currentCompanyInfo);
+            // setSelectedCommunity(currentCompanyInfo);
+            console.log("Fetched selected Info", selectedCommunity);
 
-  //     const specificCompanyData = response.userCompanyProfile;
+            // setOriginalData(selectedCommunity.challenges)
 
-  //     if (!specificCompanyData || !specificCompanyData.challenges) return [];
+            const active =  getActiveChallenges(currentCompanyInfo)
+            console.log("ACTIVE", active)
+            setOriginalData(active)
+        
+            
 
-  //     return specificCompanyData.challenges
-  //         .filter(challenge => {
-  //             // Ensure the challenge dates are interpreted as Date objects
-  //             const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
-  //             const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
+            
+            console.log("OG", originalData)
 
-  //             // Check if the current date is within the active challenge period
-  //             return now.isSameOrAfter(startDate) && now.isSameOrBefore(endDate);
-  //         })
-  //         .map(challenge => {
-  //             // Calculate time remaining as the difference between endDate and now
-  //             const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
-  //             const timeRemaining = endDate - now;
+            // Find the selected company object from adminCompanies
+            // const selected = adminCompanies.find(company => company.companyId === newCompanyId);
 
-  //             // Convert time remaining from milliseconds into a more readable format (e.g., hours)
-  //             const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
-  //             const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            // Update state with the fetched company info and selected company
+            // setCurrentCompanyInfo(currentCompanyInfo);
+            // setSelectedCommunity(selected || "No Communities"); // Fallback to null if not found
 
-  //             return {
-  //                 Name: challenge.name,
-  //                 Remaining: `${hoursRemaining} hrs ${minutesRemaining} mins`, // or more sophisticated formatting
-  //                 challengeData: challenge, // Keep the original challenge data for later use
-  //             };
-  //         })
-  //         .sort((a, b) => a.Remaining - b.Remaining); // Sort based on time remaining
-  // };
+          
+        } catch (error) {
+            console.error("Error fetching company info:", error);
+            // Handle error (e.g., set error state, show notification)
+        }
 
-  // const getScheduledChallenges = () => {
-  //     const now = moment().tz('America/New_York');
-
-  //     const response =
-  //     {
-  //         "success": true,
-  //         "userCompanyProfile": {
-  //                 "_id": 1,
-  //                 "image": "String",
-  //                 "name": "XYZ",
-  //                 "Status": "String",
-  //                 "Description": "String",
-  //                 "QualifyingQuestions": ["String"],
-  //                 "Resume": "Boolean",
-  //                 "OpenCommunity": "Boolean",
-  //                 "challenges": [
-
-  //                     {
-  //                         "name": "ah",
-  //                         "company": "ObjectId",
-  //                         "description": "hqh",
-  //                         "points": "Number",
-  //                         "dateCreated": "2024-01-03",
-  //                         "dateExpires": "2024-01-30",
-  //                         "credentialArray": ["ObjectId"],
-  //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
-  //                         "active": "Boolean",
-  //                         "participants": [{
-  //                           "user": "ObjectId",
-  //                           "proof": ["String"],
-  //                           "completedDate": "Date",
-  //                           "confirmed": "Boolean",
-  //                         }],
-  //                     },
-  //                     {
-  //                         "name": "nn",
-  //                         "company": "ObjectId",
-  //                         "description": "hello",
-  //                         "points": 100,
-  //                         "dateCreated": "2024-01-15",
-  //                         "dateExpires": "2024-01-30",
-  //                         "credentialArray": ["ObjectId"],
-  //                         "tokenReward": { "tokenType": "String", "amount": "Number" },
-  //                         "active": "Boolean",
-  //                         "participants": [{
-  //                           "user": "ObjectId",
-  //                           "proof": ["String"],
-  //                           "completedDate": "Date",
-  //                           "confirmed": "Boolean",
-  //                         }],
-  //                     }
-
-  //                 ],
-  //                 "Rewards": [{ "reward": "String", "PointsReq": "Number" }],
-  //                 "address": "String",
-  //                 "users": [{ "user": "ObjectId", "Points": "Number" }],
-  //                 "admins": ["ObjectId"],
-  //                 "joinCode": "String",
-  //         }
-  //     }
-
-  //     // Assuming response comes from an API call or similar
-  //     const specificCompanyData = response.userCompanyProfile;
-
-  //     if (!specificCompanyData || !specificCompanyData.challenges) return [];
-
-  //     return specificCompanyData.challenges
-  //         .filter(challenge => {
-  //             // Interpret the challenge start date as a Date object
-  //             const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
-
-  //             // Check if the challenge start date is in the future
-  //             return now.isBefore(startDate);
-  //         })
-  //         .map(challenge => {
-  //             // Calculate time until the challenge starts
-  //             const startDate = moment.tz(challenge.dateCreated, 'America/New_York').startOf('day');
-  //             const timeUntilStart = startDate - now;
-
-  //             // Convert time until start from milliseconds to a more readable format
-  //             const daysUntilStart = Math.floor(timeUntilStart / (1000 * 60 * 60 * 24));
-  //             const hoursUntilStart = Math.floor((timeUntilStart % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-  //             return {
-  //                 Name: challenge.name,
-  //                 Starts: `${daysUntilStart} days ${hoursUntilStart} hrs`, // or more sophisticated formatting
-  //                 challengeData: challenge, // Keep the original challenge data for later use
-  //             };
-  //         })
-  //         .sort((a, b) => a.Starts - b.Starts); // Sort based on time until start
-  // };
-
-  const getCompletedChallenges = () => {
-    const now = moment().tz("America/New_York");
-
-    // Assuming the response structure is similar to your previous examples
-    const response = {
-      success: true,
-      userCompanyProfile: {
-        _id: 1,
-        image: "String",
-        name: "XYZ",
-        Status: "String",
-        Description: "String",
-        QualifyingQuestions: ["String"],
-        Resume: "Boolean",
-        OpenCommunity: "Boolean",
-        challenges: [
-          {
-            name: "ah",
-            company: "ObjectId",
-            description: "hqh",
-            points: "Number",
-            dateCreated: "2024-01-03",
-            dateExpires: "2024-01-30",
-            credentialArray: ["ObjectId"],
-            tokenReward: { tokenType: "String", amount: "Number" },
-            active: "Boolean",
-            participants: [
-              {
-                user: "ObjectId",
-                proof: ["String"],
-                completedDate: "Date",
-                confirmed: "Boolean",
-              },
-            ],
-          },
-          {
-            name: "nn",
-            company: "ObjectId",
-            description: "hello",
-            points: 100,
-            dateCreated: "2024-01-10",
-            dateExpires: "2024-01-30",
-            credentialArray: ["ObjectId"],
-            tokenReward: { tokenType: "String", amount: "Number" },
-            active: "Boolean",
-            participants: [
-              {
-                user: "ObjectId",
-                proof: ["String"],
-                completedDate: "Date",
-                confirmed: "Boolean",
-              },
-            ],
-          },
-        ],
-        Rewards: [{ reward: "String", PointsReq: "Number" }],
-        address: "String",
-        users: [{ user: "ObjectId", Points: "Number" }],
-        admins: ["ObjectId"],
-        joinCode: "String",
-      },
     };
 
     const specificCompanyData = response.userCompanyProfile;
@@ -634,8 +458,97 @@ function MyGroups() {
       .sort((a, b) => moment(a.Ended).diff(moment(b.Ended))); // Sort the challenges based on their end date
   };
 
-  const scheduledData = getScheduledChallenges();
-  const completedChallenges = getCompletedChallenges();
+
+   
+    //TODO: This is what I am using to fetch company DATA
+    // const fetchData = async () => {
+    //     try {
+    //         // Replace with your actual API call
+    //         const response = await axios.get('/your-endpoint');
+    //         const specificCompanyData = response.data.userCompanyProfile;
+    
+    //         if (specificCompanyData) {
+    //             const activeChallenges = getActiveChallenges(specificCompanyData);
+    //             const scheduledChallenges = getScheduledChallenges(specificCompanyData);
+    
+    //             // Update your state or process the data as needed
+    //             // setOriginalData(activeChallenges);
+    //             // setScheduledData(scheduledChallenges);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //         // Handle errors appropriately
+    //     }
+    // };
+    
+    // useEffect(() => {
+    //     fetchData();
+    // }, []); // Dependencies array can be adjusted based on when you need to refetch the data
+
+    
+
+    const getActiveChallenges = (selectedCommunity) => {
+        // Process companyData to get active challenges
+        // ...
+        const now = moment().tz('America/New_York');
+        // const specificCompanyData = response.userCompanyProfile;
+
+        console.log("BEFoRE")
+
+        
+
+        if (!selectedCommunity || !selectedCommunity.challenges) return [];
+
+        console.log("afetr")
+
+        console.log("SDNV", selectedCommunity.challenges[0])
+
+        const allChallenges = selectedCommunity.challenges[0]
+
+        
+    
+        return allChallenges
+            .filter(challenge => {
+                // Ensure the challenge dates are interpreted as Date objects
+                const startDate = moment.tz(challenge.effectiveDate, 'America/New_York').startOf('day');
+                const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
+                console.log("CNAME", challenge)
+                console.log("SD", challenge.effectiveDate, startDate.format())
+                console.log("ED", challenge.dateExpires, endDate.format())
+                console.log("Now", now.format())
+
+                console.log("istrue", now.isSameOrAfter(startDate) && now.isSameOrBefore(endDate))
+
+                
+
+                
+
+                
+    
+                // Check if the current date is within the active challenge period
+                const isBetween = now.isBetween(startDate, endDate, null, '[]');
+                return isBetween
+            })
+            .map(challenge => {
+                // Calculate time remaining as the difference between endDate and now
+                const endDate = moment.tz(challenge.dateExpires, 'America/New_York').endOf('day');
+                const timeRemaining = endDate - now;
+    
+                // Convert time remaining from milliseconds into a more readable format (e.g., hours)
+                const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+
+                console.log("passed thru", challenge.name)
+                
+                return {
+                    Name: challenge.name,
+                    Remaining: `${hoursRemaining} hrs ${minutesRemaining} mins`, // or more sophisticated formatting
+                    challengeData: challenge, // Keep the original challenge data for later use
+                };
+            })
+            .sort((a, b) => a.Remaining - b.Remaining); // Sort based on time remaining
+    };
+
 
   const [selectedChallenge, setSelectedChallenge] = useState(null);
 
@@ -654,87 +567,86 @@ function MyGroups() {
         Participant: participant.user,
         Submission: participant.proof.join(", "), // Assuming 'proof' might be an array
         Review: "g", // Or any other data you need here
-      }))
-    : [];
 
-  // const originalData = [
-  //     { Remaining: "5 hrs", Name: "Challenge 1" },
-  //     { Remaining: "8 hrs", Name: "Challenge 2" },
-  //     // ... more data ...
-  // ];
+    })) : [];
 
-  const table1Data = originalData.map((entry) => ({
-    ...entry,
-    Submissions: (
-      <Button
-        children="Review"
-        onClick={() => handleReviewClick(entry.challengeData)}
-      />
-    ),
-  }));
+    // const originalData = [
+    //     { Remaining: "5 hrs", Name: "Challenge 1" },
+    //     { Remaining: "8 hrs", Name: "Challenge 2" },
+    //     // ... more data ...
+    // ];
 
-  //   const handleReviewClick = (name) => {
-  //     setSelectedName(name);
-  //     setIsPopupVisible(true);
-  //   };
+    console.log("OGDATE", originalData)
+    const table1Data = originalData.map(entry => ({
+        ...entry,
+        Submissions: <Button children="Review" onClick={() => handleReviewClick(entry.challengeData)} />
+      }));
 
-  const closePopup = () => {
-    setIsPopupVisible(false);
-  };
+      console.log("T1data", table1Data)
 
-  // const submissionData = [
-  //     { Participant: "@xyz", Submission: "John Doe", Review:"g"},
-  //     { Participant: "@abc", Submission: "Img", Review:"g"},
-  // ];
+    //   const handleReviewClick = (name) => {
+    //     setSelectedName(name);
+    //     setIsPopupVisible(true);
+    //   };
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+      const closePopup = () => {
+        setIsPopupVisible(false);
+      };
+     
+    // const submissionData = [
+    //     { Participant: "@xyz", Submission: "John Doe", Review:"g"},
+    //     { Participant: "@abc", Submission: "Img", Review:"g"},
+    // ];
 
-  const filteredData = useMemo(() => {
-    return table1Data.filter((item) =>
-      item.Name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm]);
 
-  const handleButtonClick = (componentName) => {
-    setActiveComponent(componentName);
-    setShowCard(true);
-  };
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+      };
+      
+    
+    const filteredData = useMemo(() => {
+        // Check if tableData exists and has length
+        if (!table1Data || table1Data.length === 0) {
+          return []; // Return an empty array if tableData doesn't exist or is empty
+        }
+      
+        // Proceed with filtering if tableData exists
+        return table1Data.filter(item =>
+          item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }, [table1Data, searchTerm]); // Include tableData in the dependency array
 
-  return (
-    <div className={styles.dashboardContainer}>
-      <Background />
-      <TopBar />
+    // const handleSearchChange = (e) => {
+    //     setSearchTerm(e.target.value);
+    //   };
+    
+    //   const filteredData = useMemo(() => {
+    //     return table1Data.filter(
+    //       (item) =>
+    //         item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+       
+    //     );
+    //   }, [searchTerm]);
 
-      <div className={styles.myGroupsTextContainer}>
-        <BoldText
-          text={"My Groups"}
-          containerWidth={"250px"}
-          size={"25px"}
-          weight={"bold"}
-          textColor="#000"
-        />
+      
+    
 
-        <BoldText
-          text={
-            typeof selectedCommunity === "string" &&
-            selectedCommunity === "No Communities"
-              ? "No Communities"
-              : `Community Name: ${selectedCommunity.companyName}`
-          }
-          containerWidth={"250px"}
-          size={"18px"}
-          textColor="#000"
-        />
-      </div>
-      {isPopupVisible && (
-        <div className={styles.overlayWrapper}>
-          <div className={styles.overlayBackground} onClick={closePopup}></div>
-          <Card containerWidth="70%" containerHeight="70%">
-            <div className={styles.generalSpacing}>
-              <BoldText
-                text={`Viewing submissions for "${selectedChallenge.name}"`}
+    const handleButtonClick = (componentName) => {
+        setActiveComponent(componentName);
+        setShowCard(true);
+      };
+
+    return (
+        <div className = {styles.dashboardContainer}>
+            <Background/>
+            <TopBar/>
+            
+            <div className={styles.myGroupsTextContainer}>
+                <BoldText
+                text={"My Groups"}
+                containerWidth={"250px"}
+                size={"25px"}
+
                 weight={"bold"}
               />
             </div>

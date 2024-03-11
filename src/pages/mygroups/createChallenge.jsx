@@ -103,7 +103,7 @@ const CreateChallenge = ({selectedCompanyId}) => {
             name: challenges[0].challengeName, // Currently since no image upload is implemented, this is empty
             company: selectedCompanyId,
             points: challenges[0].points,
-            EffectiveDate: formattedStartDate, 
+            effectiveDate: formattedStartDate, 
             dateExpires: formattedEndDate, 
             credentialArray: [],
             tokenReward: tokenAmount,
