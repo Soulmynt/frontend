@@ -10,7 +10,8 @@ import { Searchbar } from "../../components/searchbar";
 import { Link } from "react-router-dom";
 import { axiosRemoveUser } from "../../utils/axios";
 // Instead of calling CompanyInfo in the componenet, we will get it from the parent and use that to hydrate the data, so companyInfo will be passed in as a prop
-const ManageCommunity = ({ selectedCompanyId, CompanyInfo = {} }) => {
+const ManageCommunity = ({ selectedCompanyId = "", CompanyInfo }) => {
+  console.log("ComapnyInfo Being Fed:", CompanyInfo);
   const [searchTerm, setSearchTerm] = useState("");
 
   const [companyData, setCompanyData] = useState(null); // State to store fetched company data
@@ -56,24 +57,24 @@ const ManageCommunity = ({ selectedCompanyId, CompanyInfo = {} }) => {
     return new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
-  // Function to fetch company data by ID
-  // const fetchCompanyData = async () => {
-  //     try {
-  //         // Assuming you have an API endpoint where you can pass companyId as a parameter
-  //         const response = await axios.get(`/api/company/${selectedCompanyId}`);
-  //         setCompanyData(response.data);
-  //         // Now you have companyData that you can use to render your component
-  //     } catch (error) {
-  //         console.error('Error fetching company data:', error);
-  //     }
-  // };
+  //   // Function to fetch company data by ID
+  //   // const fetchCompanyData = async () => {
+  //   //     try {
+  //   //         // Assuming you have an API endpoint where you can pass companyId as a parameter
+  //   //         const response = await axios.get(`/api/company/${selectedCompanyId}`);
+  //   //         setCompanyData(response.data);
+  //   //         // Now you have companyData that you can use to render your component
+  //   //     } catch (error) {
+  //   //         console.error('Error fetching company data:', error);
+  //   //     }
+  //   // };
 
-  // // useEffect to fetch company data when selectedCompanyId changes
-  // useEffect(() => {
-  //     if (selectedCompanyId) {
-  //         fetchCompanyData();
-  //     }
-  // }, [selectedCompanyId]);
+  //   // // useEffect to fetch company data when selectedCompanyId changes
+  //   // useEffect(() => {
+  //   //     if (selectedCompanyId) {
+  //   //         fetchCompanyData();
+  //   //     }
+  //   // }, [selectedCompanyId]);
 
   const response = {
     users: [
@@ -96,26 +97,27 @@ const ManageCommunity = ({ selectedCompanyId, CompanyInfo = {} }) => {
     ],
   };
 
-  // const table1Data = [
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@XYZ", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@XYZ", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
-  // ];
+  //   // const table1Data = [
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@XYZ", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@XYZ", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // { Temp: "", Username: "@ABC", Name: "Active", Points: 0,  Membership: "5 days", ID: "135135"},
+  //   // ];
 
-  // const modifiedData = table1Data.map(item => ({
-  //     ...item,
-  //     Username: <Link to={`/explore?username=${item.Username}`}>{item.Username}</Link>,
-  // }));
-
-  const table1Data = CompanyInfo.users.map((user, index) => ({
-    Temp: "", // If Temp is not needed, consider removing it or replacing it with relevant data
+  //   // const modifiedData = table1Data.map(item => ({
+  //   //     ...item,
+  //   //     Username: <Link to={`/explore?username=${item.Username}`}>{item.Username}</Link>,
+  //   // }));
+  console.log("Company info users:", CompanyInfo.users[0]);
+  const companyUsers = CompanyInfo.users;
+  const table1Data = CompanyInfo.users[0].map((user) => ({
+    Handle: user.handle,
     Username: (
       <Link
         to={`/explore?username=${user.handle}`}
@@ -124,12 +126,12 @@ const ManageCommunity = ({ selectedCompanyId, CompanyInfo = {} }) => {
         {user.handle}
       </Link>
     ),
-    Name: user.user, // Assuming "user" field contains the name
-    Points: user.RewardPoints,
+    Points: user.rewardPoints,
     Remove: (
       <Button onClick={() => handleRemoveClick(user.handle)} children="X" />
     ),
   }));
+  console.log("Table1Data:", table1Data);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -137,9 +139,8 @@ const ManageCommunity = ({ selectedCompanyId, CompanyInfo = {} }) => {
 
   const filteredData = useMemo(() => {
     return table1Data.filter(
-      (item) =>
-        item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.Username.toLowerCase().includes(searchTerm.toLowerCase())
+      (item) => item.Handle.toLowerCase().includes(searchTerm.toLowerCase())
+      //.includes(searchTerm.toLowerCase())
     );
   }, [searchTerm]);
 
@@ -172,7 +173,7 @@ const ManageCommunity = ({ selectedCompanyId, CompanyInfo = {} }) => {
           {filteredData.length > 0 ? (
             <Table
               itemsPerPage={10}
-              columns={[" ", "Username", "Name", "Points", "Remove"]}
+              columns={[" ", "Username", "Points", "Remove"]}
               data={filteredData}
               width="97%"
               height="auto"
