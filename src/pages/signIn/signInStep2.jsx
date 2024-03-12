@@ -73,6 +73,7 @@ function SignInStep2({
   const [isHovered, setIsHovered] = useState(false);
 
   const [role, setRole] = useState(false);
+  // this is a cheap workaround to get the continue button to work, see line 82
   const [member, setMember] = useState(false);
   const handleRoleChange = (selectedRole) => {
     selectedRole === "manager" ? setRole(true) : setMember(true);
