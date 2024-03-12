@@ -73,11 +73,12 @@ function SignInStep2({
   const [isHovered, setIsHovered] = useState(false);
 
   const [role, setRole] = useState(false);
+  const [member, setMember] = useState(false);
   const handleRoleChange = (selectedRole) => {
-    selectedRole === "manager" ? setRole(true) : setRole(false);
+    selectedRole === "manager" ? setRole(true) : setMember(true);
   };
 
-  const isContinueEnabled = userName && displayHandle && role;
+  const isContinueEnabled = (userName && displayHandle && role) || member;
 
   const handleMouseEnter = () => {
     setIsHovered(true);
