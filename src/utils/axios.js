@@ -2,13 +2,20 @@ import axios from "axios";
 
 const baseURL = "http://localhost:4000";
 
-export async function axiosSignIn(email, handle, password, keyGen) {
+export async function axiosSignIn(
+  email,
+  handle,
+  password,
+  keyGen,
+  communityRole
+) {
   try {
     let data = await axios.post(`http://localhost:4000/usersignup`, {
       email: email,
       handle: handle,
       password: password,
       keygen: keyGen,
+      communityRole: communityRole,
     });
     return data;
   } catch (e) {

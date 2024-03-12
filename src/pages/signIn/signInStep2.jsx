@@ -12,7 +12,12 @@ import styles from "./signInStep2.module.css";
 import "../../components/textbox/textbox.css";
 import { useState } from "react";
 
-function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
+function SignInStep2({
+  goToNextStep,
+  setUserNameFunc,
+  setDisplayNameFunc,
+  setRoleFunc,
+}) {
   // const [rules, setRules] = useState([
   //     { id: 1, rule: ' At least 8 characters', isValid: false },
   //     { id: 2, rule: ' Contains an uppercase letter', isValid: false },
@@ -67,9 +72,9 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
   const [displayHandle, setDisplayHandle] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
-  const[role, setRole]  = useState("");
+  const [role, setRole] = useState(false);
   const handleRoleChange = (selectedRole) => {
-    setRole(selectedRole);
+    selectedRole === "manager" ? setRole(true) : setRole(false);
   };
 
   const isContinueEnabled = userName && displayHandle && role;
@@ -111,6 +116,7 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
   const goToNextStepFunc = () => {
     setUserNameFunc(userName);
     setDisplayNameFunc(displayHandle);
+    setRoleFunc(role);
     goToNextStep(3);
   };
 
@@ -186,28 +192,11 @@ function SignInStep2({ goToNextStep, setUserNameFunc, setDisplayNameFunc }) {
             </div>
 
             <div>
-
-              <BoldText
-                text= "I am a..."
-                size= {"25px"}
-                weight = {"bold"}
-
-
-
-
-                />
-
-              
-
-
-
-
+              <BoldText text="I am a..." size={"25px"} weight={"bold"} />
             </div>
 
             <div>
-
-
-            <RoleSelect onChange={handleRoleChange} />
+              <RoleSelect onChange={handleRoleChange} />
             </div>
 
             {/* <div className='rules-container'>

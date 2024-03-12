@@ -29,6 +29,7 @@ function Register() {
   const [password, setPassword] = useState("pasbloop");
   const [userName, setUserName] = useState("ubloop");
   const [displayHandle, setDisplayHandle] = useState("disbloop");
+  const [communityRole, setCommunityRole] = useState(false);
 
   // User Wallet States
   const [walletthing, setWallet] = useState("");
@@ -69,7 +70,13 @@ function Register() {
   // ! Here is the function we create to call our axios function
   //* It will
   const closeModalAndSubmitUserInfo = async () => {
-    let data = await axiosSignIn(email, displayHandle, password, keyGen);
+    let data = await axiosSignIn(
+      email,
+      displayHandle,
+      password,
+      keyGen,
+      communityRole
+    );
     if (data.status == 200) {
       console.log("sign in returns 200, return data info: ", data.data);
       setAuth(data.data);
@@ -113,6 +120,7 @@ function Register() {
           goToNextStep={setCurrentStep}
           setUserNameFunc={setUserName}
           setDisplayNameFunc={setDisplayHandle}
+          setRoleFunc={setCommunityRole}
         />
       )}
       {currentStep === 3 && <SignInStep3 />}
