@@ -78,6 +78,19 @@ export async function axiosGetOneCompanyInfo(cId) {
   }
 }
 
+export async function axiosGetAllCompanies() {
+  // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's accessToken  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+
+  try {
+    let data = await axios.get(`http://localhost:4000/allcompanies`);
+    console.log("Get all companies", data.data.company);
+    return data.data.company;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
+
 export async function axiosCreateCompany(accessToken, companyInfo) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
   console.log("ci", companyInfo);
@@ -162,13 +175,14 @@ export async function axiosCreateChallenge(token, challengeObj) {
 
 export async function axiosJoinCommunity(token, joinToken) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
+  console.log("token",token);
+  console.log("jtoken",joinToken);
   try {
     let data = await axios.post(`http://localhost:4000/joincompany`, {
-      token: token,
-      joinToken,
-      joinToken,
+      accessToken: token,
+      joinCode: joinToken,
     });
-    return data;
+    return data.data.message.userCompanyName;
   } catch (e) {
     const errorlog = { data: { error: e } };
     return errorlog;

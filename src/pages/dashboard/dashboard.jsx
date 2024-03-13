@@ -29,17 +29,61 @@ function Dashboard() {
   // const accessToken = auth.accessToken;
   // console.log(accessToken);
 
+  const [nonAdminCompanies, setNonAdminCompanies] = useState([])
+  const [companyId, setCompanyId] = useState(null);
+
+  const [selectedCommunity, setSelectedCommunity] = useState("No Communities");
+
+
+
   console.log(userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
-      const accessToken = auth.accessToken;
-      const userInfo = await axiosGetUserInfo(accessToken);
-      setUserInfo(userInfo);
+
+      try {
+        const accessToken = auth.accessToken;
+        const userInfo = await axiosGetUserInfo(accessToken);
+        setUserInfo(userInfo);
+  
+        if(userInfo && userInfo.companies){
+  
+        
+  
+          const nonAdminCompanies = userInfo.companies.filter(
+            (company) => !company.admin
+          );
+  
+          setNonAdminCompanies(nonAdminCompanies);
+  
+          if(nonAdminCompanies.length > 0){
+            if(selectedCommunity == "No Communities") {
+              
+              setCompanyId(nonAdminCompanies[0].companyId);
+  
+              // fetchAndSetCompanyInfo(nonAdminCompanies[0].companyId);
+  
+  
+  
+            } 
+            else {
+              // fetchAndSetCompanyInfo(companyId);
+            }
+  
+          } else {
+            setSelectedCommunity("No Communities")
+          }
+        }      
+
+
+      } catch (error) {
+        console.log("Combined useEffect Error: ", error);
+      } 
+      
     };
 
     fetchData();
-  }, []);
+  }, [showCard]);
 
   console.log("hello", userInfo);
 
@@ -167,16 +211,16 @@ function Dashboard() {
 
   //TODO: UNCOMMENT
 
-  const nonAdminCompanies =
-    userInfo && userInfo.companies
-      ? userInfo.companies.filter((company) => !company.admin)
-      : [];
+  // const nonAdminCompanies =
+  //   userInfo && userInfo.companies
+  //     ? userInfo.companies.filter((company) => !company.admin)
+  //     : [];
 
-  const isPartOfAnyNonAdminCompany = nonAdminCompanies.length > 0;
+  // const isPartOfAnyNonAdminCompany = nonAdminCompanies.length > 0;
 
-  const [selectedCommunity, setSelectedCommunity] = useState(
-    isPartOfAnyNonAdminCompany ? nonAdminCompanies[0] : "No Communities"
-  );
+  // const [selectedCommunity, setSelectedCommunity] = useState(
+  //   isPartOfAnyNonAdminCompany ? nonAdminCompanies[0] : "No Communities"
+  // );
 
   // const isPartOfAnyCompany = userInfo.companies && userInfo.companies.length > 0;
   // const [selectedCommunity, setSelectedCommunity] = useState(
@@ -372,16 +416,38 @@ function Dashboard() {
 
   //TODO: UNCOMMENT
 
-  const handleCommunityChange = (event) => {
-    console.log(typeof event.target.value);
+  // const handleCommunityChange = (event) => {
+  //   console.log(typeof event.target.value);
 
-    const companyId = parseInt(event.target.value, 10);
+  //   const companyId = parseInt(event.target.value, 10);
+  //   const selected = nonAdminCompanies.find(
+  //     (company) => company._id === companyId
+  //   );
+  //   console.log(selected);
+  //   setSelectedCommunity(selected);
+  //   // Additional logic to fetch and display data for the selected community
+  // };
+
+  const handleCommunityChange = (event) => {
+    const newCompanyId = event.target.value;
+    // setCompanyId(newCompanyId); // This sets the companyId state
+
+    console.log(nonAdminCompanies)
+    
     const selected = nonAdminCompanies.find(
-      (company) => company._id === companyId
+      (company) => company._id === newCompanyId
     );
-    console.log(selected);
-    setSelectedCommunity(selected);
-    // Additional logic to fetch and display data for the selected community
+
+    
+    // const currentCompanyInfo = axiosGetOneCompanyInfo(companyId);
+    // setCurrentCompanyInfo(selected);
+    // setCurrentCompanyInfo(selected);
+    setSelectedCommunity(selected || "No Communities");
+
+    
+    setCompanyId(newCompanyId);
+
+    // fetchAndSetCompanyInfo(newCompanyId);
   };
 
   return (
