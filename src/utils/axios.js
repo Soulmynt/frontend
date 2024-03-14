@@ -241,3 +241,13 @@ export async function setupAxiosInterceptor(setAuth) {
     }
   );
 }
+
+export async function axiosLogout() {
+  try {
+    let data = await axios.post(`http://localhost:4000/logout`);
+    return data;
+  } catch (e) {
+    const errorlog = { data: { error: e } };
+    return errorlog;
+  }
+}
