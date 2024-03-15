@@ -175,8 +175,8 @@ export async function axiosCreateChallenge(token, challengeObj) {
 
 export async function axiosJoinCommunity(token, joinToken) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
-  console.log("token",token);
-  console.log("jtoken",joinToken);
+  console.log("token", token);
+  console.log("jtoken", joinToken);
   try {
     let data = await axios.post(`http://localhost:4000/joincompany`, {
       accessToken: token,
@@ -193,7 +193,7 @@ export async function axiosSubmitChallenge(token, challengeID, challengeProof) {
   // Create a Try Catch where we will try to get an object returned from an axios post to our backend's login route.  We will send a req object containing the user's email and password we gathered from the component's state.  if the connection is successful, we will return the res object returned.  Then we will create a catch which will return the error encountered.
   try {
     let data = await axios.post(`http://localhost:4000/submitchallenge`, {
-      token: token,
+      accessToken: token,
       challengeID: challengeID,
       challengeProof: challengeProof,
     });
