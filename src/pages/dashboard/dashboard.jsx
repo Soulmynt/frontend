@@ -13,7 +13,6 @@ import { useAuth } from "../../hooks";
 import { axiosSubmitChallenge, axiosGetUserInfo } from "../../utils/axios";
 import { Leaderboard } from "../../components/leaderboard/";
 import moment from "moment-timezone";
-import useRefreshToken from "../../hooks/UseRefreshToken";
 
 function Dashboard() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -34,8 +33,6 @@ function Dashboard() {
   const [companyId, setCompanyId] = useState(null);
 
   const [selectedCommunity, setSelectedCommunity] = useState("No Communities");
-
-  const refresh = useRefreshToken();
 
   console.log(userInfo);
 
@@ -466,7 +463,7 @@ function Dashboard() {
           children={"Join New Community"}
           variant="colorful-button"
           containerWidth={"250px"}
-          onClick={() => refresh()}
+          onClick={() => handleButtonClick("CommunityCode")}
         />
 
         <div className={styles.boxWrapper}>

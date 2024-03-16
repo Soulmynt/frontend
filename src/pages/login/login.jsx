@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { Textbox } from "../../components/textbox";
 import { Button } from "../../components/button";
 import { ColorfulText } from "../../components/colorfulText";
@@ -13,9 +14,18 @@ import { axiosLogIn } from "../../utils/axios";
 import { useAuth } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 
+const LoadingContainer = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+`;
+
 function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false); // [1
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
@@ -30,10 +40,10 @@ function Login() {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     let data = await axiosLogIn(email, password);
     setPassword("");
     setEmail("");
-    console.log(data.data.userprofile);
     if (data.status == 200) {
       setAuth(data.data.userprofile);
       navigate("/dashboard");
@@ -63,77 +73,89 @@ function Login() {
   return (
     <div>
       <div className={styles.overallSignIn}>
-        <div className={styles.leftFrame}>
-          <div className={styles.headerContainer}>
-            <img src={logo} alt="Description" className={styles.soulmyntLogo} />{" "}
-            {/* Add this line */}
-            <div className={styles.boldTextContainer}>
-              <div>
-                <BoldText
-                  text={"Soulmynt"}
-                  containerWidth={"130px"}
-                  size={"26px"}
+        {loading ? (
+          <>
+            <LoadingContainer>Please Wait.</LoadingContainer>
+          </>
+        ) : (
+          <>
+            <div className={styles.leftFrame}>
+              <div className={styles.headerContainer}>
+                <img
+                  src={logo}
+                  alt="Description"
+                  className={styles.soulmyntLogo}
+                />{" "}
+                {/* Add this line */}
+                <div className={styles.boldTextContainer}>
+                  <div>
+                    <BoldText
+                      text={"Soulmynt"}
+                      containerWidth={"130px"}
+                      size={"26px"}
+                    />
+                  </div>
+                </div>
+                <div className={styles.createAccountContainer}>
+                  <div>
+                    <ColorfulText text={"Login"} containerWidth={"340px"} />
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.emailPass}>
+                <div>
+                  <Textbox
+                    text={"Email"}
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    containerWidth={"378px"}
+                  />
+                </div>
+
+                <div>
+                  <Textbox
+                    text="Password"
+                    containerWidth="378px"
+                    type="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    isFocused={isPassFocused}
+                    handleInputFocus={handleInputFocus}
+                    handleInputBlur={handleInputBlur}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.continueButton}>
+                <Button
+                  children={"Continue >"}
+                  variant="colorful-button"
+                  containerWidth={"378px"}
+                  onClick={handleSubmit}
                 />
               </div>
             </div>
-            <div className={styles.createAccountContainer}>
-              <div>
-                <ColorfulText text={"Login"} containerWidth={"340px"} />
+
+            <div className={styles.rightFrame}>
+              <div className={styles.topCurve}>
+                <img src={top} alt="Description" />
+              </div>
+
+              <div className={styles.signinTextContainer}>
+                <div className={styles.mainSigninText}>
+                  Grow your community. Keep people engaged. Receive Rewards.
+                  Expand your Network.
+                </div>
+              </div>
+
+              <div className={styles.bottomCurve}>
+                <img src={bottom} alt="Description" />
               </div>
             </div>
-          </div>
-
-          <div className={styles.emailPass}>
-            <div>
-              <Textbox
-                text={"Email"}
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-                containerWidth={"378px"}
-              />
-            </div>
-
-            <div>
-              <Textbox
-                text="Password"
-                containerWidth="378px"
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-                isFocused={isPassFocused}
-                handleInputFocus={handleInputFocus}
-                handleInputBlur={handleInputBlur}
-              />
-            </div>
-          </div>
-
-          <div className={styles.continueButton}>
-            <Button
-              children={"Continue >"}
-              variant="colorful-button"
-              containerWidth={"378px"}
-              onClick={handleSubmit}
-            />
-          </div>
-        </div>
-
-        <div className={styles.rightFrame}>
-          <div className={styles.topCurve}>
-            <img src={top} alt="Description" />
-          </div>
-
-          <div className={styles.signinTextContainer}>
-            <div className={styles.mainSigninText}>
-              Grow your community. Keep people engaged. Receive Rewards. Expand
-              your Network.
-            </div>
-          </div>
-
-          <div className={styles.bottomCurve}>
-            <img src={bottom} alt="Description" />
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
