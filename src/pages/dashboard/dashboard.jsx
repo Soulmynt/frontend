@@ -13,6 +13,7 @@ import { useAuth } from "../../hooks";
 import { axiosSubmitChallenge, axiosGetUserInfo } from "../../utils/axios";
 import { Leaderboard } from "../../components/leaderboard/";
 import moment from "moment-timezone";
+import useRefreshToken from "../../hooks/UseRefreshToken";
 
 function Dashboard() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -29,64 +30,50 @@ function Dashboard() {
   // const accessToken = auth.accessToken;
   // console.log(accessToken);
 
-  const [nonAdminCompanies, setNonAdminCompanies] = useState([])
+  const [nonAdminCompanies, setNonAdminCompanies] = useState([]);
   const [companyId, setCompanyId] = useState(null);
 
   const [selectedCommunity, setSelectedCommunity] = useState("No Communities");
 
-
+  const refresh = useRefreshToken();
 
   console.log(userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
-
       try {
         const accessToken = auth.accessToken;
         const userInfo = await axiosGetUserInfo(accessToken);
         setUserInfo(userInfo);
-  
-        if(userInfo && userInfo.companies){
-  
-        
-  
+
+        if (userInfo && userInfo.companies) {
           const nonAdminCompanies = userInfo.companies.filter(
             (company) => !company.admin
           );
-  
+
           setNonAdminCompanies(nonAdminCompanies);
-  
-          if(nonAdminCompanies.length > 0){
-            if(selectedCommunity == "No Communities") {
-              
+
+          if (nonAdminCompanies.length > 0) {
+            if (selectedCommunity == "No Communities") {
               setCompanyId(nonAdminCompanies[0].companyId);
-  
+
               // fetchAndSetCompanyInfo(nonAdminCompanies[0].companyId);
-  
-  
-  
-            } 
-            else {
+            } else {
               // fetchAndSetCompanyInfo(companyId);
             }
-  
           } else {
-            setSelectedCommunity("No Communities")
+            setSelectedCommunity("No Communities");
           }
-        }      
-
-
+        }
       } catch (error) {
         console.log("Combined useEffect Error: ", error);
-      } 
-      
+      }
     };
 
     fetchData();
   }, [showCard]);
 
   console.log("hello", userInfo);
-
 
   const f = {
     id: "ObjectId",
@@ -432,19 +419,17 @@ function Dashboard() {
     const newCompanyId = event.target.value;
     // setCompanyId(newCompanyId); // This sets the companyId state
 
-    console.log(nonAdminCompanies)
-    
+    console.log(nonAdminCompanies);
+
     const selected = nonAdminCompanies.find(
       (company) => company._id === newCompanyId
     );
 
-    
     // const currentCompanyInfo = axiosGetOneCompanyInfo(companyId);
     // setCurrentCompanyInfo(selected);
     // setCurrentCompanyInfo(selected);
     setSelectedCommunity(selected || "No Communities");
 
-    
     setCompanyId(newCompanyId);
 
     // fetchAndSetCompanyInfo(newCompanyId);
@@ -481,7 +466,7 @@ function Dashboard() {
           children={"Join New Community"}
           variant="colorful-button"
           containerWidth={"250px"}
-          onClick={() => handleButtonClick("CommunityCode")}
+          onClick={() => refresh()}
         />
 
         <div className={styles.boxWrapper}>
